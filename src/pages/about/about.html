@@ -41,7 +41,10 @@
 
   </ion-list-header>
 
+
+
 <u>Existing Locations:</u> 
+
   <ion-item *ngFor="let item of shoppingList$ | async" detail-push navPush="EditShoppingItemPage" [navParams]="{item: item}">
    {{item.name}}
   </ion-item>
