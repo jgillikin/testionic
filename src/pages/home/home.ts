@@ -56,12 +56,13 @@ this.dataService.getProducts()
     this.barcodeScanner.scan().then((barcodeData) => {
       this.selectedProduct = this.products.find(product => product.plu === barcodeData.text);
       if(this.selectedProduct !== undefined) {
+this.toast.show(barcodeData.text);
         this.productFound = true;
         console.log(this.selectedProduct);
       } else {
+       this.toast.show(barcodeData.text);
         this.selectedProduct = {};
         this.productFound = false;
-        this.toast.show(barcodeData.text);
       /*  this.toast.show('Product not found', '5000', 'center').subscribe(
           toast => {
             console.log(toast);
@@ -69,7 +70,6 @@ this.dataService.getProducts()
         ); */
       }
     }, (err) => {
-this.toast.show(barcodeData.text);
      /* this.toast.show(err, '5000', 'center').subscribe(
         toast => {
           console.log(toast);
