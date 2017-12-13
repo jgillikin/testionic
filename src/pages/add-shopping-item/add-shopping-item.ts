@@ -23,6 +23,7 @@ item: Item = {
  name: '',
  quantity: undefined,
  price: undefined,
+ plu: undefined
 };
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private shopping: ShoppingListService, private toast: ToastService) {

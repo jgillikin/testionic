@@ -25,6 +25,7 @@ item: Item = {
  name: '',
  quantity: 0,
  price: 0,
+ plu: '9781414380704'
 };
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private shopping: ShoppingListService, private toast: ToastService) {
