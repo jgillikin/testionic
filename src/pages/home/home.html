@@ -10,4 +10,19 @@
 
  <button ion-button color="blue" full round (click)="scan()">Start Scan</button>
 
+<br>
+
+<ion-card *ngIf="productFound">
+  <ion-card-header>
+    <h2>Price: $ {{selectedProduct.price}}</h2>
+  </ion-card-header>
+  <ion-card-content>
+    <ul>
+      <li>{{selectedProduct.plu}}</li>
+      <li>{{selectedProduct.name}}</li>
+      <li>{{selectedProduct.desc}}</li>
+    </ul>
+  </ion-card-content>
+</ion-card>
+
 </ion-content>

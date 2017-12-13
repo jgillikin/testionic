@@ -16,8 +16,8 @@ export class DataServiceProvider {
   }
 
   getProducts(){
-    return this.http.get('https://shoppinglist-e3f54.firebaseio.com/.json')
-      .map((response:Response)=>response.json());
+    return this.http.get('assets/data/products.json')
+    .map((response:Response)=>response.json());
   }
 
 }
