@@ -18,8 +18,11 @@ import { InventoryPage } from '../pages/inventory/inventory';
 import { FIREBASE_CONFIG } from './firebase.credentials';
 import { ShoppingListService } from './../services/shopping-list/shopping-list.service';
 import { ToastService } from './../services/toast/toast.service';
+import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { SuperTabsModule } from 'ionic2-super-tabs';
+import { HttpModule } from '@angular/http';
+import { DataServiceProvider } from '../providers/data-service/data-service';
 
 @NgModule({
   declarations: [
@@ -39,7 +42,8 @@ import { SuperTabsModule } from 'ionic2-super-tabs';
     AngularFireModule.initializeApp(FIREBASE_CONFIG),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
-SuperTabsModule.forRoot()
+SuperTabsModule.forRoot(),
+ HttpModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -59,7 +63,9 @@ AddLocationPage
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     ShoppingListService,
     ToastService,
-SuperTabsModule
+SuperTabsModule,
+BarcodeScanner,
+ DataServiceProvider
   ]
 })
 export class AppModule {}

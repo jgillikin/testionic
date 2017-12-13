@@ -90,4 +90,7 @@
         <variable name="UPDATE_API" value="https://api.ionicjs.com" />
         <variable name="MAX_STORE" value="2" />
     </plugin>
+    <plugin name="phonegap-plugin-barcodescanner" spec="^7.0.0">
+        <variable name="CAMERA_USAGE_DESCRIPTION" value=" " />
+    </plugin>
 </widget>
