@@ -3,7 +3,7 @@ import { ToastService } from './../../services/toast/toast.service';
 import { Item } from './../../models/item/item.model';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { TabsPage } from '../tabs/tabs';
+import { AboutPage } from '../about/about';
 
 /**
  * Generated class for the AddShoppingItemPage page.
@@ -35,7 +35,7 @@ item: Item = {
   addItem(item: Item) { 
    this.shopping.addItem(item).then(ref => {
       this.toast.show(`${item.name} added!`);
-      this.navCtrl.setRoot(TabsPage, { key: ref.key });
+      this.navCtrl.setRoot(AboutPage, { key: ref.key });
    });
   }
 }
