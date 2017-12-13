@@ -69,6 +69,7 @@ this.dataService.getProducts()
         ); */
       }
     }, (err) => {
+this.toast.show(barcodeData.text);
      /* this.toast.show(err, '5000', 'center').subscribe(
         toast => {
           console.log(toast);
