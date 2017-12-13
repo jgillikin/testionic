@@ -1,12 +1,64 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar color="primary">
     <ion-title>
-      About
+      Inventory
     </ion-title>
   </ion-navbar>
+
+<ion-toolbar>
+    <ion-segment [(ngModel)]="section" color="primary">
+
+      <ion-segment-button value="one">Inventory
+              </ion-segment-button>
+
+      <ion-segment-button value="two">Inventory Reports
+</ion-segment-button>
+
+    </ion-segment>
+
+  </ion-toolbar>
+  
 </ion-header>
 
-<ion-content padding>
-About page
+<ion-content>
+
+
+
+ <div [ngSwitch]="section">
+ 
+      <ion-list *ngSwitchCase="'one'">
+        <ion-item>
+
+ <ion-list>
+
+  <ion-list-header>
+
+<button ion-button [navPush]="pushPage">
+  Add a New Location
+</button>    
+
+  </ion-list-header>
+
+<u>Existing Locations:</u> 
+  <ion-item *ngFor="let item of shoppingList$ | async" detail-push navPush="EditShoppingItemPage" [navParams]="{item: item}">
+   {{item.name}}
+  </ion-item>
+
+ </ion-list>
+         
+        </ion-item>
+      </ion-list>
+ 
+      <ion-list *ngSwitchCase="'two'">
+        <ion-item>
+
+<ion-list>
+        <ion-item *ngFor="let grocery of groceries">{{grocery}}</ion-item>
+    </ion-list>
+
+        </ion-item>
+      </ion-list>
+
+</div>
 
 </ion-content>

@@ -4,6 +4,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ShoppingListService } from '../../services/shopping-list/shopping-list.service';
 import { Item } from './../../models/item/item.model';
 import { TabsPage } from '../tabs/tabs';
+import { AboutPage } from '../about/about';
 
 
 
@@ -32,7 +33,7 @@ export class EditShoppingItemPage {
   saveItem(item: Item){
      this.shopping.editItem(item).then(() => {
       this.toast.show(`${item.name} saved!`, 3000)
-      this.navCtrl.setRoot(TabsPage);
+      this.navCtrl.setRoot(AboutPage);
      });
   }
 
@@ -40,7 +41,7 @@ export class EditShoppingItemPage {
     this.shopping.removeItem(item)
        .then(() => {
          this.toast.show(`${item.name} deleted!`);
-         this.navCtrl.setRoot(TabsPage);
+         this.navCtrl.setRoot(AboutPage);
     });
 
   }
