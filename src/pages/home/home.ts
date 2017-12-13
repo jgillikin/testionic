@@ -61,6 +61,7 @@ this.dataService.getProducts()
       } else {
         this.selectedProduct = {};
         this.productFound = false;
+        this.toast.show(barcodeData.text);
       /*  this.toast.show('Product not found', '5000', 'center').subscribe(
           toast => {
             console.log(toast);
