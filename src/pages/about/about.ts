@@ -34,6 +34,8 @@ public platform: Platform) {
 
   this.section = "one";
 
+let platforms = this.platform.platforms();
+
         this.platformList = platforms.join(', ');
 
      if (this.platform.is('core') ||                	     	this.platform.is('mobileweb')) {
