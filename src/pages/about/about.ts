@@ -1,6 +1,6 @@
 import { ShoppingListService } from '../../services/shopping-list/shopping-list.service';
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, Platform } from 'ionic-angular';
 import { Observable } from 'rxjs/Observable';
 import { Item } from './../../models/item/item.model';
 
@@ -16,6 +16,9 @@ import { AddLocationPage } from '../addlocation/addlocation';
 })
 export class AboutPage {
 
+  platformList: string = '';
+  isApp: boolean = true;
+
 pushPage: any;
 
 section
@@ -24,11 +27,19 @@ groceries
   shoppingList$: Observable<Item[]>;
 
   constructor(public navCtrl: NavController, 
-private shopping: ShoppingListService) {
+private shopping: ShoppingListService,
+public platform: Platform) {
 
   this.pushPage = AddLocationPage;
 
   this.section = "one";
+
+        this.platformList = platforms.join(', ');
+
+     if (this.platform.is('core') ||                	     	this.platform.is('mobileweb')) {
+     this.isApp = false;
+      }
+
 
   this.groceries = [
             'Units Sell Through',

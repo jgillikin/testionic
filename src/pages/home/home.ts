@@ -7,6 +7,8 @@ import { Observable } from 'rxjs/Observable';
 import { Item } from './../../models/item/item.model';
 import { DataServiceProvider } from '../../providers/data-service/data-service';
 
+
+
 @IonicPage()
 @Component({
   selector: 'page-home',
@@ -66,6 +68,20 @@ this.dataService.getProducts()
 
 
                      } //end constructor
+
+searchProduct(prodMan){
+  this.selectedProduct = this.shopping
+				   .getShoppingList2(prodMan) //search
+                         .snapshotChanges() //key and value
+				.map(changes => {
+				    return changes.map(c => ({
+					key: c.payload.key, 
+					...c.payload.val()
+      			    }))
+ 				 }
+			      )
+
+}
 
  scan() {
     this.selectedProduct = {};

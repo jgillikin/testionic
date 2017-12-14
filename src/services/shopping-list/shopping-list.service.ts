@@ -15,6 +15,10 @@ getShoppingList() {
  return this.shoppingListRef;
 }
 
+/*getShoppingList2(searchString) {
+ return this.db.list(shoppingListRef).orderByChild('plu').equalTo(searchString);
+}*/
+
 addItem(item: Item) {
  return this.shoppingListRef.push(item);
 }
