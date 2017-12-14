@@ -4,11 +4,45 @@
       Purchase Orders
     </ion-title>
   </ion-navbar>
+
+<ion-toolbar>
+    <ion-segment [(ngModel)]="section" color="primary">
+
+      <ion-segment-button value="one">Orders
+              </ion-segment-button>
+
+      <ion-segment-button value="two">Re-orders
+</ion-segment-button>
+
+    </ion-segment>
+
+  </ion-toolbar>
+
+
 </ion-header>
 
 <ion-content padding>
 
- <button ion-button color="blue" full round (click)="scan()">Start Scan</button>
+ <div [ngSwitch]="section">
+ 
+      <ion-list *ngSwitchCase="'one'">
+      <ion-item>
+      <ion-list>
+
+<div text-center>
+ <button ion-button color="blue" (click)="scan()">Start Scan</button>
+<br>
+<br>
+or<br>
+<br>
+
+<ion-item>
+<ion-input style="text-align:center" placeholder="       Enter Product Number"></ion-input>
+</ion-item>
+<br>
+<button ion-button color="blue">Search</button>
+
+ </div>
 
 <br>
 
@@ -24,5 +58,21 @@
     </ul>
   </ion-card-content>
 </ion-card>
+
+</ion-list>
+</ion-item>
+</ion-list>
+
+     <ion-list *ngSwitchCase="'two'">
+     <ion-item>
+     <ion-list>
+
+         Setup re-order interface
+
+</ion-list>        
+</ion-item>
+</ion-list>
+</div>
+
 
 </ion-content>

@@ -1,7 +1,7 @@
 import { ShoppingListService } from '../../services/shopping-list/shopping-list.service';
 import { ToastService } from '../../services/toast/toast.service';
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, Platform } from 'ionic-angular';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 import { Observable } from 'rxjs/Observable';
 import { Item } from './../../models/item/item.model';
@@ -14,6 +14,11 @@ import { DataServiceProvider } from '../../providers/data-service/data-service';
 })
 export class HomePage {
 
+  platformList: string = '';
+  isApp: boolean = true;
+
+  section
+
   products: any[] = [];
   selectedProduct: any;
   productFound:boolean = false;
@@ -25,7 +30,18 @@ export class HomePage {
  private shopping: ShoppingListService,
  private barcodeScanner: BarcodeScanner,
  private toast: ToastService,
- public dataService: DataServiceProvider) {
+ public dataService: DataServiceProvider,
+ public platform: Platform) {
+
+let platforms = this.platform.platforms();
+
+      this.platformList = platforms.join(', ');
+
+      if (this.platform.is('core') || this.platform.is('mobileweb')) {
+        this.isApp = false;
+}
+
+this.section = "one";
 
 this.dataService.getProducts()
         .subscribe((response)=> {
