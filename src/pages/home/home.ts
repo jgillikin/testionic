@@ -70,7 +70,7 @@ this.dataService.getProducts()
                      } //end constructor
 
 searchProduct(prodMan){
-  this.selectedProduct = this.shopping
+/*  this.selectedProduct = this.shopping
 				   .getShoppingList2(prodMan) //search
                          .snapshotChanges() //key and value
 				.map(changes => {
@@ -80,7 +80,7 @@ searchProduct(prodMan){
       			    }))
  				 }
 			      )
-
+*/
 }
 
  scan() {
