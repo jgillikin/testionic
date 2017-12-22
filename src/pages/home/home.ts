@@ -8,6 +8,7 @@ import { Item } from './../../models/item/item.model';
 import { DataServiceProvider } from '../../providers/data-service/data-service';
 import { AngularFireDatabase, AngularFireAction } from 'angularfire2/database';
 import { FirebaseListObservable } from 'angularfire2/database-deprecated';
+import * as firebase from 'firebase/app';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Subscription } from 'rxjs/Subscription';
 import 'rxjs/add/operator/switchMap';
