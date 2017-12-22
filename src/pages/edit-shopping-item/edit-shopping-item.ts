@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { ToastService } from './../../services/toast/toast.service';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { ShoppingListService } from '../../services/shopping-list/shopping-list.service';
-import { Item } from './../../models/item/item.model';
+import { ShoppingListService2 } from '../../services/shopping-list/shopping-list2.service';
+import { Item } from './../../models/location/item.model';
 import { TabsPage } from '../tabs/tabs';
 import { AboutPage } from '../about/about';
 
@@ -23,7 +23,7 @@ import { AboutPage } from '../about/about';
 export class EditShoppingItemPage {
  item: Item;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private shopping: ShoppingListService, private toast: ToastService) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private shopping: ShoppingListService2, private toast: ToastService) {
   }
 
   ionViewWillLoad() {

@@ -6,8 +6,11 @@ import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 import { Observable } from 'rxjs/Observable';
 import { Item } from './../../models/item/item.model';
 import { DataServiceProvider } from '../../providers/data-service/data-service';
-
-
+import { AngularFireDatabase, AngularFireAction } from 'angularfire2/database';
+import { FirebaseListObservable } from 'angularfire2/database-deprecated';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { Subscription } from 'rxjs/Subscription';
+import 'rxjs/add/operator/switchMap';
 
 @IonicPage()
 @Component({
@@ -15,6 +18,9 @@ import { DataServiceProvider } from '../../providers/data-service/data-service';
   templateUrl: 'home.html'
 })
 export class HomePage {
+
+   items$: Observable<AngularFireAction<firebase.database.DataSnapshot>[]>;
+  size$: BehaviorSubject<string|null>;
 
   platformList: string = '';
   isApp: boolean = true;
@@ -33,9 +39,19 @@ export class HomePage {
  private barcodeScanner: BarcodeScanner,
  private toast: ToastService,
  public dataService: DataServiceProvider,
- public platform: Platform) {
+ public platform: Platform,
+ db: AngularFireDatabase) {
 
-let platforms = this.platform.platforms();
+
+ this.size$ = new BehaviorSubject(null);
+    this.items$ = this.size$.switchMap(size =>
+      db.list('/shopping-list', ref =>
+        size ? ref.orderByChild('plu').equalTo(size) : ref
+      ).snapshotChanges()
+    );
+
+
+      let platforms = this.platform.platforms();
 
       this.platformList = platforms.join(', ');
 
@@ -67,21 +83,13 @@ this.dataService.getProducts()
 			      )
 
 
+
                      } //end constructor
 
-searchProduct(prodMan){
-/*  this.selectedProduct = this.shopping
-				   .getShoppingList2(prodMan) //search
-                         .snapshotChanges() //key and value
-				.map(changes => {
-				    return changes.map(c => ({
-					key: c.payload.key, 
-					...c.payload.val()
-      			    }))
- 				 }
-			      )
-*/
-}
+
+ filterBy(size: string|null) {
+    this.size$.next(size);
+  }
 
  scan() {
     this.selectedProduct = {};

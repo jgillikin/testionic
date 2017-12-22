@@ -7,7 +7,8 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireModule } from 'angularfire2';
 import { MyApp } from './app.component';
 import { AddLocationPage } from '../pages/addlocation/addlocation';
-
+import { ShoppingListService2 } from './../services/shopping-list/shopping-list2.service';
+import * as firebase from 'firebase';
 import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
 import { TabsPage } from '../pages/tabs/tabs';
@@ -62,10 +63,11 @@ AddLocationPage
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     ShoppingListService,
+    ShoppingListService2,
     ToastService,
-SuperTabsModule,
-BarcodeScanner,
- DataServiceProvider
+    SuperTabsModule,
+    BarcodeScanner,
+    DataServiceProvider
   ]
 })
 export class AppModule {}

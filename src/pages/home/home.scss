@@ -1,22 +1,19 @@
 page-home {
-/** Place Holder */
 
-.placeholder{
-  vertical-align: center;
+
+::-webkit-input-placeholder {
+   text-align: center;
 }
 
-::-webkit-input-placeholder { /* Chrome/Opera/Safari */
-  vertical-align: center;
-}
-::-moz-placeholder { /* Firefox 19+ */
-  vertical-align: center;
-}
-:-ms-input-placeholder { /* IE 10+ */
-  vertical-align: center;
-}
 :-moz-placeholder { /* Firefox 18- */
-  vertical-align: center;
+   text-align: center;  
 }
 
-/** End Place holder */
+::-moz-placeholder {  /* Firefox 19+ */
+   text-align: center;  
+}
+
+:-ms-input-placeholder {  
+   text-align: center; 
+}
 }

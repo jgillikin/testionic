@@ -16,6 +16,9 @@
       "../node_modules/@types"
     ]
   },
+ "files": [
+    "node_modules/angularfire2/index.d.ts"
+  ],
   "include": [
     "src/**/*.ts"
   ],

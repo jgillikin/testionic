@@ -20,10 +20,12 @@ import { AboutPage } from '../about/about';
 export class AddShoppingItemPage {
 
 item: Item = {
- name: '',
+ item: '',
+ upc: undefined,
+ desc: undefined,
+ location: undefined,
  quantity: undefined,
- price: undefined,
- plu: undefined
+ lot: undefined
 };
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private shopping: ShoppingListService, private toast: ToastService) {
@@ -35,7 +37,7 @@ item: Item = {
 
   addItem(item: Item) { 
    this.shopping.addItem(item).then(ref => {
-      this.toast.show(`${item.name} added!`);
+      this.toast.show(`${item.desc} added!`);
       this.navCtrl.setRoot(AboutPage, { key: ref.key });
    });
   }

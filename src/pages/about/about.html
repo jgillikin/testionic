@@ -50,6 +50,17 @@
   </ion-item>
 
  </ion-list>
+
+ <p *ngIf="!isApp">
+ (This is being viewed from a browser) <br>
+ <br>
+
+<input type="file" class="upload" (change)="changeListener($event.target.files)">
+
+{{csv}}
+
+ </p>
+
          
         </ion-item>
       </ion-list>
@@ -66,8 +77,7 @@
 
 </div>
 
- <p *ngIf="!isApp">
- This is being viewed from a browser
- </p>
+
+
 
 </ion-content>

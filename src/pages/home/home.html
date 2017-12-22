@@ -37,11 +37,12 @@ or<br>
 <br>
 
 <ion-item>
-<ion-input style="text-align:center" placeholder="       Enter Product Number" [(ngModel)]="prodMan"></ion-input>
+<ion-input style="text-align:center;" placeholder="Enter Product Number" [(ngModel)]="prodMan"></ion-input>
 </ion-item>
 <br>
-<button ion-button color="blue">Search</button>
-<!--(click)="searchProduct(prodMan)"-->
+
+<button ion-button color="blue" (click)="filterBy(prodMan)">Search</button>
+
  </div>
 
 <br>
@@ -58,6 +59,26 @@ or<br>
     </ul>
   </ion-card-content>
 </ion-card>
+
+<div *ngIf="items$ | async; let items; else loading">
+    <ul>
+      <li *ngFor="let item of items">
+        {{ item.payload.val().text }}
+        {{ item.payload.val().name }}
+
+      <!--  <code>{{ item.payload.key }}</code> -->
+        
+      </li>
+    </ul>
+    <div *ngIf="items.length === 0">No results, try clearing filters</div>
+  </div>
+
+<!--<div>
+    <button (click)="filterBy('9781414380704')">Extra Large</button>
+    <button (click)="filterBy(null)" *ngIf="this.size$.getValue()">
+      <em>clear filter</em>
+    </button>
+  </div> -->
 
 </ion-list>
 </ion-item>

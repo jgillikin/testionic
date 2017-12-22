@@ -1,7 +1,9 @@
 export interface Item {
  key?: string;
- name: string;
+ item: string;
+ upc: number;
+ desc: string;
+ location: string;
  quantity: number;
- price: number;
- plu: string;
+ lot: string;
 }
