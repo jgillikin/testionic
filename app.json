@@ -1,6 +1,6 @@
 {
     "name": "Ionic to Heroku Example",
     "description": "A simple Ionic app for Heroku",
-    "repository": "https://github.com/jgillikin/ionicweb.git",
+    "repository": "https://github.com/jgillikin/testionic.git",
     "keywords": ["ionic", "devdactic", "whatever"]
 }
