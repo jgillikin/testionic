@@ -49,12 +49,12 @@ or<br>
 
 <ion-card *ngIf="productFound">
   <ion-card-header>
-    <h2>Price: $ {{selectedProduct.price}}</h2>
+ 
   </ion-card-header>
   <ion-card-content>
     <ul>
-      <li>{{selectedProduct.plu}}</li>
-      <li>{{selectedProduct.name}}</li>
+      <li>{{selectedProduct.upc}}</li>
+      <li>{{selectedProduct.item}}</li>
       <li>{{selectedProduct.desc}}</li>
     </ul>
   </ion-card-content>
@@ -64,7 +64,7 @@ or<br>
     <ul>
       <li *ngFor="let item of items">
         {{ item.payload.val().text }}
-        {{ item.payload.val().name }}
+        {{ item.payload.val().desc }}
 
       <!--  <code>{{ item.payload.key }}</code> -->
         

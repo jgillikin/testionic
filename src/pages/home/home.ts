@@ -47,7 +47,7 @@ export class HomePage {
  this.size$ = new BehaviorSubject(null);
     this.items$ = this.size$.switchMap(size =>
       db.list('/shopping-list', ref =>
-        size ? ref.orderByChild('plu').equalTo(size) : ref
+        size ? ref.orderByChild('upc').equalTo(size) : ref
       ).snapshotChanges()
     );
 
@@ -95,7 +95,7 @@ this.dataService.getProducts()
  scan() {
     this.selectedProduct = {};
     this.barcodeScanner.scan().then((barcodeData) => {
-      this.selectedProduct = this.products.find(product => product.plu === barcodeData.text);
+      this.selectedProduct = this.products.find(product => product.upc === barcodeData.text);
       if(this.selectedProduct !== undefined) {
 this.toast.show(`Found`);
         this.productFound = true;
