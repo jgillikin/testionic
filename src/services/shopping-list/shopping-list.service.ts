@@ -12,11 +12,14 @@ export class ShoppingListService {
   private shoppingListRef = this.db.list<Item>('shopping-list');
   private locationsRef = this.db.list<Item>('locations');
 
+
   labs: FirebaseListObservable<any>;
   customers: FirebaseListObservable<any>;
 
   
-constructor(private db: AngularFireDatabase) {}
+constructor(private db: AngularFireDatabase) {
+//db.list('locations', ref => ref.limitToLast(3));
+}
 
 
 getShoppingList() {
@@ -24,7 +27,12 @@ getShoppingList() {
 }
 
 getLocationsList() {
- return this.locationsRef;
+ //return this.locationsRef;
+
+//below works
+//return this.db.list('locations', ref => ref.limitToLast(3)); 
+
+  return this.db.list('locations', ref => ref.orderByChild("name")); 
 }
 
 
