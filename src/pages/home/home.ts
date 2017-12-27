@@ -20,7 +20,9 @@ import 'rxjs/add/operator/switchMap';
 })
 export class HomePage {
 
-   items$: Observable<AngularFireAction<firebase.database.DataSnapshot>[]>;
+
+   //items$: Observable<AngularFireAction<firebase.database.DataSnapshot>[]>;
+  items$: any;
   size$: BehaviorSubject<string|null>;
 
   platformList: string = '';
@@ -44,13 +46,14 @@ export class HomePage {
  db: AngularFireDatabase) {
 
 
- this.size$ = new BehaviorSubject(null);
-    this.items$ = this.size$.switchMap(size =>
+
+this.size$ = new BehaviorSubject(null);
+    
+this.items$ = this.size$.switchMap(size =>
       db.list('/shopping-list', ref =>
         size ? ref.orderByChild('upc').equalTo(size) : ref
       ).snapshotChanges()
-    );
-
+    ); 
 
       let platforms = this.platform.platforms();
 
@@ -84,11 +87,11 @@ this.dataService.getProducts()
 			      )
 
 
-
                      } //end constructor
 
 
  filterBy(size: string|null) {
+
     this.size$.next(size);
   }
 
@@ -99,7 +102,7 @@ this.dataService.getProducts()
       if(this.selectedProduct !== undefined) {
 this.toast.show(`Found`);
         this.productFound = true;
-        console.log(this.selectedProduct);
+        alert(this.selectedProduct);
       } else {
        this.toast.show(`Not found`);
         this.selectedProduct = {};

@@ -60,6 +60,8 @@ or<br>
   </ion-card-content>
 </ion-card>
 
+
+
 <div *ngIf="items$ | async; let items; else loading">
     <ul>
       <li *ngFor="let item of items">
@@ -70,8 +72,10 @@ or<br>
         
       </li>
     </ul>
-    <div *ngIf="items.length === 0">No results, try clearing filters</div>
+    <div *ngIf="items.length === 0">No results, try clearing filters
+    </div>
   </div>
+
 
 <!--<div>
     <button (click)="filterBy('9781414380704')">Extra Large</button>
