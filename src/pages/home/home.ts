@@ -99,10 +99,12 @@ this.dataService.getProducts()
     this.selectedProduct = {};
     this.barcodeScanner.scan().then((barcodeData) => {
       this.selectedProduct = this.products.find(product => product.upc === barcodeData.text);
+      this.toast.show(`barcode scanned in is `+barcodeData.text);
+
       if(this.selectedProduct !== undefined) {
 this.toast.show(`Found`);
         this.productFound = true;
-        alert(this.selectedProduct);
+        console.log(this.selectedProduct);
       } else {
        this.toast.show(`Not found`);
         this.selectedProduct = {};
