@@ -31,6 +31,8 @@ export class HomePage {
   section
 
   products: any[] = [];
+  products2: any[] = [];
+
   selectedProduct: any;
   productFound:boolean = false;
 
@@ -97,9 +99,13 @@ this.dataService.getProducts()
 
  scan() {
     this.selectedProduct = {};
-    this.barcodeScanner.scan().then((barcodeData) => {
-      this.selectedProduct = this.products.find(product => product.upc === barcodeData.text);
-      this.toast.show(`barcode scanned in is `+barcodeData.text);
+   
+/*    this.barcodeScanner.scan().then((barcodeData) => {
+      this.selectedProduct = this.products.find(product => product.upc === barcodeData.text);*/
+
+this.barcodeScanner.scan().then((barcodeData) => {
+      this.selectedProduct = this.size$.next(barcodeData.text);
+
 
       if(this.selectedProduct !== undefined) {
 this.toast.show(`Found`);
