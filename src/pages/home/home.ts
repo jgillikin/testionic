@@ -54,6 +54,16 @@ export class HomePage {
  public platform: Platform,
  db: AngularFireDatabase) {
 
+this.size$ = new BehaviorSubject(null);
+    
+
+this.items$ = this.size$.switchMap(size =>
+      db.list('/shopping-list', ref =>
+        size ? ref.orderByChild('upc').equalTo(size) : ref
+      ).snapshotChanges()
+    );
+
+
 this.descRef = firebase.database().ref('/shopping-list');
 
 this.descRef.on('value', descList => {
@@ -68,17 +78,6 @@ this.descRef.on('value', descList => {
 });
 
 
-
-
-
-this.size$ = new BehaviorSubject(null);
-    
-
-this.items$ = this.size$.switchMap(size =>
-      db.list('/shopping-list', ref =>
-        size ? ref.orderByChild('upc').equalTo(size) : ref
-      ).snapshotChanges()
-    );
 
       let platforms = this.platform.platforms();
 
@@ -173,7 +172,33 @@ if (!searchbar)
       this.selectedProduct = this.products.find(product => product.upc === barcodeData.text);*/
 
 this.barcodeScanner.scan().then((barcodeData) => {
+
       this.selectedProduct = this.size$.next(barcodeData.text);
+
+// set q to the value of the searchbar
+  var q = barcodeData.text;
+
+
+  // if the value is an empty string don't filter the items
+  if (!q) {
+    this.hideMe = false;
+    return;
+  }
+
+  this.descList = this.descList.filter((v) => {
+    if(v.upc && q) {
+      if (v.upc.toLowerCase().indexOf(q.toLowerCase()) > -1) {
+        return true;
+      }
+      return false;
+    }
+  });
+
+if (this.descList.length > 0) {
+ this.hideMe = true;
+       this.productFound = true;
+}
+
 
 
       if(this.selectedProduct !== undefined || this.selectedProduct.length > 0) {
@@ -199,6 +224,8 @@ this.toast.show(`Found`);
         }
       ); */
     });
+
+
 }
 
 } //end export class

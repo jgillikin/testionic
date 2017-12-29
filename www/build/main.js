@@ -179,6 +179,12 @@ var HomePage = (function () {
         this.products2 = [];
         this.productFound = false;
         this.hideMe = false;
+        this.size$ = new __WEBPACK_IMPORTED_MODULE_8_rxjs_BehaviorSubject__["BehaviorSubject"](null);
+        this.items$ = this.size$.switchMap(function (size) {
+            return db.list('/shopping-list', function (ref) {
+                return size ? ref.orderByChild('upc').equalTo(size) : ref;
+            }).snapshotChanges();
+        });
         this.descRef = __WEBPACK_IMPORTED_MODULE_7_firebase_app__["database"]().ref('/shopping-list');
         this.descRef.on('value', function (descList) {
             var descs = [];
@@ -188,12 +194,6 @@ var HomePage = (function () {
             });
             _this.descList = descs;
             _this.loadedDescList = descs;
-        });
-        this.size$ = new __WEBPACK_IMPORTED_MODULE_8_rxjs_BehaviorSubject__["BehaviorSubject"](null);
-        this.items$ = this.size$.switchMap(function (size) {
-            return db.list('/shopping-list', function (ref) {
-                return size ? ref.orderByChild('upc').equalTo(size) : ref;
-            }).snapshotChanges();
         });
         var platforms = this.platform.platforms();
         this.platformList = platforms.join(', ');
@@ -255,6 +255,25 @@ var HomePage = (function () {
               this.selectedProduct = this.products.find(product => product.upc === barcodeData.text);*/
         this.barcodeScanner.scan().then(function (barcodeData) {
             _this.selectedProduct = _this.size$.next(barcodeData.text);
+            // set q to the value of the searchbar
+            var q = barcodeData.text;
+            // if the value is an empty string don't filter the items
+            if (!q) {
+                _this.hideMe = false;
+                return;
+            }
+            _this.descList = _this.descList.filter(function (v) {
+                if (v.upc && q) {
+                    if (v.upc.toLowerCase().indexOf(q.toLowerCase()) > -1) {
+                        return true;
+                    }
+                    return false;
+                }
+            });
+            if (_this.descList.length > 0) {
+                _this.hideMe = true;
+                _this.productFound = true;
+            }
             if (_this.selectedProduct !== undefined || _this.selectedProduct.length > 0) {
                 _this.toast.show("Found");
                 _this.productFound = true;
@@ -281,7 +300,7 @@ var HomePage = (function () {
     };
     HomePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_2__angular_core__["m" /* Component */])({
-            selector: 'page-home',template:/*ion-inline-start:"C:\ionicFirebase\IonicShoppingList\src\pages\home\home.html"*/'<ion-header>\n\n  <ion-navbar color="primary">\n\n    <ion-title>\n\n      Purchase Orders\n\n    </ion-title>\n\n  </ion-navbar>\n\n\n\n<ion-toolbar>\n\n    <ion-segment [(ngModel)]="section" color="primary">\n\n\n\n      <ion-segment-button value="one">Orders\n\n              </ion-segment-button>\n\n\n\n      <ion-segment-button value="two">Re-orders\n\n</ion-segment-button>\n\n\n\n    </ion-segment>\n\n\n\n  </ion-toolbar>\n\n\n\n\n\n</ion-header>\n\n\n\n<ion-content padding>\n\n\n\n <div [ngSwitch]="section">\n\n \n\n      <ion-list *ngSwitchCase="\'one\'">\n\n      <ion-item>\n\n      <ion-list>\n\n\n\n<div text-center>\n\n <button ion-button color="blue" (click)="scan()">Start Scan</button>\n\n<br>\n\n<br>\n\nor<br>\n\n<br>\n\n\n\n<ion-item>\n\n\n\n<ion-input placeholder="Description" [(ngModel)]="prodMan" required></ion-input>\n\n\n\n</ion-item>\n\n\n\n<br>\n\n\n\n<button ion-button color="blue" (click)="getItems(prodMan)">Search</button>\n\n\n\n </div>\n\n\n\n<br>\n\n\n\n<ion-card *ngIf="productFound">\n\n  <ion-card-header>\n\n \n\n  </ion-card-header>\n\n  <ion-card-content>\n\n    <ul>\n\n      <li>{{selectedProduct.upc}}</li>\n\n      <li>{{selectedProduct.item}}</li>\n\n      <li>{{selectedProduct.desc}}</li>\n\n    </ul>\n\n  </ion-card-content>\n\n</ion-card>\n\n\n\n<div *ngIf="hideMe">\n\n\n\n    <ul>\n\n      <li *ngFor="let desc of descList">\n\n        \n\n        {{ desc.desc }}\n\n\n\n      <!--  <code>{{ item.payload.key }}</code> -->\n\n        \n\n      </li>\n\n    </ul>\n\n    <div *ngIf="descList.length === 0">No results, try clearing filters\n\n    </div>\n\n\n\n \n\n\n\n\n\n</div>\n\n\n\n\n\n<!--<div>\n\n    <button (click)="filterBy(\'9781414380704\')">Extra Large</button>\n\n    <button (click)="filterBy(null)" *ngIf="this.size$.getValue()">\n\n      <em>clear filter</em>\n\n    </button>\n\n  </div> -->\n\n\n\n</ion-list>\n\n</ion-item>\n\n</ion-list>\n\n\n\n     <ion-list *ngSwitchCase="\'two\'">\n\n     <ion-item>\n\n     <ion-list>\n\n\n\n         Setup re-order interface\n\n\n\n</ion-list>        \n\n</ion-item>\n\n</ion-list>\n\n</div>\n\n\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\ionicFirebase\IonicShoppingList\src\pages\home\home.html"*/
+            selector: 'page-home',template:/*ion-inline-start:"C:\ionicFirebase\IonicShoppingList\src\pages\home\home.html"*/'<ion-header>\n\n  <ion-navbar color="primary">\n\n    <ion-title>\n\n      Purchase Orders\n\n    </ion-title>\n\n  </ion-navbar>\n\n\n\n<ion-toolbar>\n\n    <ion-segment [(ngModel)]="section" color="primary">\n\n\n\n      <ion-segment-button value="one">Orders\n\n              </ion-segment-button>\n\n\n\n      <ion-segment-button value="two">Re-orders\n\n</ion-segment-button>\n\n\n\n    </ion-segment>\n\n\n\n  </ion-toolbar>\n\n\n\n\n\n</ion-header>\n\n\n\n<ion-content padding>\n\n\n\n <div [ngSwitch]="section">\n\n \n\n      <ion-list *ngSwitchCase="\'one\'">\n\n      <ion-item>\n\n      <ion-list>\n\n\n\n<div text-center>\n\n <button ion-button color="blue" (click)="scan()">Start Scan</button>\n\n<br>\n\n<br>\n\nor<br>\n\n<br>\n\n\n\n<ion-item>\n\n\n\n<ion-input placeholder="Description" [(ngModel)]="prodMan" required></ion-input>\n\n\n\n</ion-item>\n\n\n\n<br>\n\n\n\n<button ion-button color="blue" (click)="getItems(prodMan)">Search</button>\n\n\n\n </div>\n\n\n\n<br>\n\n\n\n<ion-card *ngIf="productFound">\n\n  <ion-card-header>\n\n \n\n  </ion-card-header>\n\n  <ion-card-content>\n\n    <ul>\n\n      <li>{{selectedProduct.upc}}</li>\n\n      <li>{{selectedProduct.item}}</li>\n\n      <li>{{selectedProduct.desc}}</li>\n\n    </ul>\n\n  </ion-card-content>\n\n</ion-card>\n\n\n\n<div *ngIf="hideMe">\n\n\n\n    <ul>\n\n      <li *ngFor="let desc of descList">\n\n        \n\n        {{ desc.desc }}\n\n\n\n      <!--  <code>{{ item.payload.key }}</code> -->\n\n        \n\n      </li>\n\n    </ul>\n\n    <div *ngIf="descList.length === 0">No results, try clearing filters\n\n    </div>\n\n\n\n \n\n\n\n\n\n</div>\n\n\n\n\n\n\n\n</ion-list>\n\n</ion-item>\n\n</ion-list>\n\n\n\n     <ion-list *ngSwitchCase="\'two\'">\n\n     <ion-item>\n\n     <ion-list>\n\n\n\n         Setup re-order interface\n\n\n\n</ion-list>        \n\n</ion-item>\n\n</ion-list>\n\n</div>\n\n\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\ionicFirebase\IonicShoppingList\src\pages\home\home.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3_ionic_angular__["j" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_0__services_shopping_list_shopping_list_service__["a" /* ShoppingListService */],
