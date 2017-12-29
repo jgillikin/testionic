@@ -1,6 +1,6 @@
 webpackJsonp([1],{
 
-/***/ 477:
+/***/ 475:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8,7 +8,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "EditShoppingItemPageModule", function() { return EditShoppingItemPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__edit_shopping_item__ = __webpack_require__(480);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__edit_shopping_item__ = __webpack_require__(479);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -38,7 +38,7 @@ var EditShoppingItemPageModule = (function () {
 
 /***/ }),
 
-/***/ 480:
+/***/ 479:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -95,12 +95,11 @@ var EditShoppingItemPage = (function () {
     };
     EditShoppingItemPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-edit-shopping-item',template:/*ion-inline-start:"C:\ionicFirebase\IonicShoppingList\src\pages\edit-shopping-item\edit-shopping-item.html"*/'<!--\n\n  Generated template for the EditShoppingItemPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar color="primary">\n\n    <ion-title>{{item?.name}}</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n\n\n<ion-item>\n\n  <ion-label>Name</ion-label>\n\n  <ion-input [(ngModel)]="item.name" placeholder="iPad Pro"></ion-input>\n\n\n\n</ion-item>\n\n\n\n<!--\n\n<ion-item>\n\n  <ion-label>Quantity</ion-label>\n\n  <ion-input type="number" [(ngModel)]="item.quantity" placeholder="1"></ion-input>\n\n\n\n</ion-item>\n\n\n\n<ion-item>\n\n  <ion-label>Price</ion-label>\n\n  <ion-input type="number" [(ngModel)]="item.price" placeholder="700"></ion-input>\n\n\n\n</ion-item>\n\n\n\n<ion-item>\n\n  <ion-label>PLU</ion-label>\n\n  <ion-input [(ngModel)]="item.plu" placeholder="9781414380704"></ion-input>\n\n\n\n</ion-item> -->\n\n\n\n\n\n<button ion-button block clear (click) ="saveItem(item)">Save</button>\n\n<button ion-button block clear color="danger" (click)="removeItem(item)">Delete</button>\n\n\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\ionicFirebase\IonicShoppingList\src\pages\edit-shopping-item\edit-shopping-item.html"*/,
+            selector: 'page-edit-shopping-item',template:/*ion-inline-start:"C:\ionicFirebase\IonicShoppingList\src\pages\edit-shopping-item\edit-shopping-item.html"*/'<!--\n\n  Generated template for the EditShoppingItemPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar color="primary">\n\n    <ion-title>{{item?.name}}</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n\n\n<ion-item>\n\n  <ion-label>Name</ion-label>\n\n  <ion-input [(ngModel)]="item.name" placeholder="Enter a New Location"></ion-input>\n\n\n\n</ion-item>\n\n\n\n<!--\n\n<ion-item>\n\n  <ion-label>Quantity</ion-label>\n\n  <ion-input type="number" [(ngModel)]="item.quantity" placeholder="1"></ion-input>\n\n\n\n</ion-item>\n\n\n\n<ion-item>\n\n  <ion-label>Price</ion-label>\n\n  <ion-input type="number" [(ngModel)]="item.price" placeholder="700"></ion-input>\n\n\n\n</ion-item>\n\n\n\n<ion-item>\n\n  <ion-label>PLU</ion-label>\n\n  <ion-input [(ngModel)]="item.plu" placeholder="9781414380704"></ion-input>\n\n\n\n</ion-item> -->\n\n\n\n\n\n<button ion-button block clear (click) ="saveItem(item)">Save</button>\n\n<button ion-button block clear color="danger" (click)="removeItem(item)">Delete</button>\n\n\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\ionicFirebase\IonicShoppingList\src\pages\edit-shopping-item\edit-shopping-item.html"*/,
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["j" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["j" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["l" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["l" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__services_shopping_list_shopping_list2_service__["a" /* ShoppingListService2 */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__services_shopping_list_shopping_list2_service__["a" /* ShoppingListService2 */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1__services_toast_toast_service__["a" /* ToastService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__services_toast_toast_service__["a" /* ToastService */]) === "function" && _d || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["j" /* NavController */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["l" /* NavParams */], __WEBPACK_IMPORTED_MODULE_3__services_shopping_list_shopping_list2_service__["a" /* ShoppingListService2 */], __WEBPACK_IMPORTED_MODULE_1__services_toast_toast_service__["a" /* ToastService */]])
     ], EditShoppingItemPage);
     return EditShoppingItemPage;
-    var _a, _b, _c, _d;
 }());
 
 //# sourceMappingURL=edit-shopping-item.js.map

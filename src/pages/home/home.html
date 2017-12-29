@@ -37,11 +37,14 @@ or<br>
 <br>
 
 <ion-item>
-<ion-input style="text-align:center;" placeholder="Enter Product Number" [(ngModel)]="prodMan"></ion-input>
+
+<ion-input placeholder="Description" [(ngModel)]="prodMan" required></ion-input>
+
 </ion-item>
+
 <br>
 
-<button ion-button color="blue" (click)="filterBy(prodMan)">Search</button>
+<button ion-button color="blue" (click)="getItems(prodMan)">Search</button>
 
  </div>
 
@@ -60,21 +63,24 @@ or<br>
   </ion-card-content>
 </ion-card>
 
+<div *ngIf="hideMe">
 
-
-<div *ngIf="items$ | async; let items; else loading">
     <ul>
-      <li *ngFor="let item of items">
-        {{ item.payload.val().text }}
-        {{ item.payload.val().desc }}
+      <li *ngFor="let desc of descList">
+        
+        {{ desc.desc }}
 
       <!--  <code>{{ item.payload.key }}</code> -->
         
       </li>
     </ul>
-    <div *ngIf="items.length === 0">No results, try clearing filters
+    <div *ngIf="descList.length === 0">No results, try clearing filters
     </div>
-  </div>
+
+ 
+
+
+</div>
 
 
 <!--<div>

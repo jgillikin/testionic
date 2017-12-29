@@ -25694,6 +25694,14 @@ ion-navbar.toolbar {
   align: right;
 }
 
+.card-md .item-md.item-block:not(:last-child) .item-inner {
+  border-bottom: 1px solid #dedede;
+}
+
+.card-md .item-md.item-block:not(.item-input):not(.item-select):not(.item-radio):not(.item-checkbox) .item-inner {
+  border: 0;
+}
+
 page-about super-tabs-toolbar > ion-toolbar.toolbar .tab-buttons-container .tab-buttons super-tab-button.title-and-icon {
   height: 110px !important;
   padding-top: 60px !important;
@@ -25701,6 +25709,38 @@ page-about super-tabs-toolbar > ion-toolbar.toolbar .tab-buttons-container .tab-
 
 page-about super-tabs-toolbar > ion-toolbar.toolbar .tab-buttons-container .tab-buttons super-tab-button {
   font-size: 10px;
+}
+
+page-addlocation input {
+  background: white;
+  padding: 15px;
+  border-radius: 5px;
+  border: 1px solid #c8c7cc;
+  margin: 0;
+}
+
+page-addlocation .text-input {
+  background: white;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #c8c7cc;
+  margin: 0;
+}
+
+page-home input {
+  background: white;
+  padding: 15px;
+  border-radius: 5px;
+  border: 1px solid #c8c7cc;
+  margin: 0;
+}
+
+page-home .text-input {
+  background: white;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #c8c7cc;
+  margin: 0;
 }
 
 page-home ::-webkit-input-placeholder {

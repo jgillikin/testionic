@@ -24,7 +24,7 @@ export class HomePage {
    //items$: Observable<AngularFireAction<firebase.database.DataSnapshot>[]>;
   items$: any;
   size$: BehaviorSubject<string|null>;
-
+  
   platformList: string = '';
   isApp: boolean = true;
 
@@ -37,6 +37,13 @@ export class HomePage {
   productFound:boolean = false;
 
   shoppingList$: Observable<Item[]>;
+  hideMe=false;
+
+  public descList:Array<any>;
+  public descRef: firebase.database.Reference;
+  public loadedDescList: Array<any>;
+  
+
 
   constructor(
  public navCtrl: NavController, 
@@ -47,15 +54,40 @@ export class HomePage {
  public platform: Platform,
  db: AngularFireDatabase) {
 
+this.descRef = firebase.database().ref('/shopping-list');
+
+this.descRef.on('value', descList => {
+  let descs = [];
+  descList.forEach( desc => {
+    descs.push(desc.val());
+    return false;
+  });
+
+  this.descList = descs;
+  this.loadedDescList = descs;
+});
+
+
+
 
 
 this.size$ = new BehaviorSubject(null);
     
+
+/*
+below works
 this.items$ = this.size$.switchMap(size =>
       db.list('/shopping-list', ref =>
         size ? ref.orderByChild('upc').equalTo(size) : ref
       ).snapshotChanges()
+    );*/
+
+this.items$ = this.size$.switchMap(size =>
+      db.list('/shopping-list', ref =>
+        size ? ref.orderByChild('desc').startAt("0").endAt(size) : ref
+      ).snapshotChanges()
     ); 
+
 
       let platforms = this.platform.platforms();
 
@@ -94,8 +126,54 @@ this.dataService.getProducts()
 
  filterBy(size: string|null) {
 
-    this.size$.next(size);
+if(size)
+ this.hideMe = true;
+else
+ this.hideMe = false;
+
+ this.size$.next(size);
+
   }
+
+initializeItems() {
+  this.descList = this.loadedDescList;
+}
+
+
+getItems(searchbar) {
+//alert(searchbar);
+  // Reset items back to all of the items
+  this.initializeItems();
+
+  // set q to the value of the searchbar
+  var q = searchbar;
+
+
+  // if the value is an empty string don't filter the items
+  if (!q) {
+    this.hideMe = false;
+    return;
+  }
+
+  this.descList = this.descList.filter((v) => {
+    if(v.desc && q) {
+      if (v.desc.toLowerCase().indexOf(q.toLowerCase()) > -1) {
+        return true;
+      }
+      return false;
+    }
+  });
+
+if (this.descList.length > 0)
+ this.hideMe = true;
+
+if (!searchbar)
+ this.hideMe = false;
+
+//  alert(this.descList.length);
+
+}
+
 
  scan() {
     this.selectedProduct = {};

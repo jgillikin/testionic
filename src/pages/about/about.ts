@@ -78,6 +78,7 @@ this.shoppingList$ = this.shopping
   } //end constructor
 
 
+
   page1: any = IrreportsPage;
   page2: any = InventoryPage;
 
