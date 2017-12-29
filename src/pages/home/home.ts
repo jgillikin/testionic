@@ -74,20 +74,11 @@ this.descRef.on('value', descList => {
 this.size$ = new BehaviorSubject(null);
     
 
-/*
-below works
 this.items$ = this.size$.switchMap(size =>
       db.list('/shopping-list', ref =>
         size ? ref.orderByChild('upc').equalTo(size) : ref
       ).snapshotChanges()
-    );*/
-
-this.items$ = this.size$.switchMap(size =>
-      db.list('/shopping-list', ref =>
-        size ? ref.orderByChild('desc').startAt("0").endAt(size) : ref
-      ).snapshotChanges()
-    ); 
-
+    );
 
       let platforms = this.platform.platforms();
 
