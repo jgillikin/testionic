@@ -183,7 +183,7 @@ this.barcodeScanner.scan().then((barcodeData) => {
       if (v.upc.toLowerCase().indexOf(q.toLowerCase()) > -1) {
         return true;
       }
-      return false;
+  //    return false; 
 console.log('scan');
     }
   });
