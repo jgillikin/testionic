@@ -179,11 +179,11 @@ this.barcodeScanner.scan().then((barcodeData) => {
 
 
   this.descList = this.descList.filter((v) => {
-    if(v.desc && q) {
-    /*  if (v.desc.toLowerCase().indexOf(q.toLowerCase()) > -1) {
+    if(v.upc && q) {
+      if (v.upc.toLowerCase().indexOf(q.toLowerCase()) > -1) {
         return true;
       }
-      return false;*/
+      return false;
 console.log('scan');
     }
   });
