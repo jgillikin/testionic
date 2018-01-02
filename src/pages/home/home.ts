@@ -174,9 +174,24 @@ if (!searchbar)
 
 this.barcodeScanner.scan().then((barcodeData) => {
 
-      this.selectedProduct = this.size$.next(barcodeData.text);
 
-      this.getItems(barcodeData.text);      
+  var q = barcodeData.text;
+
+
+  this.descList = this.descList.filter((v) => {
+    if(v.desc && q) {
+      if (v.desc.toLowerCase().indexOf(q.toLowerCase()) > -1) {
+        return true;
+      }
+      return false;
+    }
+  });
+
+if (this.descList.length > 0)
+ this.hideMe = true;
+
+this.selectedProduct = this.descList;
+
 
       if(this.selectedProduct !== undefined || this.selectedProduct.length > 0) {
 this.toast.show(`Found`);

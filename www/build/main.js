@@ -256,8 +256,18 @@ var HomePage = (function () {
         /*    this.barcodeScanner.scan().then((barcodeData) => {
               this.selectedProduct = this.products.find(product => product.upc === barcodeData.text);*/
         this.barcodeScanner.scan().then(function (barcodeData) {
-            _this.selectedProduct = _this.size$.next(barcodeData.text);
-            _this.getItems(barcodeData.text);
+            var q = barcodeData.text;
+            _this.descList = _this.descList.filter(function (v) {
+                if (v.desc && q) {
+                    if (v.desc.toLowerCase().indexOf(q.toLowerCase()) > -1) {
+                        return true;
+                    }
+                    return false;
+                }
+            });
+            if (_this.descList.length > 0)
+                _this.hideMe = true;
+            _this.selectedProduct = _this.descList;
             if (_this.selectedProduct !== undefined || _this.selectedProduct.length > 0) {
                 _this.toast.show("Found");
                 _this.productFound = false;
