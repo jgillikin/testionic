@@ -180,10 +180,11 @@ this.barcodeScanner.scan().then((barcodeData) => {
 
   this.descList = this.descList.filter((v) => {
     if(v.desc && q) {
-      if (v.desc.toLowerCase().indexOf(q.toLowerCase()) > -1) {
+    /*  if (v.desc.toLowerCase().indexOf(q.toLowerCase()) > -1) {
         return true;
       }
-      return false;
+      return false;*/
+console.log('scan');
     }
   });
 
@@ -195,7 +196,7 @@ this.selectedProduct = this.descList;
 
       if(this.selectedProduct !== undefined || this.selectedProduct.length > 0) {
 this.toast.show(`Found`);
-        this.productFound = false;
+        this.productFound = true;
         console.log(this.selectedProduct);
       } else {
        this.toast.show(`Not found`);
