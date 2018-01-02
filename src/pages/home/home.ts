@@ -166,7 +166,6 @@ if (!searchbar)
 
 
  scan() {
-this.initializeItems();
 
     this.selectedProduct = {};
    
@@ -177,39 +176,11 @@ this.barcodeScanner.scan().then((barcodeData) => {
 
       this.selectedProduct = this.size$.next(barcodeData.text);
 
-
-
-// set q to the value of the searchbar
-  var q = barcodeData.text;
-
-
-  // if the value is an empty string don't filter the items
-  if (!q) {
-    this.hideMe = false;
-    return;
-  }
-  else
-    this.hideMe = true;
-
-  this.descList = this.descList.filter((v) => {
-    if(v.upc && q) {
-      if (v.upc.toLowerCase().indexOf(q.toLowerCase()) > -1) {
-        return true;
-      }
-      return false;
-    }
-  });
-
-if (this.descList.length > 0) {
- this.hideMe = true;
-       this.productFound = true;
-}
-
-
+      getItems(barcodeData.text);      
 
       if(this.selectedProduct !== undefined || this.selectedProduct.length > 0) {
 this.toast.show(`Found`);
-        this.productFound = true;
+        this.productFound = false;
         console.log(this.selectedProduct);
       } else {
        this.toast.show(`Not found`);
