@@ -257,7 +257,7 @@ var HomePage = (function () {
               this.selectedProduct = this.products.find(product => product.upc === barcodeData.text);*/
         this.barcodeScanner.scan().then(function (barcodeData) {
             _this.selectedProduct = _this.size$.next(barcodeData.text);
-            getItems(barcodeData.text);
+            _this.getItems(barcodeData.text);
             if (_this.selectedProduct !== undefined || _this.selectedProduct.length > 0) {
                 _this.toast.show("Found");
                 _this.productFound = false;

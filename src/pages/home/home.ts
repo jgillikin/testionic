@@ -176,7 +176,7 @@ this.barcodeScanner.scan().then((barcodeData) => {
 
       this.selectedProduct = this.size$.next(barcodeData.text);
 
-      getItems(barcodeData.text);      
+      this.getItems(barcodeData.text);      
 
       if(this.selectedProduct !== undefined || this.selectedProduct.length > 0) {
 this.toast.show(`Found`);
