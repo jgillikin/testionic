@@ -255,6 +255,7 @@ var HomePage = (function () {
               this.selectedProduct = this.products.find(product => product.upc === barcodeData.text);*/
         this.barcodeScanner.scan().then(function (barcodeData) {
             _this.selectedProduct = _this.size$.next(barcodeData.text);
+            _this.initializeItems();
             // set q to the value of the searchbar
             var q = barcodeData.text;
             // if the value is an empty string don't filter the items
@@ -343,7 +344,7 @@ var map = {
 		2
 	],
 	"../pages/addlocation/addlocation.module": [
-		474,
+		477,
 		4
 	],
 	"../pages/edit-shopping-item/edit-shopping-item.module": [
@@ -351,11 +352,11 @@ var map = {
 		1
 	],
 	"../pages/home/home.module": [
-		476,
+		474,
 		3
 	],
 	"../pages/login/login.module": [
-		477,
+		476,
 		0
 	]
 };
@@ -669,10 +670,10 @@ var AppModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["h" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_7__app_component__["a" /* MyApp */], {}, {
                     links: [
                         { loadChildren: '../pages/add-shopping-item/add-shopping-item.module#AddShoppingItemPageModule', name: 'AddShoppingItemPage', segment: 'add-shopping-item', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/addlocation/addlocation.module#AddLocationPageModule', name: 'AddLocationPage', segment: 'addlocation', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/edit-shopping-item/edit-shopping-item.module#EditShoppingItemPageModule', name: 'EditShoppingItemPage', segment: 'edit-shopping-item', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/home/home.module#HomeModule', name: 'HomePage', segment: 'home', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/login/login.module#LoginModule', name: 'LoginPage', segment: 'login', priority: 'low', defaultHistory: [] }
+                        { loadChildren: '../pages/edit-shopping-item/edit-shopping-item.module#EditShoppingItemPageModule', name: 'EditShoppingItemPage', segment: 'edit-shopping-item', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/login/login.module#LoginModule', name: 'LoginPage', segment: 'login', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/addlocation/addlocation.module#AddLocationPageModule', name: 'AddLocationPage', segment: 'addlocation', priority: 'low', defaultHistory: [] }
                     ]
                 }),
                 __WEBPACK_IMPORTED_MODULE_6_angularfire2__["a" /* AngularFireModule */].initializeApp(__WEBPACK_IMPORTED_MODULE_16__firebase_credentials__["a" /* FIREBASE_CONFIG */]),
