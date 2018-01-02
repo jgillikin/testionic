@@ -166,6 +166,8 @@ if (!searchbar)
 
 
  scan() {
+this.initializeItems();
+
     this.selectedProduct = {};
    
 /*    this.barcodeScanner.scan().then((barcodeData) => {
@@ -175,7 +177,6 @@ this.barcodeScanner.scan().then((barcodeData) => {
 
       this.selectedProduct = this.size$.next(barcodeData.text);
 
-this.initializeItems();
 
 
 // set q to the value of the searchbar
