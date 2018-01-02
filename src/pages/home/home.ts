@@ -196,7 +196,7 @@ this.selectedProduct = this.descList;
 
       if(this.selectedProduct !== undefined || this.selectedProduct.length > 0) {
 this.toast.show(`Found`);
-        this.productFound = true;
+        this.productFound = false;
         console.log(this.selectedProduct);
       } else {
        this.toast.show(`Not found`);
