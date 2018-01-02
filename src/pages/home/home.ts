@@ -187,6 +187,8 @@ this.initializeItems();
     this.hideMe = false;
     return;
   }
+  else
+    this.hideMe = true;
 
   this.descList = this.descList.filter((v) => {
     if(v.upc && q) {
