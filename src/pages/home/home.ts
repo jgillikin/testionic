@@ -1,7 +1,7 @@
 import { ShoppingListService } from '../../services/shopping-list/shopping-list.service';
 import { ToastService } from '../../services/toast/toast.service';
 import { Component } from '@angular/core';
-import { NavController, Platform } from 'ionic-angular';
+import { NavController, Platform,NavParams } from 'ionic-angular';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 import { Observable } from 'rxjs/Observable';
 import { Item } from './../../models/item/item.model';
@@ -12,6 +12,8 @@ import * as firebase from 'firebase/app';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Subscription } from 'rxjs/Subscription';
 import 'rxjs/add/operator/switchMap';
+import { HomeaddPage } from '../homeadd/homeadd';
+
 
 @IonicPage()
 @Component({
@@ -42,7 +44,7 @@ export class HomePage {
   public descList:Array<any>;
   public descRef: firebase.database.Reference;
   public loadedDescList: Array<any>;
-  
+  public prevAveragesList: Array<any>;  
 
 
   constructor(
@@ -52,7 +54,18 @@ export class HomePage {
  private toast: ToastService,
  public dataService: DataServiceProvider,
  public platform: Platform,
- db: AngularFireDatabase) {
+ db: AngularFireDatabase,
+ public params: NavParams) {
+
+if (this.params.get('ordersPassed') === undefined) {
+//alert("undefined");
+ console.log('undefined');
+}
+else {
+//alert("not undefined");
+ this.prevAveragesList = this.params.get('ordersPassed');
+}
+
 
 this.size$ = new BehaviorSubject(null);
     
@@ -69,9 +82,17 @@ this.descRef = firebase.database().ref('/shopping-list');
 this.descRef.on('value', descList => {
   let descs = [];
   descList.forEach( desc => {
-    descs.push(desc.val());
-    return false;
+//    descs.push(desc.val());
+    var weeklyData = {};
+
+    weeklyData.id = desc.key;
+    weeklyData.record = desc.val();
+    //descs.push(desc.val()+" "+desc.key);
+    descs.push(weeklyData);
+  return false;
   });
+
+//alert(descs[0].id);
 
   this.descList = descs;
   this.loadedDescList = descs;
@@ -111,7 +132,19 @@ this.dataService.getProducts()
 			      )
 
 
+
                      } //end constructor
+
+onClick(val: string|null, desc: string|null, qty: number, key1: string) {
+//alert("in onClick, key is "+key1);
+this.navCtrl.push(HomeaddPage, {
+    firstPassed: val,
+    secondPassed: desc,
+    thirdPassed: qty,
+    fourthPassed: this.prevAveragesList,
+    fifthPassed: key1
+   })
+}
 
 
  filterBy(size: string|null) {
@@ -138,7 +171,6 @@ getItems(searchbar) {
   // set q to the value of the searchbar
   var q = searchbar;
 
-
   // if the value is an empty string don't filter the items
   if (!q) {
     this.hideMe = false;
@@ -146,13 +178,36 @@ getItems(searchbar) {
   }
 
   this.descList = this.descList.filter((v) => {
-    if(v.desc && q) {
-      if (v.desc.toLowerCase().indexOf(q.toLowerCase()) > -1) {
+    if(v.record.desc && q) {
+      if (v.record.desc.toLowerCase().indexOf(q.toLowerCase()) > -1) {
         return true;
       }
       return false;
     }
   });
+
+//filter prevAveragesList records
+if (this.prevAveragesList !== undefined) {
+var q;
+
+ for(let data of this.prevAveragesList) {
+
+ q = data.substr(0,data.indexOf(' '));
+
+//alert("q is "+q);
+
+ this.descList = this.descList.filter((v) => {
+    if(v.record.upc && q) {
+      if (v.record.upc.toLowerCase().indexOf(q.toLowerCase()) > -1) {
+        return false;
+      }
+      return true;
+    }
+  });
+
+} //end for
+
+}
 
 if (this.descList.length > 0)
  this.hideMe = true;

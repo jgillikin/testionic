@@ -25760,3 +25760,37 @@ page-home ::-moz-placeholder {
 page-home :-ms-input-placeholder {
   text-align: center;
 }
+
+page-homeadd input {
+  background: white;
+  padding: 15px;
+  border-radius: 5px;
+  border: 1px solid #c8c7cc;
+  margin: 0;
+}
+
+page-homeadd .text-input {
+  background: white;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #c8c7cc;
+  margin: 0;
+}
+
+page-homeadd ::-webkit-input-placeholder {
+  text-align: center;
+}
+
+page-homeadd :-moz-placeholder {
+  /* Firefox 18- */
+  text-align: center;
+}
+
+page-homeadd ::-moz-placeholder {
+  /* Firefox 19+ */
+  text-align: center;
+}
+
+page-homeadd :-ms-input-placeholder {
+  text-align: center;
+}

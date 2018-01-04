@@ -30,7 +30,7 @@
       <ion-list>
 
 <div text-center>
- <button ion-button color="blue" (click)="scan()">Start Scan</button>
+ <button ion-button color="blue" (click)="scan()">Scan by UPC</button>
 <br>
 <br>
 or<br>
@@ -38,7 +38,7 @@ or<br>
 
 <ion-item>
 
-<ion-input placeholder="Description" [(ngModel)]="prodMan" required></ion-input>
+<ion-input placeholder="Enter a Description" [(ngModel)]="prodMan" required></ion-input>
 
 </ion-item>
 
@@ -47,6 +47,8 @@ or<br>
 <button ion-button color="blue" (click)="getItems(prodMan)">Search</button>
 
  </div>
+      <div *ngIf="prevAveragesList !== undefined"> the length of prevAveragesList is  {{ prevAveragesList.length }} {{ prevAveragesList[0] }}
+    </div>
 
 <br>
 
@@ -66,13 +68,16 @@ or<br>
     <ul>
       <li *ngFor="let desc of descList">
         
-        {{ desc.desc }}
+
+
+<button ion-button color="blue" (click)="onClick(desc.record.upc,desc.record.desc,desc.record.quantity,desc.id)">{{ desc.record.desc }} </button>
 
       <!--  <code>{{ item.payload.key }}</code> -->
         
       </li>
-    </ul>
-    <div *ngIf="descList.length === 0">No results, try clearing filters
+</ul>
+      
+      <div *ngIf="descList.length === 0">No results, try clearing filters
     </div>
 
  
@@ -90,7 +95,7 @@ or<br>
      <ion-item>
      <ion-list>
 
-         Setup re-order interface
+         Re-orders
 
 </ion-list>        
 </ion-item>

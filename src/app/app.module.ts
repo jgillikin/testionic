@@ -13,6 +13,8 @@ import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
 import { TabsPage } from '../pages/tabs/tabs';
 import { HomePage } from '../pages/home/home';
+import { HomeaddPage } from '../pages/homeadd/homeadd';
+
 import { LoginPage } from '../pages/login/login';
 import { IrreportsPage } from '../pages/irreports/irreports';
 import { InventoryPage } from '../pages/inventory/inventory';
@@ -31,6 +33,7 @@ import { DataServiceProvider } from '../providers/data-service/data-service';
     AboutPage,
     ContactPage,
     HomePage,
+    HomeaddPage,
     TabsPage,
     IrreportsPage,
     InventoryPage,
@@ -52,6 +55,7 @@ SuperTabsModule.forRoot(),
     AboutPage,
     ContactPage,
     HomePage,
+HomeaddPage,
     TabsPage,
     IrreportsPage,
     InventoryPage,
