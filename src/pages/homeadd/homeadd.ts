@@ -52,7 +52,8 @@ export class HomeaddPage {
   public averagesList: Array<any> = [];
   public prevAveragesList: Array<any> = [];
   public shoppingList2: firebase.database.Reference;
-
+  public purchaseOrder: firebase.database.Reference;
+  public userId;
 
   constructor(
  public navCtrl: NavController, 
@@ -142,6 +143,11 @@ this.dataService.getProducts()
 
                      } //end constructor
 
+ionViewDidLoad() {
+this.userId = firebase.auth().currentUser.uid;
+}
+
+
 onClickSend(qO: number, qC: number, upc: string, keyU: string) {
 
 //alert("qC is "+qC+" and qO is "+qO+" and upc is "+upc);
@@ -193,7 +199,18 @@ else {
 
 var newQty;
 
+var today = new Date();
+var dd = today.getDate();
+var mm = today.getMonth()+1; //January is 0!
 
+var yyyy = today.getFullYear();
+if(dd<10){
+    dd='0'+dd;
+} 
+if(mm<10){
+    mm='0'+mm;
+} 
+var today = mm+'/'+dd+'/'+yyyy;
 
 if (this.prevAveragesList === undefined) {
 //insert from this.averagesList array
@@ -211,11 +228,23 @@ this.averagesList.push(upc+' '+qO+':'+qC+' '+this.key1);
 newQty = eval(data.substring(data.lastIndexOf(':')+1,data.lastIndexOf(' '))) - eval(data.substring(data.indexOf(' ')+1,data.lastIndexOf(':')));
 
 this.shoppingList2 = firebase.database().ref("shopping-list/"+data.substr(data.lastIndexOf(' ')).trim());
+
 this.shoppingList2.update ({
  "quantity": newQty
 });
 
+this.purchaseOrder = firebase.database().ref("purchase-order/"+data.substr(data.lastIndexOf(' ')).trim());
+
+this.purchaseOrder.update ({
+ "qtyO": data.substring(data.indexOf(' ')+1,data.lastIndexOf(':')),
+ "qtyC": data.substring(data.lastIndexOf(':')+1,data.lastIndexOf(' ')),
+ "prodId": data.substr(data.lastIndexOf(' ')),
+ "dateOrdered": today,
+ "orderedBy": this.userId
+}); 
+
  }
+
 this.averagesList = [];
 this.navCtrl.push(HomePage, {
     ordersPassed: this.averagesList
@@ -242,7 +271,20 @@ this.shoppingList2 = firebase.database().ref("shopping-list/"+data.substr(data.l
 this.shoppingList2.update ({
  "quantity": newQty
 });
+
+this.purchaseOrder = firebase.database().ref("purchase-order/"+data.substr(data.lastIndexOf(' ')).trim());
+
+this.purchaseOrder.update ({
+ "qtyO": data.substring(data.indexOf(' ')+1,data.lastIndexOf(':')).trim(),
+ "qtyC": data.substring(data.lastIndexOf(':')+1,data.lastIndexOf(' ')).trim(),
+ "prodId": data.substr(data.lastIndexOf(' ')).trim(),
+ "dateOrdered": today,
+ "orderedBy": this.userId
+
+}); 
+
  }
+
 
 this.prevAveragesList = [];
 this.navCtrl.push(HomePage, {

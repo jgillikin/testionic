@@ -85,8 +85,8 @@ this.descRef.on('value', descList => {
 //    descs.push(desc.val());
     var weeklyData = {};
 
-    weeklyData.id = desc.key;
-    weeklyData.record = desc.val();
+    weeklyData["id"] = desc.key;
+    weeklyData["record"] = desc.val();
     //descs.push(desc.val()+" "+desc.key);
     descs.push(weeklyData);
   return false;
