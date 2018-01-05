@@ -204,11 +204,11 @@ return false;
 }
 else {
 
-var newQty;
+let newQty:number;
 
-var today = new Date();
-var dd = today.getDate();
-var mm = today.getMonth()+1; //January is 0!
+let today:number = new Date();
+let dd:number = today.getDate();
+let mm:number = today.getMonth()+1; //January is 0!
 
 var yyyy = today.getFullYear();
 if(dd<10){
@@ -217,7 +217,7 @@ if(dd<10){
 if(mm<10){
     mm='0'+mm;
 } 
-var today = mm+'/'+dd+'/'+yyyy;
+today = mm+'/'+dd+'/'+yyyy;
 
 if (this.prevAveragesList === undefined) {
 //insert from this.averagesList array

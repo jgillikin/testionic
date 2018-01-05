@@ -319,7 +319,7 @@ var HomeaddPage = (function () {
             return false;
         }
         else {
-            var newQty;
+            var newQty = void 0;
             var today = new Date();
             var dd = today.getDate();
             var mm = today.getMonth() + 1; //January is 0!
@@ -330,7 +330,7 @@ var HomeaddPage = (function () {
             if (mm < 10) {
                 mm = '0' + mm;
             }
-            var today = mm + '/' + dd + '/' + yyyy;
+            today = mm + '/' + dd + '/' + yyyy;
             if (this.prevAveragesList === undefined) {
                 //insert from this.averagesList array
                 this.averagesList.push(upc + ' ' + qO + ':' + qC + ' ' + this.key1);
