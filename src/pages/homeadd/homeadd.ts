@@ -1,7 +1,7 @@
 import { ShoppingListService } from '../../services/shopping-list/shopping-list.service';
 import { ToastService } from '../../services/toast/toast.service';
 import { Component } from '@angular/core';
-import {Http, Request, RequestMethod} from "@angular/http";
+import {Http, Request, RequestMethod, Headers} from "@angular/http";
 import { NavController, Platform, NavParams } from 'ionic-angular';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 import { Observable } from 'rxjs/Observable';
