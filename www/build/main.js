@@ -292,7 +292,7 @@ var HomeaddPage = (function () {
             alert("Please enter a Quantity to order");
             return false;
         }
-        if (eval(qO) > eval(qC)) {
+        if (qO > qC) {
             alert("Your order quantity is more than the onhand quantity");
             return false;
         }

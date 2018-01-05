@@ -155,7 +155,7 @@ this.userId = firebase.auth().currentUser.uid;
 }
 
 
-onClickSend(qO: string, qC: string, upc: string, keyU: string) {
+onClickSend(qO: any, qC: any, upc: any, keyU: any) {
 
 //alert("qC is "+qC+" and qO is "+qO+" and upc is "+upc);
 
@@ -166,7 +166,7 @@ return false;
 }
 
 
-if (eval(qO) > eval(qC)) {
+if (qO > qC) {
 alert("Your order quantity is more than the onhand quantity");
 return false;
 }
