@@ -340,7 +340,7 @@ var HomeaddPage = (function () {
                     //alert(data);
                     //alert(data.substring(data.indexOf(' ')+1,data.lastIndexOf(':'))); //q0 qty
                     //alert(data.substring(data.lastIndexOf(':')+1,data.lastIndexOf(' ')));  //qC qty
-                    newQty = eval(data.substring(data.lastIndexOf(':') + 1, data.lastIndexOf(' '))) - eval(data.substring(data.indexOf(' ') + 1, data.lastIndexOf(':')));
+                    newQty = data.substring(data.lastIndexOf(':') + 1, data.lastIndexOf(' ')) - data.substring(data.indexOf(' ') + 1, data.lastIndexOf(':'));
                     this.shoppingList2 = __WEBPACK_IMPORTED_MODULE_8_firebase_app__["database"]().ref("shopping-list/" + data.substr(data.lastIndexOf(' ')).trim());
                     this.shoppingList2.update({
                         "quantity": newQty
@@ -368,7 +368,7 @@ var HomeaddPage = (function () {
                     //alert(data);
                     //alert(data.substring(data.indexOf(' ')+1,data.lastIndexOf(':'))); //q0 qty
                     //alert(data.substring(data.lastIndexOf(':')+1,data.lastIndexOf(' ')));  //qC qty
-                    newQty = eval(data.substring(data.lastIndexOf(':') + 1, data.lastIndexOf(' '))) - eval(data.substring(data.indexOf(' ') + 1, data.lastIndexOf(':')));
+                    newQty = data.substring(data.lastIndexOf(':') + 1, data.lastIndexOf(' ')) - data.substring(data.indexOf(' ') + 1, data.lastIndexOf(':'));
                     this.shoppingList2 = __WEBPACK_IMPORTED_MODULE_8_firebase_app__["database"]().ref("shopping-list/" + data.substr(data.lastIndexOf(' ')).trim());
                     this.shoppingList2.update({
                         "quantity": newQty
@@ -409,7 +409,7 @@ var HomeaddPage = (function () {
     };
     HomeaddPage.prototype.onBlur = function (qO, qC) {
         //alert("in onBlur and order qty is "+qO+ "and onhand qty is "+qC);
-        if (eval(qO) > eval(qC)) {
+        if (qO > qC) {
             alert("Your order quantity is more than the onhand quantity");
             return false;
         }
@@ -959,9 +959,10 @@ var MyApp = (function () {
     MyApp = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"C:\ionicFirebase\IonicShoppingList\src\app\app.html"*/'<ion-nav [root]="rootPage"></ion-nav>\n'/*ion-inline-end:"C:\ionicFirebase\IonicShoppingList\src\app\app.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* Platform */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* Platform */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* Platform */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */]) === "function" && _c || Object])
     ], MyApp);
     return MyApp;
+    var _a, _b, _c;
 }());
 
 //# sourceMappingURL=app.component.js.map

@@ -232,7 +232,7 @@ this.averagesList.push(upc+' '+qO+':'+qC+' '+this.key1);
 
 //alert(data.substring(data.lastIndexOf(':')+1,data.lastIndexOf(' ')));  //qC qty
 
-newQty = eval(data.substring(data.lastIndexOf(':')+1,data.lastIndexOf(' '))) - eval(data.substring(data.indexOf(' ')+1,data.lastIndexOf(':')));
+newQty = data.substring(data.lastIndexOf(':')+1,data.lastIndexOf(' ')) - data.substring(data.indexOf(' ')+1,data.lastIndexOf(':'));
 
 this.shoppingList2 = firebase.database().ref("shopping-list/"+data.substr(data.lastIndexOf(' ')).trim());
 
@@ -271,7 +271,7 @@ else {
 
 //alert(data.substring(data.lastIndexOf(':')+1,data.lastIndexOf(' ')));  //qC qty
 
-newQty = eval(data.substring(data.lastIndexOf(':')+1,data.lastIndexOf(' '))) - eval(data.substring(data.indexOf(' ')+1,data.lastIndexOf(':')));
+newQty = data.substring(data.lastIndexOf(':')+1,data.lastIndexOf(' ')) - data.substring(data.indexOf(' ')+1,data.lastIndexOf(':'));
 
 
 this.shoppingList2 = firebase.database().ref("shopping-list/"+data.substr(data.lastIndexOf(' ')).trim());
@@ -326,10 +326,10 @@ var requestHeaders = new Headers();
 }
 
 
-onBlur(qO: number, qC: number) {
+onBlur(qO: any, qC: any) {
 //alert("in onBlur and order qty is "+qO+ "and onhand qty is "+qC);
 
-if (eval(qO) > eval(qC)) {
+if (qO > qC) {
 alert("Your order quantity is more than the onhand quantity");
 return false;
 }
