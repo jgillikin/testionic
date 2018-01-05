@@ -8,7 +8,7 @@ import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 import { Observable } from 'rxjs/Observable';
 import { Item } from './../../models/item/item.model';
 import { DataServiceProvider } from '../../providers/data-service/data-service';
-import { AngularFireDatabase, AngularFireAction } from 'angularfire2/database';
+import { AngularFireDatabase, AngularFireAction,AngularFireList } from 'angularfire2/database';
 import { FirebaseListObservable } from 'angularfire2/database-deprecated';
 import * as firebase from 'firebase/app';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
