@@ -57,7 +57,7 @@ export class HomeaddPage {
   public shoppingList2: firebase.database.Reference;
   public purchaseOrder: firebase.database.Reference;
   public userId;
-  po: FirebaseListObservable<any[]> = this.db.list('/purchase-order');
+  po: AngularFireList<any> = this.db.list('/purchase-order');
 
   constructor(
  public navCtrl: NavController, 
