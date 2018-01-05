@@ -66,17 +66,18 @@ or<br>
 
 <div *ngIf="hideMe">
 
-    <ul>
-      <li *ngFor="let desc of descList">
+      <div *ngFor="let desc of descList">
         
+<ion-row class="ionrow">
+<ion-col width-125>
+<button ion-button full color="blue" (click)="onClick(desc.record.upc,desc.record.desc,desc.record.quantity,desc.id)">{{ desc.record.desc }} </button>
+</ion-col>
+</ion-row>
 
 
-<button ion-button color="blue" (click)="onClick(desc.record.upc,desc.record.desc,desc.record.quantity,desc.id)">{{ desc.record.desc }} </button>
-
-      <!--  <code>{{ item.payload.key }}</code> -->
         
-      </li>
-</ul>
+      </div>
+
       
       <div *ngIf="descList.length === 0">No results, try clearing filters
     </div>
