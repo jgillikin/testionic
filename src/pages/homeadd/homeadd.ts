@@ -148,7 +148,7 @@ this.userId = firebase.auth().currentUser.uid;
 }
 
 
-onClickSend(qO: number, qC: number, upc: string, keyU: string) {
+onClickSend(qO: string, qC: string, upc: string, keyU: string) {
 
 //alert("qC is "+qC+" and qO is "+qO+" and upc is "+upc);
 
@@ -185,7 +185,7 @@ this.navCtrl.push(HomePage, {
 
 }
 
-sendOrder(qO: number, qC: number, upc: string, keyU2: string) {
+sendOrder(qO: string, qC: string, upc: string, keyU2: string) {
 
 //alert("qC is "+qC+" and qO is "+qO+" and upc is "+upc);
 
