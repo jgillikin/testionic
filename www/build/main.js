@@ -6,7 +6,7 @@ webpackJsonp([6],{
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DataServiceProvider; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(254);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(123);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__(75);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -47,12 +47,12 @@ var DataServiceProvider = (function () {
 
 /***/ }),
 
-/***/ 146:
+/***/ 147:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AddLocationPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_shopping_list_shopping_list2_service__ = __webpack_require__(147);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_shopping_list_shopping_list2_service__ = __webpack_require__(148);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_toast_toast_service__ = __webpack_require__(44);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular__ = __webpack_require__(14);
@@ -113,7 +113,7 @@ var AddLocationPage = (function () {
 
 /***/ }),
 
-/***/ 147:
+/***/ 148:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -157,17 +157,16 @@ var ShoppingListService2 = (function () {
     };
     ShoppingListService2 = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_angularfire2_database__["a" /* AngularFireDatabase */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_angularfire2_database__["a" /* AngularFireDatabase */]) === "function" && _a || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_angularfire2_database__["a" /* AngularFireDatabase */]])
     ], ShoppingListService2);
     return ShoppingListService2;
-    var _a;
 }());
 
 //# sourceMappingURL=shopping-list2.service.js.map
 
 /***/ }),
 
-/***/ 148:
+/***/ 149:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -175,17 +174,18 @@ var ShoppingListService2 = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_shopping_list_shopping_list_service__ = __webpack_require__(61);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_toast_toast_service__ = __webpack_require__(44);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_barcode_scanner__ = __webpack_require__(119);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_data_service_data_service__ = __webpack_require__(122);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_angularfire2_database__ = __webpack_require__(55);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_firebase_app__ = __webpack_require__(116);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_firebase_app___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_firebase_app__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_rxjs_BehaviorSubject__ = __webpack_require__(255);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_rxjs_BehaviorSubject___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_rxjs_BehaviorSubject__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_rxjs_add_operator_switchMap__ = __webpack_require__(77);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_rxjs_add_operator_switchMap___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9_rxjs_add_operator_switchMap__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__home_home__ = __webpack_require__(83);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_http__ = __webpack_require__(123);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ionic_angular__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_barcode_scanner__ = __webpack_require__(119);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_data_service_data_service__ = __webpack_require__(122);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_angularfire2_database__ = __webpack_require__(55);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_firebase_app__ = __webpack_require__(116);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_firebase_app___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_firebase_app__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_rxjs_BehaviorSubject__ = __webpack_require__(255);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_rxjs_BehaviorSubject___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9_rxjs_BehaviorSubject__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_rxjs_add_operator_switchMap__ = __webpack_require__(77);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_rxjs_add_operator_switchMap___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_10_rxjs_add_operator_switchMap__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__home_home__ = __webpack_require__(83);
 var __assign = (this && this.__assign) || Object.assign || function(t) {
     for (var s, i = 1, n = arguments.length; i < n; i++) {
         s = arguments[i];
@@ -214,8 +214,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var HomeaddPage = (function () {
-    function HomeaddPage(navCtrl, shopping, barcodeScanner, toast, dataService, platform, db, params) {
+    function HomeaddPage(navCtrl, shopping, barcodeScanner, toast, dataService, platform, db, params, http) {
         var _this = this;
         this.navCtrl = navCtrl;
         this.shopping = shopping;
@@ -232,6 +233,9 @@ var HomeaddPage = (function () {
         this.hideMe = false;
         this.averagesList = [];
         this.prevAveragesList = [];
+        this.http = http;
+        this.mailgunUrl = "sandbox1808d8f9e1034dcbae6ad4ad4a2e73ba.mailgun.org";
+        this.mailgunApiKey = window.btoa("key-60280d760e9c5694c5c494c449a5b9ab");
         this.upc = this.params.get('firstPassed');
         this.desc = this.params.get('secondPassed');
         this.qty = this.params.get('thirdPassed');
@@ -245,13 +249,13 @@ var HomeaddPage = (function () {
             //alert("not undefined");
             this.prevAveragesList = this.params.get('fourthPassed');
         }
-        this.size$ = new __WEBPACK_IMPORTED_MODULE_8_rxjs_BehaviorSubject__["BehaviorSubject"](null);
+        this.size$ = new __WEBPACK_IMPORTED_MODULE_9_rxjs_BehaviorSubject__["BehaviorSubject"](null);
         this.items$ = this.size$.switchMap(function (size) {
             return db.list('/shopping-list', function (ref) {
                 return size ? ref.orderByChild('upc').equalTo(size) : ref;
             }).snapshotChanges();
         });
-        this.descRef = __WEBPACK_IMPORTED_MODULE_7_firebase_app__["database"]().ref('/shopping-list');
+        this.descRef = __WEBPACK_IMPORTED_MODULE_8_firebase_app__["database"]().ref('/shopping-list');
         this.descRef.on('value', function (descList) {
             var descs = [];
             descList.forEach(function (desc) {
@@ -279,6 +283,9 @@ var HomeaddPage = (function () {
             return changes.map(function (c) { return (__assign({ key: c.payload.key }, c.payload.val())); });
         });
     } //end constructor
+    HomeaddPage.prototype.ionViewDidLoad = function () {
+        this.userId = __WEBPACK_IMPORTED_MODULE_8_firebase_app__["auth"]().currentUser.uid;
+    };
     HomeaddPage.prototype.onClickSend = function (qO, qC, upc, keyU) {
         //alert("qC is "+qC+" and qO is "+qO+" and upc is "+upc);
         if (!qO) {
@@ -292,13 +299,13 @@ var HomeaddPage = (function () {
         else {
             if (this.prevAveragesList === undefined) {
                 this.averagesList.push(upc + ' ' + qO + ' ' + keyU);
-                this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_10__home_home__["a" /* HomePage */], {
+                this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_11__home_home__["a" /* HomePage */], {
                     ordersPassed: this.averagesList
                 });
             }
             else {
                 this.prevAveragesList.push(upc + ' ' + qO + ':' + qC + ' ' + keyU);
-                this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_10__home_home__["a" /* HomePage */], {
+                this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_11__home_home__["a" /* HomePage */], {
                     ordersPassed: this.prevAveragesList
                 });
             }
@@ -313,7 +320,17 @@ var HomeaddPage = (function () {
         }
         else {
             var newQty;
-            this.purchaseOrder = __WEBPACK_IMPORTED_MODULE_7_firebase_app__["database"]().ref("purchase-order/");
+            var today = new Date();
+            var dd = today.getDate();
+            var mm = today.getMonth() + 1; //January is 0!
+            var yyyy = today.getFullYear();
+            if (dd < 10) {
+                dd = '0' + dd;
+            }
+            if (mm < 10) {
+                mm = '0' + mm;
+            }
+            var today = mm + '/' + dd + '/' + yyyy;
             if (this.prevAveragesList === undefined) {
                 //insert from this.averagesList array
                 this.averagesList.push(upc + ' ' + qO + ':' + qC + ' ' + this.key1);
@@ -324,18 +341,21 @@ var HomeaddPage = (function () {
                     //alert(data.substring(data.indexOf(' ')+1,data.lastIndexOf(':'))); //q0 qty
                     //alert(data.substring(data.lastIndexOf(':')+1,data.lastIndexOf(' ')));  //qC qty
                     newQty = eval(data.substring(data.lastIndexOf(':') + 1, data.lastIndexOf(' '))) - eval(data.substring(data.indexOf(' ') + 1, data.lastIndexOf(':')));
-                    this.shoppingList2 = __WEBPACK_IMPORTED_MODULE_7_firebase_app__["database"]().ref("shopping-list/" + data.substr(data.lastIndexOf(' ')).trim());
+                    this.shoppingList2 = __WEBPACK_IMPORTED_MODULE_8_firebase_app__["database"]().ref("shopping-list/" + data.substr(data.lastIndexOf(' ')).trim());
                     this.shoppingList2.update({
                         "quantity": newQty
                     });
-                    this.purchaseOrder.insert({
+                    this.purchaseOrder = __WEBPACK_IMPORTED_MODULE_8_firebase_app__["database"]().ref("purchase-order/" + data.substr(data.lastIndexOf(' ')).trim());
+                    this.purchaseOrder.update({
                         "qtyO": data.substring(data.indexOf(' ') + 1, data.lastIndexOf(':')),
                         "qtyC": data.substring(data.lastIndexOf(':') + 1, data.lastIndexOf(' ')),
-                        "prodId": data.substr(data.lastIndexOf(' '))
+                        "prodId": data.substr(data.lastIndexOf(' ')),
+                        "dateOrdered": today,
+                        "orderedBy": this.userId
                     });
                 }
                 this.averagesList = [];
-                this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_10__home_home__["a" /* HomePage */], {
+                this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_11__home_home__["a" /* HomePage */], {
                     ordersPassed: this.averagesList
                 });
             }
@@ -349,21 +369,42 @@ var HomeaddPage = (function () {
                     //alert(data.substring(data.indexOf(' ')+1,data.lastIndexOf(':'))); //q0 qty
                     //alert(data.substring(data.lastIndexOf(':')+1,data.lastIndexOf(' ')));  //qC qty
                     newQty = eval(data.substring(data.lastIndexOf(':') + 1, data.lastIndexOf(' '))) - eval(data.substring(data.indexOf(' ') + 1, data.lastIndexOf(':')));
-                    this.shoppingList2 = __WEBPACK_IMPORTED_MODULE_7_firebase_app__["database"]().ref("shopping-list/" + data.substr(data.lastIndexOf(' ')).trim());
+                    this.shoppingList2 = __WEBPACK_IMPORTED_MODULE_8_firebase_app__["database"]().ref("shopping-list/" + data.substr(data.lastIndexOf(' ')).trim());
                     this.shoppingList2.update({
                         "quantity": newQty
                     });
-                    this.purchaseOrder.insert({
-                        "qtyO": data.substring(data.indexOf(' ') + 1, data.lastIndexOf(':')),
-                        "qtyC": data.substring(data.lastIndexOf(':') + 1, data.lastIndexOf(' ')),
-                        "prodId": data.substr(data.lastIndexOf(' '))
+                    this.purchaseOrder = __WEBPACK_IMPORTED_MODULE_8_firebase_app__["database"]().ref("purchase-order/" + data.substr(data.lastIndexOf(' ')).trim());
+                    this.purchaseOrder.update({
+                        "qtyO": data.substring(data.indexOf(' ') + 1, data.lastIndexOf(':')).trim(),
+                        "qtyC": data.substring(data.lastIndexOf(':') + 1, data.lastIndexOf(' ')).trim(),
+                        "prodId": data.substr(data.lastIndexOf(' ')).trim(),
+                        "dateOrdered": today,
+                        "orderedBy": this.userId
                     });
                 }
                 this.prevAveragesList = [];
-                this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_10__home_home__["a" /* HomePage */], {
+                this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_11__home_home__["a" /* HomePage */], {
                     ordersPassed: this.prevAveragesList
                 });
             }
+            //send email
+            var recipient = "jason.gillikin@gmail.com";
+            var subject = "test email";
+            var message = "put body contents aqui";
+            var requestHeaders = new Headers();
+            requestHeaders.append("Authorization", "Basic " + this.mailgunApiKey);
+            requestHeaders.append("Content-Type", "application/x-www-form-urlencoded");
+            this.http.request(new __WEBPACK_IMPORTED_MODULE_3__angular_http__["c" /* Request */]({
+                method: __WEBPACK_IMPORTED_MODULE_3__angular_http__["d" /* RequestMethod */].Post,
+                url: "https://api.mailgun.net/v3/" + this.mailgunUrl + "/messages",
+                body: "from=test@example.com&to=" + recipient + "&subject=" + subject + "&text=" + message,
+                headers: requestHeaders
+            }))
+                .subscribe(function (success) {
+                console.log("SUCCESS -> " + JSON.stringify(success));
+            }, function (error) {
+                console.log("ERROR -> " + JSON.stringify(error));
+            });
         } //end else
     };
     HomeaddPage.prototype.onBlur = function (qO, qC) {
@@ -409,6 +450,22 @@ var HomeaddPage = (function () {
         if (!searchbar)
             this.hideMe = false;
         //  alert(this.descList.length);
+    };
+    HomeaddPage.prototype.send = function (recipient, subject, message) {
+        var requestHeaders = new Headers();
+        requestHeaders.append("Authorization", "Basic " + this.mailgunApiKey);
+        requestHeaders.append("Content-Type", "application/x-www-form-urlencoded");
+        this.http.request(new __WEBPACK_IMPORTED_MODULE_3__angular_http__["c" /* Request */]({
+            method: __WEBPACK_IMPORTED_MODULE_3__angular_http__["d" /* RequestMethod */].Post,
+            url: "https://api.mailgun.net/v3/" + this.mailgunUrl + "/messages",
+            body: "from=test@example.com&to=" + recipient + "&subject=" + subject + "&text=" + message,
+            headers: requestHeaders
+        }))
+            .subscribe(function (success) {
+            console.log("SUCCESS -> " + JSON.stringify(success));
+        }, function (error) {
+            console.log("ERROR -> " + JSON.stringify(error));
+        });
     };
     HomeaddPage.prototype.scan = function () {
         var _this = this;
@@ -457,23 +514,17 @@ var HomeaddPage = (function () {
         Object(__WEBPACK_IMPORTED_MODULE_2__angular_core__["m" /* Component */])({
             selector: 'page-homeadd',template:/*ion-inline-start:"C:\ionicFirebase\IonicShoppingList\src\pages\homeadd\homeadd.html"*/'<ion-header>\n\n  <ion-navbar color="primary">\n\n    <ion-title>\n\n      Purchase Orders\n\n    </ion-title>\n\n  </ion-navbar>\n\n\n\n<ion-toolbar>\n\n    <ion-segment [(ngModel)]="section" color="primary">\n\n\n\n      <ion-segment-button value="one">Orders\n\n              </ion-segment-button>\n\n\n\n\n\n    </ion-segment>\n\n\n\n  </ion-toolbar>\n\n\n\n\n\n</ion-header>\n\n\n\n<ion-content padding>\n\n\n\n <div [ngSwitch]="section">\n\n \n\n      <ion-list *ngSwitchCase="\'one\'">\n\n      <ion-item>\n\n      <ion-list>\n\n\n\n<div text-center>\n\n\n\n<b>UPC: {{ upc }}</b><br>\n\n  {{ desc }}<br>\n\n<u>Quantity available: {{ qty }} </u><br><br>\n\n<ion-item>\n\n<ion-input type="number" placeholder="Enter a Qty to order" [(ngModel)]="qtyOrder" required></ion-input>\n\n\n\n</ion-item>\n\n\n\n<br>\n\n<button ion-button color="blue" (click)="onClickSend(qtyOrder,qty,upc,key1)">Keep Adding</button>\n\n<button ion-button color="blue" (click)="sendOrder(qtyOrder,qty,upc,key1)">Send</button>\n\n<br>\n\n\n\n      <div *ngIf="prevAveragesList !== undefined"> the length of prevAveragesList is  {{ prevAveragesList.length }} {{ prevAveragesList[0] }}\n\n    </div>\n\n\n\n</div>\n\n\n\n\n\n\n\n</ion-list>\n\n</ion-item>\n\n</ion-list>\n\n\n\n</div>\n\n\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\ionicFirebase\IonicShoppingList\src\pages\homeadd\homeadd.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3_ionic_angular__["j" /* NavController */],
-            __WEBPACK_IMPORTED_MODULE_0__services_shopping_list_shopping_list_service__["a" /* ShoppingListService */],
-            __WEBPACK_IMPORTED_MODULE_4__ionic_native_barcode_scanner__["a" /* BarcodeScanner */],
-            __WEBPACK_IMPORTED_MODULE_1__services_toast_toast_service__["a" /* ToastService */],
-            __WEBPACK_IMPORTED_MODULE_5__providers_data_service_data_service__["a" /* DataServiceProvider */],
-            __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["m" /* Platform */],
-            __WEBPACK_IMPORTED_MODULE_6_angularfire2_database__["a" /* AngularFireDatabase */],
-            __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["l" /* NavParams */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["j" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["j" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_0__services_shopping_list_shopping_list_service__["a" /* ShoppingListService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__services_shopping_list_shopping_list_service__["a" /* ShoppingListService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_5__ionic_native_barcode_scanner__["a" /* BarcodeScanner */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__ionic_native_barcode_scanner__["a" /* BarcodeScanner */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1__services_toast_toast_service__["a" /* ToastService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__services_toast_toast_service__["a" /* ToastService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_6__providers_data_service_data_service__["a" /* DataServiceProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__providers_data_service_data_service__["a" /* DataServiceProvider */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["m" /* Platform */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["m" /* Platform */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_7_angularfire2_database__["a" /* AngularFireDatabase */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_7_angularfire2_database__["a" /* AngularFireDatabase */]) === "function" && _g || Object, typeof (_h = typeof __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["l" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["l" /* NavParams */]) === "function" && _h || Object, typeof (_j = typeof __WEBPACK_IMPORTED_MODULE_3__angular_http__["a" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__angular_http__["a" /* Http */]) === "function" && _j || Object])
     ], HomeaddPage);
     return HomeaddPage;
+    var _a, _b, _c, _d, _e, _f, _g, _h, _j;
 }()); //end export class
 
 //# sourceMappingURL=homeadd.js.map
 
 /***/ }),
 
-/***/ 161:
+/***/ 162:
 /***/ (function(module, exports) {
 
 function webpackEmptyAsyncContext(req) {
@@ -486,36 +537,36 @@ function webpackEmptyAsyncContext(req) {
 webpackEmptyAsyncContext.keys = function() { return []; };
 webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
 module.exports = webpackEmptyAsyncContext;
-webpackEmptyAsyncContext.id = 161;
+webpackEmptyAsyncContext.id = 162;
 
 /***/ }),
 
-/***/ 204:
+/***/ 205:
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
 	"../pages/add-shopping-item/add-shopping-item.module": [
-		475,
+		474,
 		2
 	],
 	"../pages/addlocation/addlocation.module": [
-		474,
+		475,
 		5
 	],
 	"../pages/edit-shopping-item/edit-shopping-item.module": [
-		479,
+		476,
 		1
 	],
 	"../pages/home/home.module": [
-		476,
+		477,
 		4
 	],
 	"../pages/homeadd/homeadd.module": [
-		477,
+		478,
 		3
 	],
 	"../pages/login/login.module": [
-		478,
+		479,
 		0
 	]
 };
@@ -530,12 +581,12 @@ function webpackAsyncContext(req) {
 webpackAsyncContext.keys = function webpackAsyncContextKeys() {
 	return Object.keys(map);
 };
-webpackAsyncContext.id = 204;
+webpackAsyncContext.id = 205;
 module.exports = webpackAsyncContext;
 
 /***/ }),
 
-/***/ 250:
+/***/ 251:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -577,7 +628,7 @@ var IrreportsPage = (function () {
 
 /***/ }),
 
-/***/ 251:
+/***/ 252:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -715,22 +766,22 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_angularfire2_database__ = __webpack_require__(55);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_angularfire2__ = __webpack_require__(43);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__app_component__ = __webpack_require__(467);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_addlocation_addlocation__ = __webpack_require__(146);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__services_shopping_list_shopping_list2_service__ = __webpack_require__(147);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_addlocation_addlocation__ = __webpack_require__(147);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__services_shopping_list_shopping_list2_service__ = __webpack_require__(148);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_about_about__ = __webpack_require__(82);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_contact_contact__ = __webpack_require__(297);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_tabs_tabs__ = __webpack_require__(307);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_home_home__ = __webpack_require__(83);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_homeadd_homeadd__ = __webpack_require__(148);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__pages_irreports_irreports__ = __webpack_require__(250);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__pages_inventory_inventory__ = __webpack_require__(251);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_homeadd_homeadd__ = __webpack_require__(149);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__pages_irreports_irreports__ = __webpack_require__(251);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__pages_inventory_inventory__ = __webpack_require__(252);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__firebase_credentials__ = __webpack_require__(468);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__services_shopping_list_shopping_list_service__ = __webpack_require__(61);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__services_toast_toast_service__ = __webpack_require__(44);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__ionic_native_barcode_scanner__ = __webpack_require__(119);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_21_angularfire2_auth__ = __webpack_require__(306);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_22_ionic2_super_tabs__ = __webpack_require__(469);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__angular_http__ = __webpack_require__(254);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__angular_http__ = __webpack_require__(123);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__providers_data_service_data_service__ = __webpack_require__(122);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -784,12 +835,12 @@ var AppModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
                 __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["h" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_7__app_component__["a" /* MyApp */], {}, {
                     links: [
-                        { loadChildren: '../pages/addlocation/addlocation.module#AddLocationPageModule', name: 'AddLocationPage', segment: 'addlocation', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/add-shopping-item/add-shopping-item.module#AddShoppingItemPageModule', name: 'AddShoppingItemPage', segment: 'add-shopping-item', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/addlocation/addlocation.module#AddLocationPageModule', name: 'AddLocationPage', segment: 'addlocation', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/edit-shopping-item/edit-shopping-item.module#EditShoppingItemPageModule', name: 'EditShoppingItemPage', segment: 'edit-shopping-item', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/home/home.module#HomeModule', name: 'HomePage', segment: 'home', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/homeadd/homeadd.module#HomeaddModule', name: 'HomeaddPage', segment: 'homeadd', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/login/login.module#LoginModule', name: 'LoginPage', segment: 'login', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/edit-shopping-item/edit-shopping-item.module#EditShoppingItemPageModule', name: 'EditShoppingItemPage', segment: 'edit-shopping-item', priority: 'low', defaultHistory: [] }
+                        { loadChildren: '../pages/login/login.module#LoginModule', name: 'LoginPage', segment: 'login', priority: 'low', defaultHistory: [] }
                     ]
                 }),
                 __WEBPACK_IMPORTED_MODULE_6_angularfire2__["a" /* AngularFireModule */].initializeApp(__WEBPACK_IMPORTED_MODULE_17__firebase_credentials__["a" /* FIREBASE_CONFIG */]),
@@ -908,10 +959,9 @@ var MyApp = (function () {
     MyApp = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"C:\ionicFirebase\IonicShoppingList\src\app\app.html"*/'<ion-nav [root]="rootPage"></ion-nav>\n'/*ion-inline-end:"C:\ionicFirebase\IonicShoppingList\src\app\app.html"*/
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* Platform */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* Platform */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */]) === "function" && _c || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* Platform */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */]])
     ], MyApp);
     return MyApp;
-    var _a, _b, _c;
 }());
 
 //# sourceMappingURL=app.component.js.map
@@ -983,10 +1033,9 @@ var ShoppingListService = (function () {
     };
     ShoppingListService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_angularfire2_database__["a" /* AngularFireDatabase */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_angularfire2_database__["a" /* AngularFireDatabase */]) === "function" && _a || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_angularfire2_database__["a" /* AngularFireDatabase */]])
     ], ShoppingListService);
     return ShoppingListService;
-    var _a;
 }());
 
 //# sourceMappingURL=shopping-list.service.js.map
@@ -1001,9 +1050,9 @@ var ShoppingListService = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_shopping_list_shopping_list_service__ = __webpack_require__(61);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__irreports_irreports__ = __webpack_require__(250);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__inventory_inventory__ = __webpack_require__(251);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__addlocation_addlocation__ = __webpack_require__(146);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__irreports_irreports__ = __webpack_require__(251);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__inventory_inventory__ = __webpack_require__(252);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__addlocation_addlocation__ = __webpack_require__(147);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__services_toast_toast_service__ = __webpack_require__(44);
 var __assign = (this && this.__assign) || Object.assign || function(t) {
     for (var s, i = 1, n = arguments.length; i < n; i++) {
@@ -1142,7 +1191,7 @@ var AboutPage = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_rxjs_BehaviorSubject___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_rxjs_BehaviorSubject__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_rxjs_add_operator_switchMap__ = __webpack_require__(77);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_rxjs_add_operator_switchMap___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9_rxjs_add_operator_switchMap__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__homeadd_homeadd__ = __webpack_require__(148);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__homeadd_homeadd__ = __webpack_require__(149);
 var __assign = (this && this.__assign) || Object.assign || function(t) {
     for (var s, i = 1, n = arguments.length; i < n; i++) {
         s = arguments[i];
@@ -1207,8 +1256,8 @@ var HomePage = (function () {
             descList.forEach(function (desc) {
                 //    descs.push(desc.val());
                 var weeklyData = {};
-                weeklyData.id = desc.key;
-                weeklyData.record = desc.val();
+                weeklyData["id"] = desc.key;
+                weeklyData["record"] = desc.val();
                 //descs.push(desc.val()+" "+desc.key);
                 descs.push(weeklyData);
                 return false;

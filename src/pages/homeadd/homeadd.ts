@@ -211,10 +211,10 @@ var dd = today.getDate();
 var mm = today.getMonth()+1; //January is 0!
 
 var yyyy = today.getFullYear();
-if(eval(dd)<10){
+if(dd<10){
     dd='0'+dd;
 } 
-if(eval(mm)<10){
+if(mm<10){
     mm='0'+mm;
 } 
 var today = mm+'/'+dd+'/'+yyyy;
