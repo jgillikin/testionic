@@ -380,19 +380,6 @@ var HomeaddPage = (function () {
                         "dateOrdered": today,
                         "orderedBy": this.userId
                     });
-                    /*
-                    this.purchaseOrder = firebase.database().ref("purchase-order/"+data.substr(data.lastIndexOf(' ')).trim());
-                    
-                    this.purchaseOrder.update ({
-                     "qtyO": data.substring(data.indexOf(' ')+1,data.lastIndexOf(':')).trim(),
-                     "qtyC": data.substring(data.lastIndexOf(':')+1,data.lastIndexOf(' ')).trim(),
-                     "prodId": data.substr(data.lastIndexOf(' ')).trim(),
-                     "dateOrdered": today,
-                     "orderedBy": this.userId
-                    
-                    });
-                    
-                    */
                 }
                 this.prevAveragesList = [];
                 this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_10__home_home__["a" /* HomePage */], {

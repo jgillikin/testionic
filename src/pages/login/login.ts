@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { User } from './../../models/user/user';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { AngularFireDatabase, AngularFireAction,AngularFireList } from 'angularfire2/database';
+
 import { TabsPage } from '../tabs/tabs';
 
 
@@ -13,9 +15,11 @@ import { TabsPage } from '../tabs/tabs';
 export class LoginPage {
 
   user = {} as User;
+  us: AngularFireList<any> = this.db.list('/users-list');
+
 
   constructor(private afAuth: AngularFireAuth,
-    public navCtrl: NavController, public navParams: NavParams) {
+    public navCtrl: NavController, public db: AngularFireDatabase, public navParams: NavParams) {
   }
  
   async login(user: User) {
@@ -31,16 +35,33 @@ export class LoginPage {
   }
  
   async register(user: User) {
-    try {
+
+ return this.afAuth.auth.createUserWithEmailAndPassword(user.email, user.password)
+      .then((user) => {
+       
+        this.us.push({
+ "email": user.email,
+ "uid": user.uid
+}); 
+this.navCtrl.setRoot(TabsPage);
+
+      })
+.catch((error) => this.handleError(error) );
+
+  /*  try {
       const result = await this.afAuth.auth.createUserWithEmailAndPassword(
         user.email,
         user.password
       );
       if (result) {
+        
+
         this.navCtrl.setRoot(TabsPage);
       }
     } catch (e) {
       console.error(e);
-    }
+    } */
+
   }
+
 }
