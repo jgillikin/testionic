@@ -44,7 +44,13 @@ export class HomePage {
   public descList:Array<any>;
   public descRef: firebase.database.Reference;
   public loadedDescList: Array<any>;
+  public averagesList: Array<any>;
   public prevAveragesList: Array<any>;  
+  public shoppingList2: firebase.database.Reference;
+  public purchaseOrder: firebase.database.Reference;
+  public userId;
+po: FirebaseListObservable<any[]> = this.db.list('/purchase-order');
+
 
 
   constructor(
@@ -54,7 +60,7 @@ export class HomePage {
  private toast: ToastService,
  public dataService: DataServiceProvider,
  public platform: Platform,
- db: AngularFireDatabase,
+ public db: AngularFireDatabase,
  public params: NavParams) {
 
 if (this.params.get('ordersPassed') === undefined) {
@@ -134,6 +140,11 @@ this.dataService.getProducts()
 
 
                      } //end constructor
+
+ionViewDidLoad() {
+this.userId = firebase.auth().currentUser.uid;
+}
+
 
 onClick(val: string|null, desc: string|null, qty: number, key1: string) {
 //alert("in onClick, key is "+key1);
@@ -216,6 +227,166 @@ if (!searchbar)
  this.hideMe = false;
 
 //  alert(this.descList.length);
+
+}
+
+sendOrder() {
+
+//alert("qC is "+qC+" and qO is "+qO+" and upc is "+upc);
+
+//alert("in sendOrder received keyU2 of "+keyU2);
+
+
+let newQty:any;
+
+let today:any = new Date();
+let dd:any = today.getDate();
+let mm:any = today.getMonth()+1; //January is 0!
+
+let yyyy:any = today.getFullYear();
+if(dd<10){
+    dd='0'+dd;
+} 
+if(mm<10){
+    mm='0'+mm;
+} 
+today = mm+'/'+dd+'/'+yyyy;
+
+if (this.prevAveragesList === undefined) {
+//insert from this.averagesList array
+
+ for(let data of this.averagesList) {
+ // alert(data.substr(data.lastIndexOf(' '))); //key
+
+//alert(data);
+
+//alert(data.substring(data.indexOf(' ')+1,data.lastIndexOf(':'))); //q0 qty
+
+//alert(data.substring(data.lastIndexOf(':')+1,data.lastIndexOf(' ')));  //qC qty
+
+newQty = data.substring(data.lastIndexOf(':')+1,data.lastIndexOf(' ')) - data.substring(data.indexOf(' ')+1,data.lastIndexOf(':'));
+
+this.shoppingList2 = firebase.database().ref("shopping-list/"+data.substr(data.lastIndexOf(' ')).trim());
+
+this.shoppingList2.update ({
+ "quantity": newQty
+});
+
+this.po.push({
+ "qtyO": data.substring(data.indexOf(' ')+1,data.lastIndexOf(':')).trim(),
+ "qtyC": data.substring(data.lastIndexOf(':')+1,data.lastIndexOf(' ')).trim(),
+ "prodId": data.substr(data.lastIndexOf(' ')).trim(),
+ "dateOrdered": today,
+ "orderedBy": this.userId
+
+}); 
+
+ }
+
+this.averagesList = [];
+this.navCtrl.push(HomePage, {
+    ordersPassed: this.averagesList
+   })
+
+}
+else {
+//insert from this.prevAveragesList
+
+
+ for(let data of this.prevAveragesList) {
+//  alert(data.substr(data.lastIndexOf(' '))); //key
+//alert(data);
+
+//alert(data.substring(data.indexOf(' ')+1,data.lastIndexOf(':'))); //q0 qty
+
+//alert(data.substring(data.lastIndexOf(':')+1,data.lastIndexOf(' ')));  //qC qty
+
+newQty = data.substring(data.lastIndexOf(':')+1,data.lastIndexOf(' ')) - data.substring(data.indexOf(' ')+1,data.lastIndexOf(':'));
+
+
+this.shoppingList2 = firebase.database().ref("shopping-list/"+data.substr(data.lastIndexOf(' ')).trim());
+this.shoppingList2.update ({
+ "quantity": newQty
+});
+
+this.purchaseOrder = firebase.database().ref("purchase-order/"+data.substr(data.lastIndexOf(' ')).trim());
+
+//alert("insert po with qO of "+data.substring(data.indexOf(' ')+1,data.lastIndexOf(':')).trim()+" and qC of "+data.substring(data.lastIndexOf(':')+1,data.lastIndexOf(' ')).trim()+" and prodId of "+data.substr(data.lastIndexOf(' ')).trim()+" and dateOrdered of "+today+" and orderedBy of "+this.userId);
+
+this.po.push({
+ "qtyO": data.substring(data.indexOf(' ')+1,data.lastIndexOf(':')).trim(),
+ "qtyC": data.substring(data.lastIndexOf(':')+1,data.lastIndexOf(' ')).trim(),
+ "prodId": data.substr(data.lastIndexOf(' ')).trim(),
+ "dateOrdered": today,
+ "orderedBy": this.userId
+
+}); 
+
+ }
+
+
+this.prevAveragesList = [];
+this.navCtrl.push(HomePage, {
+    ordersPassed: this.prevAveragesList
+   })
+}
+
+//send email
+/*
+var url = "https://api.mailgun.net/v3/" + this.mailgunUrl + "/messages";
+    let body = {
+      "from": 'InvApp@NeedsSuite.com',
+      "to": 'jason.gillikin@gmail.com',
+      "subject": 'Test P.O. Order',
+      "html": "<html><body>Test body content</body></html>"
+    }
+    let headers = {
+      "Authorization": "Basic " + this.mailgunApiKey,
+      "Content-Type": "application/x-www-form-urlencoded"
+
+    };
+*/
+
+
+/*
+this.http2.post(url, body, headers).then(data => {
+      this.loading.dismiss();
+
+      let alert = this.alertCtrl.create({
+        title: 'Email Inviata',
+        message: 'Grazie per averci contattato. Le risponderemo appena possibile',
+        buttons: [
+          {
+            text: 'OK',
+            role: 'cancel',
+            handler: () => {
+              console.log('Cancel clicked');
+            }
+          }
+        ]
+      });
+      alert.present();
+    })
+      .catch(error => {
+        this.loading.dismiss();
+
+        let alert = this.alertCtrl.create({
+          title: 'Errore',
+          message: 'Si è verificato un errore durante la trasmissione dei dati. Si prega di riprovare!',
+          buttons: [
+            {
+              text: 'OK',
+              role: 'cancel',
+              handler: () => {
+                console.log('Cancel clicked');
+              }
+            }
+          ]
+        });
+        alert.present();
+      });
+*/
+
 
 }
 

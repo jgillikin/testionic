@@ -44,12 +44,19 @@ or<br>
 
 <br>
 
+<div *ngIf="prevAveragesList !== undefined && prevAveragesList.length > 0 else emptyList">
+<button ion-button color="blue" (click)="getItems(prodMan)">Search</button><button ion-button color="blue" (click)="sendOrder()">Send</button>
+</div>
+
+<ng-template #emptyList>
 <button ion-button color="blue" (click)="getItems(prodMan)">Search</button>
+</ng-template>
 
  </div>
-
-      <div *ngIf="prevAveragesList !== undefined"> the length of prevAveragesList is  {{ prevAveragesList.length }} {{ prevAveragesList[0] }}
+<br>
+      <div *ngIf="prevAveragesList !== undefined" text-center> # P.O. items: {{ prevAveragesList.length }} 
     </div>
+
 
 <br>
 

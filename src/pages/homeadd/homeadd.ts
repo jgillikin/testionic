@@ -1,7 +1,8 @@
 import { ShoppingListService } from '../../services/shopping-list/shopping-list.service';
 import { ToastService } from '../../services/toast/toast.service';
 import { Component } from '@angular/core';
-import {Http, Request, RequestMethod, Headers} from "@angular/http";
+//import { HTTP } from '@ionic-native/http';
+import {Request, RequestMethod, Headers} from "@angular/http";
 import { NavController, Platform, NavParams } from 'ionic-angular';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 import { Observable } from 'rxjs/Observable';
@@ -22,7 +23,6 @@ import { HomePage } from '../home/home';
 })
 export class HomeaddPage {
 
-http: Http;
     mailgunUrl: string;
     mailgunApiKey: string;
 
@@ -57,6 +57,7 @@ http: Http;
   public shoppingList2: firebase.database.Reference;
   public purchaseOrder: firebase.database.Reference;
   public userId;
+  po: FirebaseListObservable<any[]> = this.db.list('/purchase-order');
 
   constructor(
  public navCtrl: NavController, 
@@ -65,11 +66,12 @@ http: Http;
  private toast: ToastService,
  public dataService: DataServiceProvider,
  public platform: Platform,
- db: AngularFireDatabase, 
- public params: NavParams,
- http: Http) {
+ public db: AngularFireDatabase, 
+ public params: NavParams
+ //http2: HTTP
+) {
 
-        this.http = http;
+        
         this.mailgunUrl = "sandbox1808d8f9e1034dcbae6ad4ad4a2e73ba.mailgun.org";
         this.mailgunApiKey = window.btoa("key-60280d760e9c5694c5c494c449a5b9ab");
 
@@ -166,7 +168,7 @@ return false;
 }
 
 
-if (qO > qC) {
+if (Number(qO) > Number(qC)) {
 alert("Your order quantity is more than the onhand quantity");
 return false;
 }
@@ -198,7 +200,7 @@ sendOrder(qO: any, qC: any, upc: any, keyU2: any) {
 
 //alert("in sendOrder received keyU2 of "+keyU2);
 
-if (qO > qC) {
+if (Number(qO) > Number(qC)) {
 alert("Your order quantity is more than the onhand quantity");
 return false;
 }
@@ -240,14 +242,13 @@ this.shoppingList2.update ({
  "quantity": newQty
 });
 
-this.purchaseOrder = firebase.database().ref("purchase-order/"+data.substr(data.lastIndexOf(' ')).trim());
-
-this.purchaseOrder.update ({
- "qtyO": data.substring(data.indexOf(' ')+1,data.lastIndexOf(':')),
- "qtyC": data.substring(data.lastIndexOf(':')+1,data.lastIndexOf(' ')),
- "prodId": data.substr(data.lastIndexOf(' ')),
+this.po.push({
+ "qtyO": data.substring(data.indexOf(' ')+1,data.lastIndexOf(':')).trim(),
+ "qtyC": data.substring(data.lastIndexOf(':')+1,data.lastIndexOf(' ')).trim(),
+ "prodId": data.substr(data.lastIndexOf(' ')).trim(),
  "dateOrdered": today,
  "orderedBy": this.userId
+
 }); 
 
  }
@@ -279,6 +280,17 @@ this.shoppingList2.update ({
  "quantity": newQty
 });
 
+this.po.push({
+ "qtyO": data.substring(data.indexOf(' ')+1,data.lastIndexOf(':')).trim(),
+ "qtyC": data.substring(data.lastIndexOf(':')+1,data.lastIndexOf(' ')).trim(),
+ "prodId": data.substr(data.lastIndexOf(' ')).trim(),
+ "dateOrdered": today,
+ "orderedBy": this.userId
+
+}); 
+
+
+/*
 this.purchaseOrder = firebase.database().ref("purchase-order/"+data.substr(data.lastIndexOf(' ')).trim());
 
 this.purchaseOrder.update ({
@@ -290,6 +302,8 @@ this.purchaseOrder.update ({
 
 }); 
 
+*/
+
  }
 
 
@@ -300,26 +314,60 @@ this.navCtrl.push(HomePage, {
 }
 
 //send email
-var recipient="jason.gillikin@gmail.com";
-var subject = "test email";
-var message = "put body contents aqui";
+/*
+var url = "https://api.mailgun.net/v3/" + this.mailgunUrl + "/messages";
+    let body = {
+      "from": 'InvApp@NeedsSuite.com',
+      "to": 'jason.gillikin@gmail.com',
+      "subject": 'Test P.O. Order',
+      "html": "<html><body>Test body content</body></html>"
+    }
+    let headers = {
+      "Authorization": "Basic " + this.mailgunApiKey,
+      "Content-Type": "application/x-www-form-urlencoded"
 
-var requestHeaders = new Headers();
-        requestHeaders.append("Authorization", "Basic " + this.mailgunApiKey);
-        requestHeaders.append("Content-Type", "application/x-www-form-urlencoded");
-        this.http.request(new Request({
-            method: RequestMethod.Post,
-            url: "https://api.mailgun.net/v3/" + this.mailgunUrl + "/messages",
-            body: "from=test@example.com&to=" + recipient + "&subject=" + subject + "&text=" + message,
-            headers: requestHeaders
-        }))
-        .subscribe(success => {
-            console.log("SUCCESS -> " + JSON.stringify(success));
-        }, error => {
-            console.log("ERROR -> " + JSON.stringify(error));
+    };
+*/
+
+
+/*
+this.http2.post(url, body, headers).then(data => {
+      this.loading.dismiss();
+
+      let alert = this.alertCtrl.create({
+        title: 'Email Inviata',
+        message: 'Grazie per averci contattato. Le risponderemo appena possibile',
+        buttons: [
+          {
+            text: 'OK',
+            role: 'cancel',
+            handler: () => {
+              console.log('Cancel clicked');
+            }
+          }
+        ]
+      });
+      alert.present();
+    })
+      .catch(error => {
+        this.loading.dismiss();
+
+        let alert = this.alertCtrl.create({
+          title: 'Errore',
+          message: 'Si è verificato un errore durante la trasmissione dei dati. Si prega di riprovare!',
+          buttons: [
+            {
+              text: 'OK',
+              role: 'cancel',
+              handler: () => {
+                console.log('Cancel clicked');
+              }
+            }
+          ]
         });
-
-
+        alert.present();
+      });
+*/
 
 } //end else
 
@@ -329,7 +377,7 @@ var requestHeaders = new Headers();
 onBlur(qO: any, qC: any) {
 //alert("in onBlur and order qty is "+qO+ "and onhand qty is "+qC);
 
-if (qO > qC) {
+if (Number(qO) > Number(qC)) {
 alert("Your order quantity is more than the onhand quantity");
 return false;
 }
@@ -389,22 +437,6 @@ if (!searchbar)
 
 }
 
-send(recipient: string, subject: string, message: string) {
-        var requestHeaders = new Headers();
-        requestHeaders.append("Authorization", "Basic " + this.mailgunApiKey);
-        requestHeaders.append("Content-Type", "application/x-www-form-urlencoded");
-        this.http.request(new Request({
-            method: RequestMethod.Post,
-            url: "https://api.mailgun.net/v3/" + this.mailgunUrl + "/messages",
-            body: "from=test@example.com&to=" + recipient + "&subject=" + subject + "&text=" + message,
-            headers: requestHeaders
-        }))
-        .subscribe(success => {
-            console.log("SUCCESS -> " + JSON.stringify(success));
-        }, error => {
-            console.log("ERROR -> " + JSON.stringify(error));
-        });
-    }
 
  scan() {
 

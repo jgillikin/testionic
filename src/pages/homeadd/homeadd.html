@@ -33,7 +33,7 @@
   {{ desc }}<br>
 <u>Quantity available: {{ qty }} </u><br><br>
 <ion-item>
-<ion-input type="number" placeholder="Enter a Qty to order" [(ngModel)]="qtyOrder" required></ion-input>
+<ion-input type="number" placeholder="Enter a Qty to order" [(ngModel)]="qtyOrder" max=" {{ qty }}" required></ion-input>
 
 </ion-item>
 
@@ -41,8 +41,8 @@
 <button ion-button color="blue" (click)="onClickSend(qtyOrder,qty,upc,key1)">Keep Adding</button>
 <button ion-button color="blue" (click)="sendOrder(qtyOrder,qty,upc,key1)">Send</button>
 <br>
-
-      <div *ngIf="prevAveragesList !== undefined"> the length of prevAveragesList is  {{ prevAveragesList.length }} {{ prevAveragesList[0] }}
+<br>
+      <div *ngIf="prevAveragesList !== undefined"> # P.O. items: {{ prevAveragesList.length }} 
     </div>
 
 </div>
