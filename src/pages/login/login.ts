@@ -46,7 +46,7 @@ export class LoginPage {
 this.navCtrl.setRoot(TabsPage);
 
       })
-.catch((error) => console.log(error); );
+.catch((error) => this.handleError(error) );
 
   /*  try {
       const result = await this.afAuth.auth.createUserWithEmailAndPassword(
@@ -62,6 +62,12 @@ this.navCtrl.setRoot(TabsPage);
       console.error(e);
     } */
 
+  }
+
+// If error, console log and notify user
+  private handleError(error: Error) {
+    console.error(error);
+    //this.notify.update(error.message, 'error');
   }
 
 }
