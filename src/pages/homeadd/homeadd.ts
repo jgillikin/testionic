@@ -192,25 +192,25 @@ this.navCtrl.push(HomePage, {
 
 }
 
-sendOrder(qO: string, qC: string, upc: string, keyU2: string) {
+sendOrder(qO: any, qC: any, upc: any, keyU2: any) {
 
 //alert("qC is "+qC+" and qO is "+qO+" and upc is "+upc);
 
 //alert("in sendOrder received keyU2 of "+keyU2);
 
-if (eval(qO) > eval(qC)) {
+if (qO > qC) {
 alert("Your order quantity is more than the onhand quantity");
 return false;
 }
 else {
 
-let newQty:number;
+let newQty:any;
 
-let today:number = new Date();
-let dd:number = today.getDate();
-let mm:number = today.getMonth()+1; //January is 0!
+let today:any = new Date();
+let dd:any = today.getDate();
+let mm:any = today.getMonth()+1; //January is 0!
 
-var yyyy = today.getFullYear();
+let yyyy:any = today.getFullYear();
 if(dd<10){
     dd='0'+dd;
 } 

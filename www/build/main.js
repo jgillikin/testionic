@@ -314,7 +314,7 @@ var HomeaddPage = (function () {
     HomeaddPage.prototype.sendOrder = function (qO, qC, upc, keyU2) {
         //alert("qC is "+qC+" and qO is "+qO+" and upc is "+upc);
         //alert("in sendOrder received keyU2 of "+keyU2);
-        if (eval(qO) > eval(qC)) {
+        if (qO > qC) {
             alert("Your order quantity is more than the onhand quantity");
             return false;
         }
