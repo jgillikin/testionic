@@ -46,7 +46,7 @@ export class LoginPage {
 this.navCtrl.setRoot(TabsPage);
 
       })
-.catch((error) => this.handleError(error) );
+.catch((error) => console.log(error); );
 
   /*  try {
       const result = await this.afAuth.auth.createUserWithEmailAndPassword(
