@@ -2,7 +2,7 @@ import { ShoppingListService } from '../../services/shopping-list/shopping-list.
 import { ToastService } from '../../services/toast/toast.service';
 import { Component } from '@angular/core';
 //import { HTTP } from '@ionic-native/http';
-import {Request, RequestMethod, Headers} from "@angular/http";
+import {Http, Request, RequestMethod, Headers} from "@angular/http";
 import { NavController, Platform, NavParams } from 'ionic-angular';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 import { Observable } from 'rxjs/Observable';
@@ -22,7 +22,7 @@ import { HomePage } from '../home/home';
   templateUrl: 'homeadd.html'
 })
 export class HomeaddPage {
-
+    http: Http;
     mailgunUrl: string;
     mailgunApiKey: string;
 
@@ -67,11 +67,11 @@ export class HomeaddPage {
  public dataService: DataServiceProvider,
  public platform: Platform,
  public db: AngularFireDatabase, 
- public params: NavParams
- //http2: HTTP
+ public params: NavParams,
+ http: Http
 ) {
 
-        
+        this.http = http;
         this.mailgunUrl = "sandbox1808d8f9e1034dcbae6ad4ad4a2e73ba.mailgun.org";
         this.mailgunApiKey = window.btoa("key-60280d760e9c5694c5c494c449a5b9ab");
 
@@ -258,6 +258,27 @@ this.navCtrl.push(HomePage, {
     ordersPassed: this.averagesList
    })
 
+//send email
+var recipient = 'jason.gillikin@gmail.com';
+var subject = 'test mailgrid';
+var message = 'body content here';
+
+var requestHeaders = new Headers();
+        requestHeaders.append("Authorization", "Basic " + this.mailgunApiKey);
+        requestHeaders.append("Content-Type", "application/x-www-form-urlencoded");
+        this.http.request(new Request({
+            method: RequestMethod.Post,
+            url: "https://api.mailgun.net/v3/" + this.mailgunUrl + "/messages",
+            body: "from=test@example.com&to=" + recipient + "&subject=" + subject + "&text=" + message,
+            headers: requestHeaders
+        }))
+        .subscribe(success => {
+            console.log("SUCCESS -> " + JSON.stringify(success));
+        }, error => {
+            console.log("ERROR -> " + JSON.stringify(error));
+        });
+
+
 }
 else {
 //insert from this.prevAveragesList
@@ -301,60 +322,25 @@ this.navCtrl.push(HomePage, {
 }
 
 //send email
-/*
-var url = "https://api.mailgun.net/v3/" + this.mailgunUrl + "/messages";
-    let body = {
-      "from": 'InvApp@NeedsSuite.com',
-      "to": 'jason.gillikin@gmail.com',
-      "subject": 'Test P.O. Order',
-      "html": "<html><body>Test body content</body></html>"
-    }
-    let headers = {
-      "Authorization": "Basic " + this.mailgunApiKey,
-      "Content-Type": "application/x-www-form-urlencoded"
+var recipient = 'jason.gillikin@gmail.com';
+var subject = 'test mailgrid';
+var message = 'body content here';
 
-    };
-*/
-
-
-/*
-this.http2.post(url, body, headers).then(data => {
-      this.loading.dismiss();
-
-      let alert = this.alertCtrl.create({
-        title: 'Email Inviata',
-        message: 'Grazie per averci contattato. Le risponderemo appena possibile',
-        buttons: [
-          {
-            text: 'OK',
-            role: 'cancel',
-            handler: () => {
-              console.log('Cancel clicked');
-            }
-          }
-        ]
-      });
-      alert.present();
-    })
-      .catch(error => {
-        this.loading.dismiss();
-
-        let alert = this.alertCtrl.create({
-          title: 'Errore',
-          message: 'Si è verificato un errore durante la trasmissione dei dati. Si prega di riprovare!',
-          buttons: [
-            {
-              text: 'OK',
-              role: 'cancel',
-              handler: () => {
-                console.log('Cancel clicked');
-              }
-            }
-          ]
+var requestHeaders = new Headers();
+        requestHeaders.append("Authorization", "Basic " + this.mailgunApiKey);
+        requestHeaders.append("Content-Type", "application/x-www-form-urlencoded");
+        this.http.request(new Request({
+            method: RequestMethod.Post,
+            url: "https://api.mailgun.net/v3/" + this.mailgunUrl + "/messages",
+            body: "from=test@example.com&to=" + recipient + "&subject=" + subject + "&text=" + message,
+            headers: requestHeaders
+        }))
+        .subscribe(success => {
+            console.log("SUCCESS -> " + JSON.stringify(success));
+        }, error => {
+            console.log("ERROR -> " + JSON.stringify(error));
         });
-        alert.present();
-      });
-*/
+
 
 } //end else
 

@@ -8,14 +8,14 @@ import { AngularFireModule } from 'angularfire2';
 import { MyApp } from './app.component';
 import { AddLocationPage } from '../pages/addlocation/addlocation';
 import { ShoppingListService2 } from './../services/shopping-list/shopping-list2.service';
-import * as firebase from 'firebase';
+//import * as firebase from 'firebase';
 import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
 import { TabsPage } from '../pages/tabs/tabs';
 import { HomePage } from '../pages/home/home';
 import { HomeaddPage } from '../pages/homeadd/homeadd';
 
-import { LoginPage } from '../pages/login/login';
+//import { LoginPage } from '../pages/login/login';
 import { IrreportsPage } from '../pages/irreports/irreports';
 import { InventoryPage } from '../pages/inventory/inventory';
 import { FIREBASE_CONFIG } from './firebase.credentials';
