@@ -259,6 +259,13 @@ this.navCtrl.push(HomePage, {
    })
 
 //send email
+this.send('jason.gillikin@gmail.com', 'subject', 'html code')
+      .subscribe(
+        s => console.log(s),
+        e => console.log(e)
+      )
+
+
 var recipient = 'jason.gillikin@gmail.com';
 var subject = 'test mailgrid';
 var message = 'body content here';
@@ -322,6 +329,13 @@ this.navCtrl.push(HomePage, {
 }
 
 //send email
+this.send('jason.gillikin@gmail.com', 'subject', 'html code')
+      .subscribe(
+        s => console.log(s),
+        e => console.log(e)
+      )
+
+
 var recipient = 'jason.gillikin@gmail.com';
 var subject = 'test mailgrid';
 var message = 'body content here';
@@ -346,6 +360,18 @@ var requestHeaders = new Headers();
 
 }
 
+  send(recipient: string, subject: string, message: string) {
+    var requestHeaders = new Headers();
+    var body = new URLSearchParams()
+    body.append("from", 'jason.gillikin@gmail.com')
+    body.append("to", recipient)
+    body.append("subject", subject)
+    body.append("html", message)
+    requestHeaders.append("Content-Type", "application/x-www-form-urlencoded");
+    return this.http.post(
+      "https://api:key-e6e1c7eddb02bfed1b4cc1a1f5a10ac5@api.mailgun.net/v3/sandbox80eb3a7b4f8b4dc99d29fd49dc624be4.mailgun.org/messages",
+      body, {headers: requestHeaders})
+  }
 
 onBlur(qO: any, qC: any) {
 //alert("in onBlur and order qty is "+qO+ "and onhand qty is "+qC);
