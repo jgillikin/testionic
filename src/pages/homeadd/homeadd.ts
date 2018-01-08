@@ -73,7 +73,7 @@ export class HomeaddPage {
 
         this.http = http;
         this.mailgunUrl = "sandbox80eb3a7b4f8b4dc99d29fd49dc624be4.mailgun.org";
-        this.mailgunApiKey = window.btoa("key-e6e1c7eddb02bfed1b4cc1a1f5a10ac5");
+        this.mailgunApiKey = window.btoa("api:key-e6e1c7eddb02bfed1b4cc1a1f5a10ac5");
 
 this.upc = this.params.get('firstPassed');
 this.desc = this.params.get('secondPassed');

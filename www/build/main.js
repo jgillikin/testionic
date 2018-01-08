@@ -237,8 +237,8 @@ var HomeaddPage = (function () {
         this.prevAveragesList = [];
         this.po = this.db.list('/purchase-order');
         this.http = http;
-        this.mailgunUrl = "sandbox1808d8f9e1034dcbae6ad4ad4a2e73ba.mailgun.org";
-        this.mailgunApiKey = window.btoa("key-60280d760e9c5694c5c494c449a5b9ab");
+        this.mailgunUrl = "sandbox80eb3a7b4f8b4dc99d29fd49dc624be4.mailgun.org";
+        this.mailgunApiKey = window.btoa("key-e6e1c7eddb02bfed1b4cc1a1f5a10ac5");
         this.upc = this.params.get('firstPassed');
         this.desc = this.params.get('secondPassed');
         this.qty = this.params.get('thirdPassed');
@@ -556,27 +556,27 @@ webpackEmptyAsyncContext.id = 162;
 
 var map = {
 	"../pages/add-shopping-item/add-shopping-item.module": [
-		475,
+		474,
 		2
 	],
 	"../pages/addlocation/addlocation.module": [
-		474,
+		475,
 		5
 	],
 	"../pages/edit-shopping-item/edit-shopping-item.module": [
-		479,
+		476,
 		1
 	],
 	"../pages/home/home.module": [
-		476,
+		477,
 		4
 	],
 	"../pages/homeadd/homeadd.module": [
-		477,
+		478,
 		3
 	],
 	"../pages/login/login.module": [
-		478,
+		479,
 		0
 	]
 };
@@ -847,12 +847,12 @@ var AppModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
                 __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["h" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_7__app_component__["a" /* MyApp */], {}, {
                     links: [
-                        { loadChildren: '../pages/addlocation/addlocation.module#AddLocationPageModule', name: 'AddLocationPage', segment: 'addlocation', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/add-shopping-item/add-shopping-item.module#AddShoppingItemPageModule', name: 'AddShoppingItemPage', segment: 'add-shopping-item', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/addlocation/addlocation.module#AddLocationPageModule', name: 'AddLocationPage', segment: 'addlocation', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/edit-shopping-item/edit-shopping-item.module#EditShoppingItemPageModule', name: 'EditShoppingItemPage', segment: 'edit-shopping-item', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/home/home.module#HomeModule', name: 'HomePage', segment: 'home', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/homeadd/homeadd.module#HomeaddModule', name: 'HomeaddPage', segment: 'homeadd', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/login/login.module#LoginModule', name: 'LoginPage', segment: 'login', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/edit-shopping-item/edit-shopping-item.module#EditShoppingItemPageModule', name: 'EditShoppingItemPage', segment: 'edit-shopping-item', priority: 'low', defaultHistory: [] }
+                        { loadChildren: '../pages/login/login.module#LoginModule', name: 'LoginPage', segment: 'login', priority: 'low', defaultHistory: [] }
                     ]
                 }),
                 __WEBPACK_IMPORTED_MODULE_6_angularfire2__["a" /* AngularFireModule */].initializeApp(__WEBPACK_IMPORTED_MODULE_17__firebase_credentials__["a" /* FIREBASE_CONFIG */]),
