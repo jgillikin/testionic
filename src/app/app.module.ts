@@ -27,6 +27,7 @@ import { SuperTabsModule } from 'ionic2-super-tabs';
 import { HttpModule } from '@angular/http';
 import { DataServiceProvider } from '../providers/data-service/data-service';
 
+
 @NgModule({
   declarations: [
     MyApp,

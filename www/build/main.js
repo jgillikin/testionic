@@ -38,7 +38,7 @@ var DataServiceProvider = (function () {
     };
     DataServiceProvider = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Http */]])
     ], DataServiceProvider);
     return DataServiceProvider;
 }());
@@ -181,7 +181,7 @@ var ShoppingListService2 = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_angularfire2_database__ = __webpack_require__(45);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_firebase_app__ = __webpack_require__(116);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_firebase_app___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_firebase_app__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_rxjs_BehaviorSubject__ = __webpack_require__(258);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_rxjs_BehaviorSubject__ = __webpack_require__(255);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_rxjs_BehaviorSubject___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9_rxjs_BehaviorSubject__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_rxjs_add_operator_switchMap__ = __webpack_require__(77);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_rxjs_add_operator_switchMap___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_10_rxjs_add_operator_switchMap__);
@@ -227,6 +227,7 @@ var HomeaddPage = (function () {
         this.platform = platform;
         this.db = db;
         this.params = params;
+        this.data = {};
         this.platformList = '';
         this.isApp = true;
         this.products = [];
@@ -316,12 +317,16 @@ var HomeaddPage = (function () {
     };
     HomeaddPage.prototype.sendOrder = function (qO, qC, upc, keyU2) {
         //alert("qC is "+qC+" and qO is "+qO+" and upc is "+upc);
+        var _this = this;
         //alert("in sendOrder received keyU2 of "+keyU2);
         if (Number(qO) > Number(qC)) {
             alert("Your order quantity is more than the onhand quantity");
             return false;
         }
         else {
+            var link = 'https://jasongillikin.000webhostapp.com/sendmail.php';
+            var myData;
+            var message;
             var newQty = void 0;
             var today = new Date();
             var dd = today.getDate();
@@ -355,30 +360,19 @@ var HomeaddPage = (function () {
                         "dateOrdered": today,
                         "orderedBy": this.userId
                     });
-                }
+                    message = message + 'Ordered ' + data.substring(data.indexOf(' ') + 1, data.lastIndexOf(':')).trim() + ' of ' + data.substr(data.lastIndexOf(' ')).trim();
+                } //end for
                 this.averagesList = [];
                 this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_11__home_home__["a" /* HomePage */], {
                     ordersPassed: this.averagesList
                 });
                 //send email
-                this.send('jason.gillikin@gmail.com', 'subject', 'html code')
-                    .subscribe(function (s) { return console.log(s); }, function (e) { return console.log(e); });
-                var recipient = 'jason.gillikin@gmail.com';
-                var subject = 'test mailgrid';
-                var message = 'body content here';
-                var requestHeaders = new __WEBPACK_IMPORTED_MODULE_3__angular_http__["a" /* Headers */]();
-                requestHeaders.append("Authorization", "Basic " + this.mailgunApiKey);
-                requestHeaders.append("Content-Type", "application/x-www-form-urlencoded");
-                this.http.request(new __WEBPACK_IMPORTED_MODULE_3__angular_http__["d" /* Request */]({
-                    method: __WEBPACK_IMPORTED_MODULE_3__angular_http__["e" /* RequestMethod */].Post,
-                    url: "https://api.mailgun.net/v3/" + this.mailgunUrl + "/messages",
-                    body: "from=test@example.com&to=" + recipient + "&subject=" + subject + "&text=" + message,
-                    headers: requestHeaders
-                }))
-                    .subscribe(function (success) {
-                    console.log("SUCCESS -> " + JSON.stringify(success));
+                myData = JSON.stringify({ username: message });
+                this.http.post(link, myData)
+                    .subscribe(function (data) {
+                    _this.data.response = "OK";
                 }, function (error) {
-                    console.log("ERROR -> " + JSON.stringify(error));
+                    console.log("oops");
                 });
             }
             else {
@@ -402,43 +396,22 @@ var HomeaddPage = (function () {
                         "dateOrdered": today,
                         "orderedBy": this.userId
                     });
-                }
+                    message = message + 'Ordered ' + data.substring(data.indexOf(' ') + 1, data.lastIndexOf(':')).trim() + ' of ' + data.substr(data.lastIndexOf(' ')).trim();
+                } //end for
                 this.prevAveragesList = [];
                 this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_11__home_home__["a" /* HomePage */], {
                     ordersPassed: this.prevAveragesList
                 });
             }
             //send email
-            this.send('jason.gillikin@gmail.com', 'subject', 'html code')
-                .subscribe(function (s) { return console.log(s); }, function (e) { return console.log(e); });
-            var recipient = 'jason.gillikin@gmail.com';
-            var subject = 'test mailgrid';
-            var message = 'body content here';
-            var requestHeaders = new __WEBPACK_IMPORTED_MODULE_3__angular_http__["a" /* Headers */]();
-            requestHeaders.append("Authorization", "Basic " + this.mailgunApiKey);
-            requestHeaders.append("Content-Type", "application/x-www-form-urlencoded");
-            this.http.request(new __WEBPACK_IMPORTED_MODULE_3__angular_http__["d" /* Request */]({
-                method: __WEBPACK_IMPORTED_MODULE_3__angular_http__["e" /* RequestMethod */].Post,
-                url: "https://api.mailgun.net/v3/" + this.mailgunUrl + "/messages",
-                body: "from=test@example.com&to=" + recipient + "&subject=" + subject + "&text=" + message,
-                headers: requestHeaders
-            }))
-                .subscribe(function (success) {
-                console.log("SUCCESS -> " + JSON.stringify(success));
+            myData = JSON.stringify({ username: message });
+            this.http.post(link, this.prevAveragesList)
+                .subscribe(function (data) {
+                _this.data.response = "OK";
             }, function (error) {
-                console.log("ERROR -> " + JSON.stringify(error));
+                console.log("oops");
             });
         } //end else
-    };
-    HomeaddPage.prototype.send = function (recipient, subject, message) {
-        var requestHeaders = new __WEBPACK_IMPORTED_MODULE_3__angular_http__["a" /* Headers */]();
-        var body = new URLSearchParams();
-        body.append("from", 'jason.gillikin@gmail.com');
-        body.append("to", recipient);
-        body.append("subject", subject);
-        body.append("html", message);
-        requestHeaders.append("Content-Type", "application/x-www-form-urlencoded");
-        return this.http.post("https://api:key-e6e1c7eddb02bfed1b4cc1a1f5a10ac5@api.mailgun.net/v3/sandbox80eb3a7b4f8b4dc99d29fd49dc624be4.mailgun.org/messages", body, { headers: requestHeaders });
     };
     HomeaddPage.prototype.onBlur = function (qO, qC) {
         //alert("in onBlur and order qty is "+qO+ "and onhand qty is "+qC);
@@ -486,7 +459,9 @@ var HomeaddPage = (function () {
     };
     HomeaddPage.prototype.scan = function () {
         var _this = this;
+        var descs = [];
         this.selectedProduct = {};
+        var weeklyData = {};
         /*    this.barcodeScanner.scan().then((barcodeData) => {
               this.selectedProduct = this.products.find(product => product.upc === barcodeData.text);*/
         this.barcodeScanner.scan().then(function (barcodeData) {
@@ -494,12 +469,17 @@ var HomeaddPage = (function () {
             _this.descList = _this.descList.filter(function (v) {
                 if (v.upc && q) {
                     if (v.upc.toLowerCase().indexOf(q.toLowerCase()) > -1) {
+                        weeklyData["id"] = v.id;
+                        weeklyData["record"] = v.upc;
+                        desc.push(weeklyData);
                         return true;
                     }
                     //    return false; 
                     console.log('scan');
                 }
             });
+            _this.descList = {};
+            _this.descList = descs;
             if (_this.descList.length > 0)
                 _this.hideMe = true;
             _this.selectedProduct = _this.descList;
@@ -526,22 +506,15 @@ var HomeaddPage = (function () {
                }
              ); */
         });
-    };
+    }; //end scan
     HomeaddPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_2__angular_core__["m" /* Component */])({
             selector: 'page-homeadd',template:/*ion-inline-start:"C:\ionicFirebase\IonicShoppingList\src\pages\homeadd\homeadd.html"*/'<ion-header>\n\n  <ion-navbar color="primary">\n\n    <ion-title>\n\n      Purchase Orders\n\n    </ion-title>\n\n  </ion-navbar>\n\n\n\n<ion-toolbar>\n\n    <ion-segment [(ngModel)]="section" color="primary">\n\n\n\n      <ion-segment-button value="one">Orders\n\n              </ion-segment-button>\n\n\n\n\n\n    </ion-segment>\n\n\n\n  </ion-toolbar>\n\n\n\n\n\n</ion-header>\n\n\n\n<ion-content padding>\n\n\n\n <div [ngSwitch]="section">\n\n \n\n      <ion-list *ngSwitchCase="\'one\'">\n\n      <ion-item>\n\n      <ion-list>\n\n\n\n<div text-center>\n\n\n\n<b>UPC: {{ upc }}</b><br>\n\n  {{ desc }}<br>\n\n<u>Quantity available: {{ qty }} </u><br><br>\n\n<ion-item>\n\n<ion-input type="number" placeholder="Enter a Qty to order" [(ngModel)]="qtyOrder" max=" {{ qty }}" required></ion-input>\n\n\n\n</ion-item>\n\n\n\n<br>\n\n<button ion-button color="blue" (click)="onClickSend(qtyOrder,qty,upc,key1)">Keep Adding</button>\n\n<button ion-button color="blue" (click)="sendOrder(qtyOrder,qty,upc,key1)">Send</button>\n\n<br>\n\n<br>\n\n      <div *ngIf="prevAveragesList !== undefined"> # P.O. items: {{ prevAveragesList.length }} \n\n    </div>\n\n\n\n</div>\n\n\n\n\n\n\n\n</ion-list>\n\n</ion-item>\n\n</ion-list>\n\n\n\n</div>\n\n\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\ionicFirebase\IonicShoppingList\src\pages\homeadd\homeadd.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_4_ionic_angular__["j" /* NavController */],
-            __WEBPACK_IMPORTED_MODULE_0__services_shopping_list_shopping_list_service__["a" /* ShoppingListService */],
-            __WEBPACK_IMPORTED_MODULE_5__ionic_native_barcode_scanner__["a" /* BarcodeScanner */],
-            __WEBPACK_IMPORTED_MODULE_1__services_toast_toast_service__["a" /* ToastService */],
-            __WEBPACK_IMPORTED_MODULE_6__providers_data_service_data_service__["a" /* DataServiceProvider */],
-            __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["m" /* Platform */],
-            __WEBPACK_IMPORTED_MODULE_7_angularfire2_database__["a" /* AngularFireDatabase */],
-            __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["l" /* NavParams */],
-            __WEBPACK_IMPORTED_MODULE_3__angular_http__["b" /* Http */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["j" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["j" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_0__services_shopping_list_shopping_list_service__["a" /* ShoppingListService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__services_shopping_list_shopping_list_service__["a" /* ShoppingListService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_5__ionic_native_barcode_scanner__["a" /* BarcodeScanner */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__ionic_native_barcode_scanner__["a" /* BarcodeScanner */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1__services_toast_toast_service__["a" /* ToastService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__services_toast_toast_service__["a" /* ToastService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_6__providers_data_service_data_service__["a" /* DataServiceProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__providers_data_service_data_service__["a" /* DataServiceProvider */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["m" /* Platform */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["m" /* Platform */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_7_angularfire2_database__["a" /* AngularFireDatabase */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_7_angularfire2_database__["a" /* AngularFireDatabase */]) === "function" && _g || Object, typeof (_h = typeof __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["l" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["l" /* NavParams */]) === "function" && _h || Object, typeof (_j = typeof __WEBPACK_IMPORTED_MODULE_3__angular_http__["a" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__angular_http__["a" /* Http */]) === "function" && _j || Object])
     ], HomeaddPage);
     return HomeaddPage;
+    var _a, _b, _c, _d, _e, _f, _g, _h, _j;
 }()); //end export class
 
 //# sourceMappingURL=homeadd.js.map
@@ -574,23 +547,23 @@ var map = {
 		2
 	],
 	"../pages/addlocation/addlocation.module": [
-		476,
+		475,
 		5
 	],
 	"../pages/edit-shopping-item/edit-shopping-item.module": [
-		475,
+		476,
 		1
 	],
 	"../pages/home/home.module": [
-		478,
+		477,
 		4
 	],
 	"../pages/homeadd/homeadd.module": [
-		479,
+		478,
 		3
 	],
 	"../pages/login/login.module": [
-		477,
+		479,
 		0
 	]
 };
@@ -687,7 +660,7 @@ var InventoryPage = (function () {
 
 /***/ }),
 
-/***/ 255:
+/***/ 297:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -729,7 +702,7 @@ var ContactPage = (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TabsPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__about_about__ = __webpack_require__(82);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__contact_contact__ = __webpack_require__(255);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__contact_contact__ = __webpack_require__(297);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__home_home__ = __webpack_require__(83);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -793,7 +766,7 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_addlocation_addlocation__ = __webpack_require__(147);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__services_shopping_list_shopping_list2_service__ = __webpack_require__(148);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_about_about__ = __webpack_require__(82);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_contact_contact__ = __webpack_require__(255);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_contact_contact__ = __webpack_require__(297);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_tabs_tabs__ = __webpack_require__(307);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_home_home__ = __webpack_require__(83);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_homeadd_homeadd__ = __webpack_require__(149);
@@ -862,18 +835,18 @@ var AppModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["h" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_7__app_component__["a" /* MyApp */], {}, {
                     links: [
                         { loadChildren: '../pages/add-shopping-item/add-shopping-item.module#AddShoppingItemPageModule', name: 'AddShoppingItemPage', segment: 'add-shopping-item', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/edit-shopping-item/edit-shopping-item.module#EditShoppingItemPageModule', name: 'EditShoppingItemPage', segment: 'edit-shopping-item', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/addlocation/addlocation.module#AddLocationPageModule', name: 'AddLocationPage', segment: 'addlocation', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/login/login.module#LoginModule', name: 'LoginPage', segment: 'login', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/edit-shopping-item/edit-shopping-item.module#EditShoppingItemPageModule', name: 'EditShoppingItemPage', segment: 'edit-shopping-item', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/home/home.module#HomeModule', name: 'HomePage', segment: 'home', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/homeadd/homeadd.module#HomeaddModule', name: 'HomeaddPage', segment: 'homeadd', priority: 'low', defaultHistory: [] }
+                        { loadChildren: '../pages/homeadd/homeadd.module#HomeaddModule', name: 'HomeaddPage', segment: 'homeadd', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/login/login.module#LoginModule', name: 'LoginPage', segment: 'login', priority: 'low', defaultHistory: [] }
                     ]
                 }),
                 __WEBPACK_IMPORTED_MODULE_6_angularfire2__["a" /* AngularFireModule */].initializeApp(__WEBPACK_IMPORTED_MODULE_17__firebase_credentials__["a" /* FIREBASE_CONFIG */]),
                 __WEBPACK_IMPORTED_MODULE_5_angularfire2_database__["b" /* AngularFireDatabaseModule */],
                 __WEBPACK_IMPORTED_MODULE_21_angularfire2_auth__["b" /* AngularFireAuthModule */],
                 __WEBPACK_IMPORTED_MODULE_22_ionic2_super_tabs__["a" /* SuperTabsModule */].forRoot(),
-                __WEBPACK_IMPORTED_MODULE_23__angular_http__["c" /* HttpModule */]
+                __WEBPACK_IMPORTED_MODULE_23__angular_http__["b" /* HttpModule */]
             ],
             bootstrap: [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["f" /* IonicApp */]],
             entryComponents: [
@@ -1216,7 +1189,7 @@ var AboutPage = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_angularfire2_database__ = __webpack_require__(45);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_firebase_app__ = __webpack_require__(116);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_firebase_app___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_firebase_app__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_rxjs_BehaviorSubject__ = __webpack_require__(258);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_rxjs_BehaviorSubject__ = __webpack_require__(255);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_rxjs_BehaviorSubject___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_rxjs_BehaviorSubject__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_rxjs_add_operator_switchMap__ = __webpack_require__(77);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_rxjs_add_operator_switchMap___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9_rxjs_add_operator_switchMap__);

@@ -25,6 +25,7 @@ export class HomeaddPage {
     http: Http;
     mailgunUrl: string;
     mailgunApiKey: string;
+    data: any = {};
 
    //items$: Observable<AngularFireAction<firebase.database.DataSnapshot>[]>;
   items$: any;
@@ -74,6 +75,7 @@ export class HomeaddPage {
         this.http = http;
         this.mailgunUrl = "sandbox80eb3a7b4f8b4dc99d29fd49dc624be4.mailgun.org";
         this.mailgunApiKey = window.btoa("api:key-e6e1c7eddb02bfed1b4cc1a1f5a10ac5");
+        
 
 this.upc = this.params.get('firstPassed');
 this.desc = this.params.get('secondPassed');
@@ -206,6 +208,10 @@ return false;
 }
 else {
 
+var link='https://jasongillikin.000webhostapp.com/sendmail.php';
+var myData;
+var message;
+
 let newQty:any;
 
 let today:any = new Date();
@@ -251,7 +257,10 @@ this.po.push({
 
 }); 
 
- }
+message = message+'Ordered '+data.substring(data.indexOf(' ')+1,data.lastIndexOf(':')).trim()+' of '+data.substr(data.lastIndexOf(' ')).trim();
+
+
+ } //end for
 
 this.averagesList = [];
 this.navCtrl.push(HomePage, {
@@ -259,31 +268,14 @@ this.navCtrl.push(HomePage, {
    })
 
 //send email
-this.send('jason.gillikin@gmail.com', 'subject', 'html code')
-      .subscribe(
-        s => console.log(s),
-        e => console.log(e)
-      )
+myData = JSON.stringify({username: message});
 
-
-var recipient = 'jason.gillikin@gmail.com';
-var subject = 'test mailgrid';
-var message = 'body content here';
-
-var requestHeaders = new Headers();
-        requestHeaders.append("Authorization", "Basic " + this.mailgunApiKey);
-        requestHeaders.append("Content-Type", "application/x-www-form-urlencoded");
-        this.http.request(new Request({
-            method: RequestMethod.Post,
-            url: "https://api.mailgun.net/v3/" + this.mailgunUrl + "/messages",
-            body: "from=test@example.com&to=" + recipient + "&subject=" + subject + "&text=" + message,
-            headers: requestHeaders
-        }))
-        .subscribe(success => {
-            console.log("SUCCESS -> " + JSON.stringify(success));
-        }, error => {
-            console.log("ERROR -> " + JSON.stringify(error));
-        });
+this.http.post(link,myData)
+.subscribe(data => { 
+this.data.response = "OK";
+}, error => {
+console.log("oops");
+});
 
 
 }
@@ -317,9 +309,10 @@ this.po.push({
 
 }); 
 
+message = message+'Ordered '+data.substring(data.indexOf(' ')+1,data.lastIndexOf(':')).trim()+' of '+data.substr(data.lastIndexOf(' ')).trim();
 
 
- }
+ } //end for
 
 
 this.prevAveragesList = [];
@@ -328,51 +321,23 @@ this.navCtrl.push(HomePage, {
    })
 }
 
+
 //send email
-this.send('jason.gillikin@gmail.com', 'subject', 'html code')
-      .subscribe(
-        s => console.log(s),
-        e => console.log(e)
-      )
+myData = JSON.stringify({username: message});
 
-
-var recipient = 'jason.gillikin@gmail.com';
-var subject = 'test mailgrid';
-var message = 'body content here';
-
-var requestHeaders = new Headers();
-        requestHeaders.append("Authorization", "Basic " + this.mailgunApiKey);
-        requestHeaders.append("Content-Type", "application/x-www-form-urlencoded");
-        this.http.request(new Request({
-            method: RequestMethod.Post,
-            url: "https://api.mailgun.net/v3/" + this.mailgunUrl + "/messages",
-            body: "from=test@example.com&to=" + recipient + "&subject=" + subject + "&text=" + message,
-            headers: requestHeaders
-        }))
-        .subscribe(success => {
-            console.log("SUCCESS -> " + JSON.stringify(success));
-        }, error => {
-            console.log("ERROR -> " + JSON.stringify(error));
-        });
+this.http.post(link,this.prevAveragesList)
+.subscribe(data => { 
+this.data.response = "OK";
+}, error => {
+console.log("oops");
+});
 
 
 } //end else
 
 }
 
-  send(recipient: string, subject: string, message: string) {
-    var requestHeaders = new Headers();
-    var body = new URLSearchParams()
-    body.append("from", 'jason.gillikin@gmail.com')
-    body.append("to", recipient)
-    body.append("subject", subject)
-    body.append("html", message)
-    requestHeaders.append("Content-Type", "application/x-www-form-urlencoded");
-    return this.http.post(
-      "https://api:key-e6e1c7eddb02bfed1b4cc1a1f5a10ac5@api.mailgun.net/v3/sandbox80eb3a7b4f8b4dc99d29fd49dc624be4.mailgun.org/messages",
-      body, {headers: requestHeaders})
-  }
-
+  
 onBlur(qO: any, qC: any) {
 //alert("in onBlur and order qty is "+qO+ "and onhand qty is "+qC);
 
@@ -437,9 +402,10 @@ if (!searchbar)
 }
 
 
- scan() {
-
+scan() {
+    let descs = [];
     this.selectedProduct = {};
+    var weeklyData = {};
    
 /*    this.barcodeScanner.scan().then((barcodeData) => {
       this.selectedProduct = this.products.find(product => product.upc === barcodeData.text);*/
@@ -448,17 +414,22 @@ this.barcodeScanner.scan().then((barcodeData) => {
 
 
   var q = barcodeData.text;
-
-
+  
   this.descList = this.descList.filter((v) => {
     if(v.upc && q) {
       if (v.upc.toLowerCase().indexOf(q.toLowerCase()) > -1) {
+        weeklyData["id"] = v.id;
+        weeklyData["record"] = v.upc;
+        desc.push(weeklyData);
         return true;
       }
   //    return false; 
 console.log('scan');
     }
   });
+
+this.descList = {};
+this.descList = descs;
 
 if (this.descList.length > 0)
  this.hideMe = true;
@@ -491,6 +462,6 @@ this.toast.show(`Found`);
     });
 
 
-}
+} //end scan
 
 } //end export class
