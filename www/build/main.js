@@ -364,7 +364,7 @@ var HomeaddPage = (function () {
                         "orderedBy": this.userId
                     });
                     if (this.sendProduct)
-                        this.sendProduct = this.sendProduct + ' ' + data.substring(data.indexOf(' ') + 1, data.lastIndexOf(':')).trim();
+                        this.sendProduct = this.sendProduct + '\n ' + data.substring(data.indexOf(' ') + 1, data.lastIndexOf(':')).trim();
                     else
                         this.sendProduct = data.substring(data.indexOf(' ') + 1, data.lastIndexOf(':')).trim();
                 } //end for
@@ -404,7 +404,7 @@ var HomeaddPage = (function () {
                         "orderedBy": this.userId
                     });
                     if (this.sendProduct)
-                        this.sendProduct = this.sendProduct + ' ' + data.substring(data.indexOf(' ') + 1, data.lastIndexOf(':')).trim();
+                        this.sendProduct = this.sendProduct + '\n ' + data.substring(data.indexOf(' ') + 1, data.lastIndexOf(':')).trim();
                     else
                         this.sendProduct = data.substring(data.indexOf(' ') + 1, data.lastIndexOf(':')).trim();
                 } //end for

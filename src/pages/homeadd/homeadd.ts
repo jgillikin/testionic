@@ -259,7 +259,7 @@ this.po.push({
 }); 
 
 if (this.sendProduct)
- this.sendProduct = this.sendProduct+' '+data.substring(data.indexOf(' ')+1,data.lastIndexOf(':')).trim();
+ this.sendProduct = this.sendProduct+'\n '+data.substring(data.indexOf(' ')+1,data.lastIndexOf(':')).trim();
 else
  this.sendProduct = data.substring(data.indexOf(' ')+1,data.lastIndexOf(':')).trim();
 
@@ -315,7 +315,7 @@ this.po.push({
 }); 
 
 if (this.sendProduct)
- this.sendProduct = this.sendProduct+' '+data.substring(data.indexOf(' ')+1,data.lastIndexOf(':')).trim();
+ this.sendProduct = this.sendProduct+'\n '+data.substring(data.indexOf(' ')+1,data.lastIndexOf(':')).trim();
 else
  this.sendProduct = data.substring(data.indexOf(' ')+1,data.lastIndexOf(':')).trim();
 
