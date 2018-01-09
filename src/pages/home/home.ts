@@ -2,6 +2,7 @@ import { ShoppingListService } from '../../services/shopping-list/shopping-list.
 import { ToastService } from '../../services/toast/toast.service';
 import { Component } from '@angular/core';
 import { NavController, Platform,NavParams } from 'ionic-angular';
+import {Http, Request, RequestMethod, Headers} from "@angular/http";
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 import { Observable } from 'rxjs/Observable';
 import { Item } from './../../models/item/item.model';
@@ -22,6 +23,8 @@ import { HomeaddPage } from '../homeadd/homeadd';
 })
 export class HomePage {
 
+http: Http;
+data: any = {};
 
    //items$: Observable<AngularFireAction<firebase.database.DataSnapshot>[]>;
   items$: any;
@@ -35,6 +38,7 @@ export class HomePage {
   products: any[] = [];
   products2: any[] = [];
 
+  sendProduct: any;
   selectedProduct: any;
   productFound:boolean = false;
 
@@ -61,7 +65,11 @@ po: AngularFireList<any> = this.db.list('/purchase-order');
  public dataService: DataServiceProvider,
  public platform: Platform,
  public db: AngularFireDatabase,
- public params: NavParams) {
+ public params: NavParams,
+http: Http) {
+
+this.http = http;
+
 
 if (this.params.get('ordersPassed') === undefined) {
 //alert("undefined");
@@ -237,6 +245,10 @@ sendOrder() {
 //alert("in sendOrder received keyU2 of "+keyU2);
 
 
+var link='https://jasongillikin.000webhostapp.com/sendmail.php';
+var myData;
+var message;
+
 let newQty:any;
 
 let today:any = new Date();
@@ -254,6 +266,7 @@ today = mm+'/'+dd+'/'+yyyy;
 
 if (this.prevAveragesList === undefined) {
 //insert from this.averagesList array
+//this.averagesList.push(upc+' '+qO+':'+qC+' '+this.key1);
 
  for(let data of this.averagesList) {
  // alert(data.substr(data.lastIndexOf(' '))); //key
@@ -281,16 +294,35 @@ this.po.push({
 
 }); 
 
- }
+if (this.sendProduct)
+ this.sendProduct = this.sendProduct+'\n'+'UPC:  '+data.substring(1,data.indexOf(' '))+' Qty Ordered =  '+data.substring(data.indexOf(' ')+1,data.lastIndexOf(':')).trim();
+else
+ this.sendProduct = 'UPC: '+data.substring(1,data.indexOf(' '))+' Qty Ordered= '+data.substring(data.indexOf(' ')+1,data.lastIndexOf(':')).trim();
+
+
+ } //end for
 
 this.averagesList = [];
 this.navCtrl.push(HomePage, {
     ordersPassed: this.averagesList
    })
 
+//send email
+//myData = JSON.stringify({username: "sendBodyMessage"});
+myData = JSON.stringify({username: this.sendProduct});
+
+this.http.post(link,myData)
+.subscribe(data => { 
+this.data.response = "OK";
+}, error => {
+console.log("oops");
+});
+
+
 }
 else {
 //insert from this.prevAveragesList
+ // this.prevAveragesList.push(upc+' '+qO+':'+qC+' '+this.key1);
 
 
  for(let data of this.prevAveragesList) {
@@ -309,10 +341,6 @@ this.shoppingList2.update ({
  "quantity": newQty
 });
 
-this.purchaseOrder = firebase.database().ref("purchase-order/"+data.substr(data.lastIndexOf(' ')).trim());
-
-//alert("insert po with qO of "+data.substring(data.indexOf(' ')+1,data.lastIndexOf(':')).trim()+" and qC of "+data.substring(data.lastIndexOf(':')+1,data.lastIndexOf(' ')).trim()+" and prodId of "+data.substr(data.lastIndexOf(' ')).trim()+" and dateOrdered of "+today+" and orderedBy of "+this.userId);
-
 this.po.push({
  "qtyO": data.substring(data.indexOf(' ')+1,data.lastIndexOf(':')).trim(),
  "qtyC": data.substring(data.lastIndexOf(':')+1,data.lastIndexOf(' ')).trim(),
@@ -322,7 +350,12 @@ this.po.push({
 
 }); 
 
- }
+if (this.sendProduct)
+ this.sendProduct = this.sendProduct+'\n'+'UPC:  '+data.substring(1,data.indexOf(' '))+' Qty Ordered =  '+data.substring(data.indexOf(' ')+1,data.lastIndexOf(':')).trim();
+else
+ this.sendProduct = 'UPC:  '+data.substring(1,data.indexOf(' '))+' Qty Ordered = '+data.substring(data.indexOf(' ')+1,data.lastIndexOf(':')).trim();
+
+ } //end for
 
 
 this.prevAveragesList = [];
@@ -331,64 +364,20 @@ this.navCtrl.push(HomePage, {
    })
 }
 
+
 //send email
-/*
-var url = "https://api.mailgun.net/v3/" + this.mailgunUrl + "/messages";
-    let body = {
-      "from": 'InvApp@NeedsSuite.com',
-      "to": 'jason.gillikin@gmail.com',
-      "subject": 'Test P.O. Order',
-      "html": "<html><body>Test body content</body></html>"
-    }
-    let headers = {
-      "Authorization": "Basic " + this.mailgunApiKey,
-      "Content-Type": "application/x-www-form-urlencoded"
+myData = JSON.stringify({username: this.sendProduct});
 
-    };
-*/
-
-
-/*
-this.http2.post(url, body, headers).then(data => {
-      this.loading.dismiss();
-
-      let alert = this.alertCtrl.create({
-        title: 'Email Inviata',
-        message: 'Grazie per averci contattato. Le risponderemo appena possibile',
-        buttons: [
-          {
-            text: 'OK',
-            role: 'cancel',
-            handler: () => {
-              console.log('Cancel clicked');
-            }
-          }
-        ]
-      });
-      alert.present();
-    })
-      .catch(error => {
-        this.loading.dismiss();
-
-        let alert = this.alertCtrl.create({
-          title: 'Errore',
-          message: 'Si è verificato un errore durante la trasmissione dei dati. Si prega di riprovare!',
-          buttons: [
-            {
-              text: 'OK',
-              role: 'cancel',
-              handler: () => {
-                console.log('Cancel clicked');
-              }
-            }
-          ]
-        });
-        alert.present();
-      });
-*/
+this.http.post(link,myData)
+.subscribe(data => { 
+this.data.response = "OK";
+}, error => {
+console.log("oops");
+});
 
 
 }
+
 
 
  scan() {

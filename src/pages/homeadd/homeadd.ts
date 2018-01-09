@@ -259,9 +259,9 @@ this.po.push({
 }); 
 
 if (this.sendProduct)
- this.sendProduct = this.sendProduct+'\n '+data.substring(data.indexOf(' ')+1,data.lastIndexOf(':')).trim();
+ this.sendProduct = this.sendProduct+'\n'+'UPC:  '+data.substring(1,data.indexOf(' '))+' Qty Ordered =  '+data.substring(data.indexOf(' ')+1,data.lastIndexOf(':')).trim();
 else
- this.sendProduct = data.substring(data.indexOf(' ')+1,data.lastIndexOf(':')).trim();
+ this.sendProduct = 'UPC: '+data.substring(1,data.indexOf(' '))+' Qty Ordered= '+data.substring(data.indexOf(' ')+1,data.lastIndexOf(':')).trim();
 
 
  } //end for
@@ -315,9 +315,9 @@ this.po.push({
 }); 
 
 if (this.sendProduct)
- this.sendProduct = this.sendProduct+'\n '+data.substring(data.indexOf(' ')+1,data.lastIndexOf(':')).trim();
+ this.sendProduct = this.sendProduct+'\n'+'UPC:  '+data.substring(1,data.indexOf(' '))+' Qty Ordered =  '+data.substring(data.indexOf(' ')+1,data.lastIndexOf(':')).trim();
 else
- this.sendProduct = data.substring(data.indexOf(' ')+1,data.lastIndexOf(':')).trim();
+ this.sendProduct = 'UPC:  '+data.substring(1,data.indexOf(' '))+' Qty Ordered = '+data.substring(data.indexOf(' ')+1,data.lastIndexOf(':')).trim();
 
  } //end for
 
