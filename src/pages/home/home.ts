@@ -392,8 +392,9 @@ this.http2.post(url, body, headers).then(data => {
 
 
  scan() {
-
+    let descs = [];
     this.selectedProduct = {};
+    var weeklyData = {};
    
 /*    this.barcodeScanner.scan().then((barcodeData) => {
       this.selectedProduct = this.products.find(product => product.upc === barcodeData.text);*/
@@ -402,17 +403,22 @@ this.barcodeScanner.scan().then((barcodeData) => {
 
 
   var q = barcodeData.text;
-
-
+  
   this.descList = this.descList.filter((v) => {
     if(v.upc && q) {
       if (v.upc.toLowerCase().indexOf(q.toLowerCase()) > -1) {
+        weeklyData["id"] = v.id;
+        weeklyData["record"] = v.upc;
+        descs.push(weeklyData);
         return true;
       }
   //    return false; 
 console.log('scan');
     }
   });
+
+this.descList = [];
+this.descList = descs;
 
 if (this.descList.length > 0)
  this.hideMe = true;
@@ -445,6 +451,7 @@ this.toast.show(`Found`);
     });
 
 
-}
+} //end scan
+
 
 } //end export class
