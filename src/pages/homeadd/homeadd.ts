@@ -38,6 +38,7 @@ export class HomeaddPage {
 
   products: any[] = [];
   products2: any[] = [];
+  sendProduct: any;
 
   selectedProduct: any;
   productFound:boolean = false;
@@ -257,7 +258,10 @@ this.po.push({
 
 }); 
 
-message = message+'Ordered '+data.substring(data.indexOf(' ')+1,data.lastIndexOf(':')).trim()+' of '+data.substr(data.lastIndexOf(' ')).trim();
+if (this.sendProduct)
+ this.sendProduct = this.sendProduct+' '+data.substring(data.indexOf(' ')+1,data.lastIndexOf(':')).trim();
+else
+ this.sendProduct = data.substring(data.indexOf(' ')+1,data.lastIndexOf(':')).trim();
 
 
  } //end for
@@ -268,7 +272,8 @@ this.navCtrl.push(HomePage, {
    })
 
 //send email
-myData = JSON.stringify({username: message});
+//myData = JSON.stringify({username: "sendBodyMessage"});
+myData = JSON.stringify({username: this.sendProduct});
 
 this.http.post(link,myData)
 .subscribe(data => { 
@@ -309,8 +314,10 @@ this.po.push({
 
 }); 
 
-message = message+'Ordered '+data.substring(data.indexOf(' ')+1,data.lastIndexOf(':')).trim()+' of '+data.substr(data.lastIndexOf(' ')).trim();
-
+if (this.sendProduct)
+ this.sendProduct = this.sendProduct+' '+data.substring(data.indexOf(' ')+1,data.lastIndexOf(':')).trim();
+else
+ this.sendProduct = data.substring(data.indexOf(' ')+1,data.lastIndexOf(':')).trim();
 
  } //end for
 
@@ -323,9 +330,9 @@ this.navCtrl.push(HomePage, {
 
 
 //send email
-myData = JSON.stringify({username: message});
+myData = JSON.stringify({username: this.sendProduct});
 
-this.http.post(link,this.prevAveragesList)
+this.http.post(link,myData)
 .subscribe(data => { 
 this.data.response = "OK";
 }, error => {
@@ -420,7 +427,7 @@ this.barcodeScanner.scan().then((barcodeData) => {
       if (v.upc.toLowerCase().indexOf(q.toLowerCase()) > -1) {
         weeklyData["id"] = v.id;
         weeklyData["record"] = v.upc;
-        desc.push(weeklyData);
+        descs.push(weeklyData);
         return true;
       }
   //    return false; 
@@ -428,7 +435,7 @@ console.log('scan');
     }
   });
 
-this.descList = {};
+this.descList = [];
 this.descList = descs;
 
 if (this.descList.length > 0)
