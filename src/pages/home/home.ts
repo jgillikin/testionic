@@ -394,10 +394,10 @@ this.barcodeScanner.scan().then((barcodeData) => {
   var q = barcodeData.text;
   
   this.descList = this.descList.filter((v) => {
-    if(v.upc && q) {
-      if (v.upc.toLowerCase().indexOf(q.toLowerCase()) > -1) {
-        weeklyData["id"] = v.id;
-        weeklyData["record"] = v.upc;
+    if(v.record.upc && q) {
+      if (v.record.upc.toLowerCase().indexOf(q.toLowerCase()) > -1) {
+        weeklyData["id"] = v.id.key;
+        weeklyData["record"] = v.record.upc;
         descs.push(weeklyData);
         return true;
       }
