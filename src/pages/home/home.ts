@@ -396,9 +396,6 @@ this.barcodeScanner.scan().then((barcodeData) => {
   this.descList = this.descList.filter((v) => {
     if(v.record.upc && q) {
       if (v.record.upc.toLowerCase().indexOf(q.toLowerCase()) > -1) {
-        weeklyData["id"] = v.id.key;
-        weeklyData["record"] = v.record.upc;
-        descs.push(weeklyData);
         return true;
       }
   //    return false; 
@@ -406,8 +403,6 @@ console.log('scan');
     }
   });
 
-this.descList = [];
-this.descList = descs;
 
 if (this.descList.length > 0)
  this.hideMe = true;
