@@ -42,6 +42,7 @@ export class ResetpwdPage {
 
     if (!this.resetpwdForm.valid){
       console.log('not valid');
+      return false;
     } else {
       return this.authService.auth.sendPasswordResetEmail("jason.gillikin@gmail.com");
        this.navCtrl.setRoot(LoginPage);
