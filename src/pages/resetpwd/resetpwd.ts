@@ -37,11 +37,11 @@ export class ResetpwdPage {
   }
 
   resetPwd(email: string) {
-//alert("email to reset is "+email.value);
+
     if (!this.resetpwdForm.valid){
-      console.log(this.resetpwdForm.value);
+      console.log('not valid');
     } else {
-      return this.authService.auth.sendPasswordResetEmail(email.value);
+      return this.authService.auth.sendPasswordResetEmail(this.email.value);
        this.navCtrl.setRoot(LoginPage);
     }
   }
