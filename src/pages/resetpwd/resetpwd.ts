@@ -45,8 +45,9 @@ export class ResetpwdPage {
       return false;
     } else {
       return this.authService.auth.sendPasswordResetEmail("jason.gillikin@gmail.com");
-       this.navCtrl.setRoot(LoginPage);
+       //this.navCtrl.setRoot(LoginPage);
     }
+   
   }
 
 }
