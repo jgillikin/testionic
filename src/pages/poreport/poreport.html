@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>
+      Curr Inv Report
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+   <ion-list>
+
+<!--        <ion-item *ngFor="let grocery of groceries">{{grocery}}</ion-item> -->
+<br>
+<div style="width: 800px;  repeat">
+<div class="row">
+<div class="col" align="center"><b><u>UPC</u></b></div>
+<div class="col" align="center"><b><u>Date Ordered</u></b></div>
+<div class="col" align="center"><b><u>Qty Ordered</u></b></div>
+</div>
+
+
+<br>
+
+<ion-item *ngFor="let item of shoppingList$ | async" detail-push navPush="EditShoppingItemPage" [navParams]="{item: item}">
+<div class="row">
+<div class="col" align="center">{{item.upc}}</div>
+<div class="col" align="center">{{item.dateOrdered}}</div>
+<div class="col" align="center">{{item.qtyO}}</div>
+</div>
+</ion-item>
+
+</div>
+</ion-list>
+
+</ion-content>
