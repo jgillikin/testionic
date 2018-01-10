@@ -22,8 +22,10 @@ export class ResetpwdPage {
   emailChanged: boolean = false;
   submitAttempt: boolean = false;
   loading: any;
+  
 
   constructor(public navCtrl: NavController, public authService: AngularFireAuth,public navParams: NavParams, public formBuilder: FormBuilder,public alertCtrl: AlertController, public loadingCtrl: LoadingController) {
+
 
     let EMAIL_REGEXP = /^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i;
     this.resetpwdForm = formBuilder.group({
@@ -36,12 +38,12 @@ export class ResetpwdPage {
     this[field + "Changed"] = true;
   }
 
-  resetPwd(email: string) {
+  resetPwd() {
 
     if (!this.resetpwdForm.valid){
       console.log('not valid');
     } else {
-      return this.authService.auth.sendPasswordResetEmail(this.email.value);
+      return this.authService.auth.sendPasswordResetEmail("jason.gillikin@gmail.com");
        this.navCtrl.setRoot(LoginPage);
     }
   }
