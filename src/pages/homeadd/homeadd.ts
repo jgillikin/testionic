@@ -250,6 +250,7 @@ this.shoppingList2.update ({
 });
 
 this.po.push({
+ "upc": data.substring(0,data.indexOf(' ')).trim(),
  "qtyO": data.substring(data.indexOf(' ')+1,data.lastIndexOf(':')).trim(),
  "qtyC": data.substring(data.lastIndexOf(':')+1,data.lastIndexOf(' ')).trim(),
  "prodId": data.substr(data.lastIndexOf(' ')).trim(),
@@ -259,9 +260,9 @@ this.po.push({
 }); 
 
 if (this.sendProduct)
- this.sendProduct = this.sendProduct+'\n'+'UPC:  '+data.substring(1,data.indexOf(' '))+' Qty Ordered =  '+data.substring(data.indexOf(' ')+1,data.lastIndexOf(':')).trim();
+ this.sendProduct = this.sendProduct+'\n'+'UPC:  '+data.substring(0,data.indexOf(' '))+' Qty Ordered =  '+data.substring(data.indexOf(' ')+1,data.lastIndexOf(':')).trim();
 else
- this.sendProduct = 'UPC: '+data.substring(1,data.indexOf(' '))+' Qty Ordered= '+data.substring(data.indexOf(' ')+1,data.lastIndexOf(':')).trim();
+ this.sendProduct = 'UPC: '+data.substring(0,data.indexOf(' '))+' Qty Ordered= '+data.substring(data.indexOf(' ')+1,data.lastIndexOf(':')).trim();
 
 
  } //end for
@@ -306,6 +307,7 @@ this.shoppingList2.update ({
 });
 
 this.po.push({
+ "upc": data.substring(0,data.indexOf(' ')).trim(),
  "qtyO": data.substring(data.indexOf(' ')+1,data.lastIndexOf(':')).trim(),
  "qtyC": data.substring(data.lastIndexOf(':')+1,data.lastIndexOf(' ')).trim(),
  "prodId": data.substr(data.lastIndexOf(' ')).trim(),
@@ -315,9 +317,9 @@ this.po.push({
 }); 
 
 if (this.sendProduct)
- this.sendProduct = this.sendProduct+'\n'+'UPC:  '+data.substring(1,data.indexOf(' '))+' Qty Ordered =  '+data.substring(data.indexOf(' ')+1,data.lastIndexOf(':')).trim();
+ this.sendProduct = this.sendProduct+'\n'+'UPC:  '+data.substring(0,data.indexOf(' '))+' Qty Ordered =  '+data.substring(data.indexOf(' ')+1,data.lastIndexOf(':')).trim();
 else
- this.sendProduct = 'UPC:  '+data.substring(1,data.indexOf(' '))+' Qty Ordered = '+data.substring(data.indexOf(' ')+1,data.lastIndexOf(':')).trim();
+ this.sendProduct = 'UPC:  '+data.substring(0,data.indexOf(' '))+' Qty Ordered = '+data.substring(data.indexOf(' ')+1,data.lastIndexOf(':')).trim();
 
  } //end for
 

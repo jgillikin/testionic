@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { User } from './../../models/user/user';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabase, AngularFireAction,AngularFireList } from 'angularfire2/database';
+import { ResetpwdPage } from '../resetpwd/resetpwd';
 
 import { TabsPage } from '../tabs/tabs';
 
@@ -32,6 +33,10 @@ export class LoginPage {
     catch (e) {
       console.error(e);
     }
+  }
+
+ resetPwd(){
+    this.navCtrl.push(ResetpwdPage);
   }
  
   async register(user: User) {

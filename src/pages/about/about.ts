@@ -1,11 +1,15 @@
 import { ShoppingListService } from '../../services/shopping-list/shopping-list.service';
 import { Component } from '@angular/core';
+import { AngularFireAuth } from 'angularfire2/auth';
 import { NavController, Platform } from 'ionic-angular';
 import { Observable } from 'rxjs/Observable';
 import { Item } from './../../models/item/item.model';
 import { IrreportsPage } from '../irreports/irreports';
+import { CurrInvReportPage } from '../currinvreport/currinvreport';
+import { POReportPage } from '../poreport/poreport';
 import { InventoryPage } from '../inventory/inventory';
 import { HomePage } from '../home/home';
+import { LoginPage } from '../login/login';
 import { AddLocationPage } from '../addlocation/addlocation';
 import { ToastService } from './../../services/toast/toast.service';
 
@@ -39,7 +43,8 @@ shoppingList$: Observable<Item[]>;
 
 constructor(public navCtrl: NavController, 
 private shopping: ShoppingListService,
-public platform: Platform, private toast: ToastService) {
+public platform: Platform, private toast: ToastService,
+public afA: AngularFireAuth) {
 
 this.pushPage = AddLocationPage;
 
@@ -55,11 +60,8 @@ let platforms = this.platform.platforms();
 
 
   this.groceries = [
-            'Units Sell Through',
-            'Projection by Prev Month Sales',
-            'Low Quantity Report',
-            'Division 1',
-            'Division 2'
+            'Current Inventory Report',
+            'Purchase Order Report'
         ];
 
 
@@ -77,7 +79,22 @@ this.shoppingList$ = this.shopping
 
   } //end constructor
 
+logout(){
+//alert("in logout");
+    this.afA.auth.signOut().then(() => {
+       this.navCtrl.push(LoginPage);
+    })
+}
 
+goReport(rep) {
+//alert(rep);
+if (rep === 'Current Inventory Report')
+ this.navCtrl.push(CurrInvReportPage);
+else
+ this.navCtrl.push(POReportPage);
+
+
+}
 
   page1: any = IrreportsPage;
   page2: any = InventoryPage;

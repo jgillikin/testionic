@@ -3,6 +3,9 @@
     <ion-title>
       Inventory
     </ion-title>
+    <ion-buttons end>
+        <button ion-button color="clear" (click)="logout()">Log Out</button>
+    </ion-buttons>
   </ion-navbar>
 
 <ion-toolbar>
@@ -69,8 +72,10 @@
         <ion-item>
 
 <ion-list>
-        <ion-item *ngFor="let grocery of groceries">{{grocery}}</ion-item>
-    </ion-list>
+ <ion-item *ngFor="let grocery of groceries">   
+   <button ion-button color="blue" (click)="goReport(grocery)">{{ grocery}}</button>
+ </ion-item>
+</ion-list>
 
         </ion-item>
       </ion-list>

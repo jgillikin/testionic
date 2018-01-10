@@ -11,6 +11,7 @@ export class ShoppingListService {
   
   private shoppingListRef = this.db.list<Item>('shopping-list');
   private locationsRef = this.db.list<Item>('locations');
+  private poRef = this.db.list<Item>('purchase-order');
 
 
   labs: FirebaseListObservable<any>;
@@ -24,6 +25,10 @@ constructor(private db: AngularFireDatabase) {
 
 getShoppingList() {
  return this.shoppingListRef;
+}
+
+getPOList() {
+ return this.poRef;
 }
 
 getLocationsList() {
