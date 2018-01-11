@@ -24,11 +24,11 @@ item: Item = {
 }; 
 
 
-pushPage: any;
+  pushPage: any;
 
-section
+  section
 
-shoppingList$: Observable<Item[]>;
+  shoppingList$: Observable<Item[]>;
   platformList: string = '';
   isApp: boolean = true;
 
@@ -46,7 +46,7 @@ public platform: Platform, private toast: ToastService) {
             'Division 2'
         ];
 
-let platforms = this.platform.platforms();
+        let platforms = this.platform.platforms();
 
         this.platformList = platforms.join(', ');
 
@@ -55,7 +55,7 @@ let platforms = this.platform.platforms();
       }
 
 
-this.shoppingList$ = this.shopping
+        this.shoppingList$ = this.shopping
 				.getShoppingList() //DB List
 				.snapshotChanges() //key and value
 				.map(changes => {
