@@ -35,5 +35,30 @@
 </ion-list>
 </p>
 
+ <p *ngIf="isApp">
+     <ion-list>
 
+<!--        <ion-item *ngFor="let grocery of groceries">{{grocery}}</ion-item> -->
+<br>
+
+
+<div style="width: 800px;  repeat">
+<div class="row">
+<div class="col" align="left"><b><u>UPC</u></b></div>
+<div class="col" align="left"><b><u>Quantity</u></b></div>
+</div>
+
+<br>
+
+<ion-item *ngFor="let item of shoppingList$ | async" detail-push navPush="EditShoppingItemPage" [navParams]="{item: item}">
+<div class="row">
+<div class="col" align="left">{{item.upc}}</div>
+<div class="col" align="left">{{item.quantity}}</div>
+</div>
+</ion-item>
+
+</div>
+</ion-list>
+
+ </p>
 </ion-content>
