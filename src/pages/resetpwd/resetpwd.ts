@@ -22,7 +22,7 @@ export class ResetpwdPage {
   emailChanged: boolean = false;
   submitAttempt: boolean = false;
   loading: any;
-  
+  email: string;
 
   constructor(public navCtrl: NavController, public authService: AngularFireAuth,public navParams: NavParams, public formBuilder: FormBuilder,public alertCtrl: AlertController, public loadingCtrl: LoadingController) {
 
@@ -38,15 +38,28 @@ export class ResetpwdPage {
     this[field + "Changed"] = true;
   }
 
-  resetPwd() {
+ async resetPwd() {
 
-    if (!this.resetpwdForm.valid){
+try {
+      const result = await this.authService.auth.sendPasswordResetEmail(this.email);
+
+//      if (result) {
+
+        this.navCtrl.setRoot(LoginPage);
+  //    }  
+    }
+    catch (e) {
+      console.error(e);
+    }
+
+
+   /* if (!this.resetpwdForm.valid){
       console.log('not valid');
       return false;
     } else {
-      return this.authService.auth.sendPasswordResetEmail("jason.gillikin@gmail.com");
+      return this.authService.auth.sendPasswordResetEmail(this.email);
        //this.navCtrl.setRoot(LoginPage);
-    }
+    } */
    
   }
 

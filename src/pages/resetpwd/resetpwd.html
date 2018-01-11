@@ -12,7 +12,7 @@
   <form [formGroup]="resetpwdForm" (submit)="resetPwd(email)" novalidate>
     <ion-item>
       <ion-label stacked>Email</ion-label>
-      <ion-input #email formControlName="email" name="email" type="email" 
+      <ion-input type="email" [(ngModel)]="email" formControlName="email" name="email" type="email" 
         placeholder="Your email address"
         [class.invalid]="!resetpwdForm.controls.email.valid && (emailChanged || submitAttempt)"></ion-input>
     </ion-item>

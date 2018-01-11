@@ -29,6 +29,9 @@ pushPage: any;
 section
 
 shoppingList$: Observable<Item[]>;
+  platformList: string = '';
+  isApp: boolean = true;
+
 
  
     constructor(public navCtrl: NavController,
@@ -42,6 +45,15 @@ public platform: Platform, private toast: ToastService) {
             'Division 1',
             'Division 2'
         ];
+
+let platforms = this.platform.platforms();
+
+        this.platformList = platforms.join(', ');
+
+     if (this.platform.is('core') ||                	     	this.platform.is('mobileweb')) {
+     this.isApp = false;
+      }
+
 
 this.shoppingList$ = this.shopping
 				.getShoppingList() //DB List
