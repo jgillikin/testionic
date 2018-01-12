@@ -51,125 +51,6 @@ var DataServiceProvider = (function () {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AddLocationPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_shopping_list_shopping_list2_service__ = __webpack_require__(149);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_toast_toast_service__ = __webpack_require__(32);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__about_about__ = __webpack_require__(84);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-
-/**
- * Generated class for the AddLocationPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-var AddLocationPage = (function () {
-    function AddLocationPage(navCtrl, navParams, shopping, toast) {
-        this.navCtrl = navCtrl;
-        this.navParams = navParams;
-        this.shopping = shopping;
-        this.toast = toast;
-        this.item = {
-            name: '',
-            quantity: 0,
-            price: 0,
-            plu: '9781414380704'
-        };
-    }
-    AddLocationPage.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad AddLocationPage');
-    };
-    AddLocationPage.prototype.addItem = function (item) {
-        var _this = this;
-        this.shopping.addItem2(item).then(function (ref) {
-            _this.toast.show(item.name + " added!");
-            _this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_4__about_about__["a" /* AboutPage */], { key: ref.key });
-        });
-    };
-    AddLocationPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_2__angular_core__["m" /* Component */])({
-            selector: 'page-addlocation',template:/*ion-inline-start:"C:\ionicFirebase\IonicShoppingList\src\pages\addlocation\addlocation.html"*/'<!--\n\n  Generated template for the AddShoppingItemPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar color="primary">\n\n    <ion-title>Add a New Location</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n\n\n<ion-item>\n\n  <ion-label>Name</ion-label>\n\n  <ion-input [(ngModel)]="item.name" placeholder="Enter a new  Location Name" required></ion-input>\n\n\n\n</ion-item>\n\n\n\n<!--\n\n<ion-item>\n\n  <ion-label>PLU</ion-label>\n\n  <ion-input [(ngModel)]="item.plu" placeholder="9781414380704">\n\n</ion-input>\n\n</ion-item> -->\n\n\n\n<br>\n\n\n\n<div text-center>\n\n<button ion-button (click) ="addItem(item)">Add</button>\n\n</div>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\ionicFirebase\IonicShoppingList\src\pages\addlocation\addlocation.html"*/,
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3_ionic_angular__["l" /* NavController */], __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["n" /* NavParams */], __WEBPACK_IMPORTED_MODULE_0__services_shopping_list_shopping_list2_service__["a" /* ShoppingListService2 */], __WEBPACK_IMPORTED_MODULE_1__services_toast_toast_service__["a" /* ToastService */]])
-    ], AddLocationPage);
-    return AddLocationPage;
-}());
-
-//# sourceMappingURL=addlocation.js.map
-
-/***/ }),
-
-/***/ 149:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ShoppingListService2; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_angularfire2_database__ = __webpack_require__(38);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-var ShoppingListService2 = (function () {
-    function ShoppingListService2(db) {
-        this.db = db;
-        this.shoppingListRef = this.db.list('shopping-list');
-        this.locationsRef = this.db.list('locations');
-    }
-    ShoppingListService2.prototype.getShoppingList = function () {
-        return this.shoppingListRef;
-    };
-    ShoppingListService2.prototype.getLocationsList = function () {
-        return this.locationsRef;
-    };
-    ShoppingListService2.prototype.addItem = function (item) {
-        return this.shoppingListRef.push(item);
-    };
-    ShoppingListService2.prototype.addItem2 = function (item) {
-        return this.locationsRef.push(item);
-    };
-    ShoppingListService2.prototype.editItem = function (item) {
-        return this.shoppingListRef.update(item.key, item);
-    };
-    ShoppingListService2.prototype.removeItem = function (item) {
-        return this.locationsRef.remove(item.key);
-    };
-    ShoppingListService2 = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_angularfire2_database__["a" /* AngularFireDatabase */]])
-    ], ShoppingListService2);
-    return ShoppingListService2;
-}());
-
-//# sourceMappingURL=shopping-list2.service.js.map
-
-/***/ }),
-
-/***/ 150:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LoginPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
@@ -297,7 +178,7 @@ var LoginPage = (function () {
 
 /***/ }),
 
-/***/ 151:
+/***/ 149:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -424,16 +305,19 @@ var HomeaddPage = (function () {
     HomeaddPage.prototype.onClickSend = function (qO, qC, upc, keyU) {
         //alert("qC is "+qC+" and qO is "+qO+" and upc is "+upc);
         if (!qO) {
-            alert("Please enter a Quantity to order");
+            //alert("Please enter a Quantity to order");
+            this.toast.show("Pleae enter a Qty order");
             return false;
         }
         if (Number(qO) > Number(qC)) {
-            alert("Your order quantity is more than the onhand quantity");
+            this.toast.show("Not enough quantity onhand");
+            //alert("Your order quantity is more than the onhand quantity");
             return false;
         }
         else {
             if (this.prevAveragesList === undefined) {
-                this.averagesList.push(upc + ' ' + qO + ' ' + keyU);
+                // this.averagesList.push(upc+' '+qO+' '+keyU);
+                this.averagesList.push(upc + ' ' + qO + ':' + qC + ' ' + keyU);
                 this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_11__home_home__["a" /* HomePage */], {
                     ordersPassed: this.averagesList
                 });
@@ -446,12 +330,13 @@ var HomeaddPage = (function () {
             }
         } //end else
     };
-    HomeaddPage.prototype.sendOrder = function (qO, qC, upc, keyU2) {
+    HomeaddPage.prototype.sendOrder = function (qO, qC, upc, keyU2, desc1) {
         //alert("qC is "+qC+" and qO is "+qO+" and upc is "+upc);
         var _this = this;
-        //alert("in sendOrder received keyU2 of "+keyU2);
+        //alert("in sendOrder desc is "+desc1);
         if (Number(qO) > Number(qC)) {
-            alert("Your order quantity is more than the onhand quantity");
+            this.toast.show("Not enough quantity onhand");
+            //alert("Your order quantity is more than the onhand quantity");
             return false;
         }
         else {
@@ -471,12 +356,14 @@ var HomeaddPage = (function () {
             }
             today = mm + '/' + dd + '/' + yyyy;
             if (this.prevAveragesList === undefined) {
+                alert("prevAveragesList is undefined");
                 //insert from this.averagesList array
-                this.averagesList.push(upc + ' ' + qO + ':' + qC + ' ' + this.key1);
+                this.averagesList.push(upc + ' ' + qO + ':' + qC + ' ' + this.key1 + '^' + desc1);
                 for (var _i = 0, _a = this.averagesList; _i < _a.length; _i++) {
                     var data = _a[_i];
                     // alert(data.substr(data.lastIndexOf(' '))); //key
-                    //alert(data);
+                    alert("key is " + data.substr(data.lastIndexOf('-L'))); //key
+                    alert(data);
                     //alert(data.substring(data.indexOf(' ')+1,data.lastIndexOf(':'))); //q0 qty
                     //alert(data.substring(data.lastIndexOf(':')+1,data.lastIndexOf(' ')));  //qC qty
                     newQty = data.substring(data.lastIndexOf(':') + 1, data.lastIndexOf(' ')) - data.substring(data.indexOf(' ') + 1, data.lastIndexOf(':'));
@@ -488,14 +375,15 @@ var HomeaddPage = (function () {
                         "upc": data.substring(0, data.indexOf(' ')).trim(),
                         "qtyO": data.substring(data.indexOf(' ') + 1, data.lastIndexOf(':')).trim(),
                         "qtyC": data.substring(data.lastIndexOf(':') + 1, data.lastIndexOf(' ')).trim(),
-                        "prodId": data.substr(data.lastIndexOf(' ')).trim(),
+                        "prodId": data.substring(data.lastIndexOf(' ')).trim(),
                         "dateOrdered": today,
-                        "orderedBy": this.userId
+                        "orderedBy": this.userId,
+                        "desc": data.substring(data.lastIndexOf('^')).trim()
                     });
                     if (this.sendProduct)
-                        this.sendProduct = this.sendProduct + '\n' + 'UPC:  ' + data.substring(0, data.indexOf(' ')) + ' Qty Ordered =  ' + data.substring(data.indexOf(' ') + 1, data.lastIndexOf(':')).trim();
+                        this.sendProduct = this.sendProduct + '\n' + 'UPC:  ' + data.substring(0, data.indexOf(' ')) + ',  ' + data.substring(data.lastIndexOf('^')).trim() + ', Qty Ordered =  ' + data.substring(data.indexOf(' ') + 1, data.lastIndexOf(':')).trim();
                     else
-                        this.sendProduct = 'UPC: ' + data.substring(0, data.indexOf(' ')) + ' Qty Ordered= ' + data.substring(data.indexOf(' ') + 1, data.lastIndexOf(':')).trim();
+                        this.sendProduct = 'UPC: ' + data.substring(0, data.indexOf(' ')) + ' , ' + data.substring(data.lastIndexOf('^')).trim() + ' , Qty Ordered= ' + data.substring(data.indexOf(' ') + 1, data.lastIndexOf(':')).trim();
                 } //end for
                 this.averagesList = [];
                 this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_11__home_home__["a" /* HomePage */], {
@@ -649,22 +537,134 @@ var HomeaddPage = (function () {
     }; //end scan
     HomeaddPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_2__angular_core__["m" /* Component */])({
-            selector: 'page-homeadd',template:/*ion-inline-start:"C:\ionicFirebase\IonicShoppingList\src\pages\homeadd\homeadd.html"*/'<ion-header>\n\n  <ion-navbar color="primary">\n\n    <ion-title>\n\n      Purchase Orders\n\n    </ion-title>\n\n  </ion-navbar>\n\n\n\n<ion-toolbar>\n\n    <ion-segment [(ngModel)]="section" color="primary">\n\n\n\n      <ion-segment-button value="one">Orders\n\n              </ion-segment-button>\n\n\n\n\n\n    </ion-segment>\n\n\n\n  </ion-toolbar>\n\n\n\n\n\n</ion-header>\n\n\n\n<ion-content padding>\n\n\n\n <div [ngSwitch]="section">\n\n \n\n      <ion-list *ngSwitchCase="\'one\'">\n\n      <ion-item>\n\n      <ion-list>\n\n\n\n<div text-center>\n\n\n\n<b>UPC: {{ upc }}</b><br>\n\n  {{ desc }}<br>\n\n<u>Quantity available: {{ qty }} </u><br><br>\n\n<ion-item>\n\n<ion-input type="number" placeholder="Enter a Qty to order" [(ngModel)]="qtyOrder" max=" {{ qty }}" required></ion-input>\n\n\n\n</ion-item>\n\n\n\n<br>\n\n<button ion-button color="blue" (click)="onClickSend(qtyOrder,qty,upc,key1)">Keep Adding</button>\n\n<button ion-button color="blue" (click)="sendOrder(qtyOrder,qty,upc,key1)">Send</button>\n\n<br>\n\n<br>\n\n      <div *ngIf="prevAveragesList !== undefined"> # P.O. items: {{ prevAveragesList.length }} \n\n    </div>\n\n\n\n</div>\n\n\n\n\n\n\n\n</ion-list>\n\n</ion-item>\n\n</ion-list>\n\n\n\n</div>\n\n\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\ionicFirebase\IonicShoppingList\src\pages\homeadd\homeadd.html"*/
+            selector: 'page-homeadd',template:/*ion-inline-start:"C:\ionicFirebase\IonicShoppingList\src\pages\homeadd\homeadd.html"*/'<ion-header>\n\n  <ion-navbar color="primary">\n\n    <ion-title>\n\n      Purchase Orders\n\n    </ion-title>\n\n  </ion-navbar>\n\n\n\n<ion-toolbar>\n\n    <ion-segment [(ngModel)]="section" color="primary">\n\n\n\n      <ion-segment-button value="one">Orders\n\n              </ion-segment-button>\n\n\n\n\n\n    </ion-segment>\n\n\n\n  </ion-toolbar>\n\n\n\n\n\n</ion-header>\n\n\n\n<ion-content padding>\n\n\n\n <div [ngSwitch]="section">\n\n \n\n      <ion-list *ngSwitchCase="\'one\'">\n\n      <ion-item>\n\n      <ion-list>\n\n\n\n<div text-center>\n\n\n\n<b>UPC: {{ upc }}</b><br>\n\n  {{ desc }}<br>\n\n<u>Quantity available: {{ qty }} </u><br><br>\n\n<ion-item>\n\n<ion-input type="number" placeholder="Enter a Qty to order" [(ngModel)]="qtyOrder" max=" {{ qty }}" required></ion-input>\n\n\n\n</ion-item>\n\n\n\n<br>\n\n<button ion-button color="blue" (click)="onClickSend(qtyOrder,qty,upc,key1)">Keep Adding</button>\n\n<button ion-button color="blue" (click)="sendOrder(qtyOrder,qty,upc,key1,desc)">Send</button>\n\n<br>\n\n<br>\n\n      <div *ngIf="prevAveragesList !== undefined"> # P.O. items: {{ prevAveragesList.length }} \n\n    </div>\n\n\n\n</div>\n\n\n\n\n\n\n\n</ion-list>\n\n</ion-item>\n\n</ion-list>\n\n\n\n</div>\n\n\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\ionicFirebase\IonicShoppingList\src\pages\homeadd\homeadd.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_4_ionic_angular__["l" /* NavController */],
-            __WEBPACK_IMPORTED_MODULE_0__services_shopping_list_shopping_list_service__["a" /* ShoppingListService */],
-            __WEBPACK_IMPORTED_MODULE_5__ionic_native_barcode_scanner__["a" /* BarcodeScanner */],
-            __WEBPACK_IMPORTED_MODULE_1__services_toast_toast_service__["a" /* ToastService */],
-            __WEBPACK_IMPORTED_MODULE_6__providers_data_service_data_service__["a" /* DataServiceProvider */],
-            __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["o" /* Platform */],
-            __WEBPACK_IMPORTED_MODULE_7_angularfire2_database__["a" /* AngularFireDatabase */],
-            __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["n" /* NavParams */],
-            __WEBPACK_IMPORTED_MODULE_3__angular_http__["a" /* Http */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["l" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["l" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_0__services_shopping_list_shopping_list_service__["a" /* ShoppingListService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__services_shopping_list_shopping_list_service__["a" /* ShoppingListService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_5__ionic_native_barcode_scanner__["a" /* BarcodeScanner */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__ionic_native_barcode_scanner__["a" /* BarcodeScanner */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1__services_toast_toast_service__["a" /* ToastService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__services_toast_toast_service__["a" /* ToastService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_6__providers_data_service_data_service__["a" /* DataServiceProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__providers_data_service_data_service__["a" /* DataServiceProvider */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["o" /* Platform */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["o" /* Platform */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_7_angularfire2_database__["a" /* AngularFireDatabase */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_7_angularfire2_database__["a" /* AngularFireDatabase */]) === "function" && _g || Object, typeof (_h = typeof __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["n" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["n" /* NavParams */]) === "function" && _h || Object, typeof (_j = typeof __WEBPACK_IMPORTED_MODULE_3__angular_http__["a" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__angular_http__["a" /* Http */]) === "function" && _j || Object])
     ], HomeaddPage);
     return HomeaddPage;
+    var _a, _b, _c, _d, _e, _f, _g, _h, _j;
 }()); //end export class
 
 //# sourceMappingURL=homeadd.js.map
+
+/***/ }),
+
+/***/ 150:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AddLocationPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_shopping_list_shopping_list2_service__ = __webpack_require__(151);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_toast_toast_service__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__about_about__ = __webpack_require__(84);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+/**
+ * Generated class for the AddLocationPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var AddLocationPage = (function () {
+    function AddLocationPage(navCtrl, navParams, shopping, toast) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.shopping = shopping;
+        this.toast = toast;
+        this.item = {
+            name: '',
+            quantity: 0,
+            price: 0,
+            plu: '9781414380704'
+        };
+    }
+    AddLocationPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad AddLocationPage');
+    };
+    AddLocationPage.prototype.addItem = function (item) {
+        var _this = this;
+        this.shopping.addItem2(item).then(function (ref) {
+            _this.toast.show(item.name + " added!");
+            _this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_4__about_about__["a" /* AboutPage */], { key: ref.key });
+        });
+    };
+    AddLocationPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_2__angular_core__["m" /* Component */])({
+            selector: 'page-addlocation',template:/*ion-inline-start:"C:\ionicFirebase\IonicShoppingList\src\pages\addlocation\addlocation.html"*/'<!--\n\n  Generated template for the AddShoppingItemPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar color="primary">\n\n    <ion-title>Add a New Location</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n\n\n<ion-item>\n\n  <ion-label>Name</ion-label>\n\n  <ion-input [(ngModel)]="item.name" placeholder="Enter a new  Location Name" required></ion-input>\n\n\n\n</ion-item>\n\n\n\n<!--\n\n<ion-item>\n\n  <ion-label>PLU</ion-label>\n\n  <ion-input [(ngModel)]="item.plu" placeholder="9781414380704">\n\n</ion-input>\n\n</ion-item> -->\n\n\n\n<br>\n\n\n\n<div text-center>\n\n<button ion-button (click) ="addItem(item)">Add</button>\n\n</div>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\ionicFirebase\IonicShoppingList\src\pages\addlocation\addlocation.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3_ionic_angular__["l" /* NavController */], __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["n" /* NavParams */], __WEBPACK_IMPORTED_MODULE_0__services_shopping_list_shopping_list2_service__["a" /* ShoppingListService2 */], __WEBPACK_IMPORTED_MODULE_1__services_toast_toast_service__["a" /* ToastService */]])
+    ], AddLocationPage);
+    return AddLocationPage;
+}());
+
+//# sourceMappingURL=addlocation.js.map
+
+/***/ }),
+
+/***/ 151:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ShoppingListService2; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_angularfire2_database__ = __webpack_require__(38);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var ShoppingListService2 = (function () {
+    function ShoppingListService2(db) {
+        this.db = db;
+        this.shoppingListRef = this.db.list('shopping-list');
+        this.locationsRef = this.db.list('locations');
+    }
+    ShoppingListService2.prototype.getShoppingList = function () {
+        return this.shoppingListRef;
+    };
+    ShoppingListService2.prototype.getLocationsList = function () {
+        return this.locationsRef;
+    };
+    ShoppingListService2.prototype.addItem = function (item) {
+        return this.shoppingListRef.push(item);
+    };
+    ShoppingListService2.prototype.addItem2 = function (item) {
+        return this.locationsRef.push(item);
+    };
+    ShoppingListService2.prototype.editItem = function (item) {
+        return this.shoppingListRef.update(item.key, item);
+    };
+    ShoppingListService2.prototype.removeItem = function (item) {
+        return this.locationsRef.remove(item.key);
+    };
+    ShoppingListService2 = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_angularfire2_database__["a" /* AngularFireDatabase */]])
+    ], ShoppingListService2);
+    return ShoppingListService2;
+}());
+
+//# sourceMappingURL=shopping-list2.service.js.map
 
 /***/ }),
 
@@ -690,27 +690,27 @@ webpackEmptyAsyncContext.id = 164;
 
 var map = {
 	"../pages/add-shopping-item/add-shopping-item.module": [
-		483,
+		478,
 		1
 	],
 	"../pages/addlocation/addlocation.module": [
-		478,
+		479,
 		5
 	],
 	"../pages/edit-shopping-item/edit-shopping-item.module": [
-		479,
+		480,
 		0
 	],
 	"../pages/home/home.module": [
-		480,
+		481,
 		4
 	],
 	"../pages/homeadd/homeadd.module": [
-		481,
+		482,
 		3
 	],
 	"../pages/login/login.module": [
-		482,
+		483,
 		2
 	]
 };
@@ -842,10 +842,11 @@ var CurrInvReportPage = (function () {
         Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["m" /* Component */])({
             selector: 'page-currinvreport',template:/*ion-inline-start:"C:\ionicFirebase\IonicShoppingList\src\pages\currinvreport\currinvreport.html"*/'<ion-header>\n\n  <ion-navbar color="primary">\n\n    <ion-title>\n\n      Current Inv Report\n\n    </ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content>\n\n\n\n <p *ngIf="!isApp">\n\n\n\n   <ion-list>\n\n\n\n<!--        <ion-item *ngFor="let grocery of groceries">{{grocery}}</ion-item> -->\n\n\n\n<br>\n\n\n\n<div style="width: 800px; repeat">\n\n<div class="row">\n\n<div class="col" align="center"><b><u>UPC</u></b></div>\n\n<div class="col" align="center"><b><u>Desc</u></b></div>\n\n<div class="col" align="center"><b><u>Quantity</u></b></div>\n\n</div>\n\n\n\n<br>\n\n\n\n<ion-item *ngFor="let item of shoppingList$ | async" detail-push navPush="EditShoppingItemPage" [navParams]="{item: item}" >\n\n<div class="row">\n\n<div class="col" align="center">{{item.upc}}</div>\n\n<div class="col" align="center">{{item.desc}}</div>\n\n<div class="col" align="center">{{item.quantity}}</div>\n\n</div>\n\n</ion-item>\n\n\n\n</div>\n\n</ion-list>\n\n</p>\n\n\n\n <p *ngIf="isApp">\n\n     <ion-list>\n\n\n\n<!--        <ion-item *ngFor="let grocery of groceries">{{grocery}}</ion-item> -->\n\n<br>\n\n\n\n\n\n<div style="width: 800px;  repeat">\n\n<div class="row">\n\n<div class="col2" align="left"><b><u>UPC</u></b></div>\n\n<div class="col2" align="left"><b><u>Quantity</u></b></div>\n\n</div>\n\n\n\n<br>\n\n\n\n<ion-item *ngFor="let item of shoppingList$ | async" detail-push navPush="EditShoppingItemPage" [navParams]="{item: item}">\n\n<div class="row">\n\n<div class="col2" align="left">{{item.upc}}</div>\n\n<div class="col2" align="left">{{item.quantity}}</div>\n\n</div>\n\n</ion-item>\n\n\n\n</div>\n\n</ion-list>\n\n\n\n </p>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\ionicFirebase\IonicShoppingList\src\pages\currinvreport\currinvreport.html"*/
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["l" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["l" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_0__services_shopping_list_shopping_list_service__["a" /* ShoppingListService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__services_shopping_list_shopping_list_service__["a" /* ShoppingListService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["o" /* Platform */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["o" /* Platform */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__services_toast_toast_service__["a" /* ToastService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__services_toast_toast_service__["a" /* ToastService */]) === "function" && _d || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["l" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_0__services_shopping_list_shopping_list_service__["a" /* ShoppingListService */],
+            __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["o" /* Platform */], __WEBPACK_IMPORTED_MODULE_3__services_toast_toast_service__["a" /* ToastService */]])
     ], CurrInvReportPage);
     return CurrInvReportPage;
-    var _a, _b, _c, _d;
 }());
 
 //# sourceMappingURL=currinvreport.js.map
@@ -972,7 +973,7 @@ var InventoryPage = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__(23);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_angularfire2_auth__ = __webpack_require__(78);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__login_login__ = __webpack_require__(150);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__login_login__ = __webpack_require__(148);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1228,15 +1229,15 @@ var ToastService = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_angularfire2_database__ = __webpack_require__(38);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_angularfire2__ = __webpack_require__(46);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__app_component__ = __webpack_require__(471);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_addlocation_addlocation__ = __webpack_require__(148);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__services_shopping_list_shopping_list2_service__ = __webpack_require__(149);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_addlocation_addlocation__ = __webpack_require__(150);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__services_shopping_list_shopping_list2_service__ = __webpack_require__(151);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_about_about__ = __webpack_require__(84);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_contact_contact__ = __webpack_require__(261);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_tabs_tabs__ = __webpack_require__(260);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_home_home__ = __webpack_require__(85);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_currinvreport_currinvreport__ = __webpack_require__(256);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__pages_poreport_poreport__ = __webpack_require__(257);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__pages_homeadd_homeadd__ = __webpack_require__(151);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__pages_homeadd_homeadd__ = __webpack_require__(149);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__pages_resetpwd_resetpwd__ = __webpack_require__(259);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__pages_irreports_irreports__ = __webpack_require__(255);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__pages_inventory_inventory__ = __webpack_require__(258);
@@ -1308,12 +1309,12 @@ var AppModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
                 __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["i" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_7__app_component__["a" /* MyApp */], {}, {
                     links: [
+                        { loadChildren: '../pages/add-shopping-item/add-shopping-item.module#AddShoppingItemPageModule', name: 'AddShoppingItemPage', segment: 'add-shopping-item', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/addlocation/addlocation.module#AddLocationPageModule', name: 'AddLocationPage', segment: 'addlocation', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/edit-shopping-item/edit-shopping-item.module#EditShoppingItemPageModule', name: 'EditShoppingItemPage', segment: 'edit-shopping-item', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/home/home.module#HomeModule', name: 'HomePage', segment: 'home', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/homeadd/homeadd.module#HomeaddModule', name: 'HomeaddPage', segment: 'homeadd', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/login/login.module#LoginModule', name: 'LoginPage', segment: 'login', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/add-shopping-item/add-shopping-item.module#AddShoppingItemPageModule', name: 'AddShoppingItemPage', segment: 'add-shopping-item', priority: 'low', defaultHistory: [] }
+                        { loadChildren: '../pages/login/login.module#LoginModule', name: 'LoginPage', segment: 'login', priority: 'low', defaultHistory: [] }
                     ]
                 }),
                 __WEBPACK_IMPORTED_MODULE_6_angularfire2__["a" /* AngularFireModule */].initializeApp(__WEBPACK_IMPORTED_MODULE_20__firebase_credentials__["a" /* FIREBASE_CONFIG */]),
@@ -1496,8 +1497,8 @@ var FIREBASE_CONFIG = {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__currinvreport_currinvreport__ = __webpack_require__(256);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__poreport_poreport__ = __webpack_require__(257);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__inventory_inventory__ = __webpack_require__(258);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__login_login__ = __webpack_require__(150);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__addlocation_addlocation__ = __webpack_require__(148);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__login_login__ = __webpack_require__(148);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__addlocation_addlocation__ = __webpack_require__(150);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__services_toast_toast_service__ = __webpack_require__(32);
 var __assign = (this && this.__assign) || Object.assign || function(t) {
     for (var s, i = 1, n = arguments.length; i < n; i++) {
@@ -1654,7 +1655,7 @@ var AboutPage = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_rxjs_BehaviorSubject___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9_rxjs_BehaviorSubject__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_rxjs_add_operator_switchMap__ = __webpack_require__(77);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_rxjs_add_operator_switchMap___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_10_rxjs_add_operator_switchMap__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__homeadd_homeadd__ = __webpack_require__(151);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__homeadd_homeadd__ = __webpack_require__(149);
 var __assign = (this && this.__assign) || Object.assign || function(t) {
     for (var s, i = 1, n = arguments.length; i < n; i++) {
         s = arguments[i];
