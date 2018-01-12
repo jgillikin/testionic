@@ -25727,6 +25727,10 @@ page-addlocation .text-input {
   margin: 0;
 }
 
+page-currinvreport .col2 {
+  font-size: .5em;
+}
+
 page-home input {
   background: white;
   padding: 15px;

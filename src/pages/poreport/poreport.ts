@@ -5,6 +5,7 @@ import { NavController, NavParams, Platform } from 'ionic-angular';
 import { Observable } from 'rxjs/Observable';
 import { Item } from './../../models/po/po.model';
 import { ContactPage } from '../contact/contact';
+import { AngularFireDatabase, AngularFireAction,AngularFireList } from 'angularfire2/database';
 import { ToastService } from './../../services/toast/toast.service';
 
 @Component({
@@ -34,7 +35,7 @@ shoppingList$: Observable<Item[]>;
  
     constructor(public navCtrl: NavController,
 private shopping: ShoppingListService,
-public platform: Platform, private toast: ToastService) {
+public platform: Platform, private toast: ToastService,public db: AngularFireDatabase) {
  
         this.groceries = [
             'Units Sell Through',
@@ -53,6 +54,8 @@ this.shoppingList$ = this.shopping
 					...c.payload.val()
       			    }))
  				 });
+
+
 
  
     } //end constructor

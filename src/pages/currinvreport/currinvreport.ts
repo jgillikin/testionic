@@ -13,8 +13,10 @@ import { ToastService } from './../../services/toast/toast.service';
 })
 export class CurrInvReportPage {
 
+ fontSize: number = .8;
+
  groceries: any;
-item: Item = {
+ item: Item = {
  item: '',
  upc: 0,
  desc: '',
