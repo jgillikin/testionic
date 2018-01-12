@@ -160,7 +160,7 @@ this.userId = firebase.auth().currentUser.uid;
 }
 
 
-onClickSend(qO: any, qC: any, upc: any, keyU: any) {
+onClickSend(qO: any, qC: any, upc: any, keyU: any, desc1: any) {
 
 //alert("qC is "+qC+" and qO is "+qO+" and upc is "+upc);
 
@@ -182,7 +182,7 @@ else {
 
 if (this.prevAveragesList === undefined) {
 // this.averagesList.push(upc+' '+qO+' '+keyU);
-  this.averagesList.push(upc+' '+qO+':'+qC+' '+keyU);
+  this.averagesList.push(upc+' '+qO+':'+qC+' '+keyU+'^'+desc1);
 
  this.navCtrl.push(HomePage, {
     ordersPassed: this.averagesList
@@ -190,7 +190,7 @@ if (this.prevAveragesList === undefined) {
 
 }
 else {
-  this.prevAveragesList.push(upc+' '+qO+':'+qC+' '+keyU);
+  this.prevAveragesList.push(upc+' '+qO+':'+qC+' '+keyU+'^'+desc1);
 this.navCtrl.push(HomePage, {
     ordersPassed: this.prevAveragesList
    })
@@ -244,9 +244,9 @@ this.averagesList.push(upc+' '+qO+':'+qC+' '+this.key1+'^'+desc1);
  for(let data of this.averagesList) {
  // alert(data.substr(data.lastIndexOf(' '))); //key
 
-alert("key is "+data.substr(data.lastIndexOf('-L'))); //key
+//alert("key is "+data.substr(data.lastIndexOf('-L'))); //key
 
-alert(data);
+//alert(data);
 
 //alert(data.substring(data.indexOf(' ')+1,data.lastIndexOf(':'))); //q0 qty
 
@@ -254,7 +254,7 @@ alert(data);
 
 newQty = data.substring(data.lastIndexOf(':')+1,data.lastIndexOf(' ')) - data.substring(data.indexOf(' ')+1,data.lastIndexOf(':'));
 
-this.shoppingList2 = firebase.database().ref("shopping-list/"+data.substr(data.lastIndexOf(' ')).trim());
+this.shoppingList2 = firebase.database().ref("shopping-list/"+data.substring(data.lastIndexOf(' ')).trim());
 
 this.shoppingList2.update ({
  "quantity": newQty
@@ -298,8 +298,13 @@ console.log("oops");
 
 }
 else {
+
+//alert("in prevAveragesList");
 //insert from this.prevAveragesList
-  this.prevAveragesList.push(upc+' '+qO+':'+qC+' '+this.key1);
+
+//special characters not allowed in spreadsheet are colons and carrots and negative Ls
+
+  this.prevAveragesList.push(upc+' '+qO+':'+qC+' '+this.key1+'^'+desc1);
 
 
  for(let data of this.prevAveragesList) {
@@ -308,12 +313,12 @@ else {
 
 //alert(data.substring(data.indexOf(' ')+1,data.lastIndexOf(':'))); //q0 qty
 
-//alert(data.substring(data.lastIndexOf(':')+1,data.lastIndexOf(' ')));  //qC qty
+//alert(data.substring(data.lastIndexOf(':')+1,data.lastIndexOf('-L')));  //qC qty
 
-newQty = data.substring(data.lastIndexOf(':')+1,data.lastIndexOf(' ')) - data.substring(data.indexOf(' ')+1,data.lastIndexOf(':'));
+newQty = data.substring(data.lastIndexOf(':')+1,data.lastIndexOf('-L')) - data.substring(data.indexOf(' ')+1,data.lastIndexOf(':'));
 
 
-this.shoppingList2 = firebase.database().ref("shopping-list/"+data.substr(data.lastIndexOf(' ')).trim());
+this.shoppingList2 = firebase.database().ref("shopping-list/"+data.substring(data.lastIndexOf('-L'),data.lastIndexOf('^')).trim());
 this.shoppingList2.update ({
  "quantity": newQty
 });
@@ -321,17 +326,18 @@ this.shoppingList2.update ({
 this.po.push({
  "upc": data.substring(0,data.indexOf(' ')).trim(),
  "qtyO": data.substring(data.indexOf(' ')+1,data.lastIndexOf(':')).trim(),
- "qtyC": data.substring(data.lastIndexOf(':')+1,data.lastIndexOf(' ')).trim(),
- "prodId": data.substr(data.lastIndexOf(' ')).trim(),
+ "qtyC": data.substring(data.lastIndexOf(':')+1,data.lastIndexOf('-L')).trim(),
+ "prodId": data.substring(data.lastIndexOf('-L'),data.lastIndexOf('^')).trim(),
  "dateOrdered": today,
- "orderedBy": this.userId
+ "orderedBy": this.userId,
+ "desc": data.substring(data.indexOf('^')+1).trim()
 
 }); 
 
 if (this.sendProduct)
- this.sendProduct = this.sendProduct+'\n'+'UPC:  '+data.substring(0,data.indexOf(' '))+' Qty Ordered =  '+data.substring(data.indexOf(' ')+1,data.lastIndexOf(':')).trim();
+ this.sendProduct = this.sendProduct+'\n'+'UPC:  '+data.substring(0,data.indexOf(' '))+', '+data.substring(data.indexOf('^')+1).trim()+' ,Qty Ordered =  '+data.substring(data.indexOf(' ')+1,data.lastIndexOf(':')).trim();
 else
- this.sendProduct = 'UPC:  '+data.substring(0,data.indexOf(' '))+' Qty Ordered = '+data.substring(data.indexOf(' ')+1,data.lastIndexOf(':')).trim();
+ this.sendProduct = 'UPC:  '+data.substring(0,data.indexOf(' '))+', '+data.substring(data.indexOf('^')+1).trim()+' ,Qty Ordered =  '+data.substring(data.indexOf(' ')+1,data.lastIndexOf(':')).trim();
 
  } //end for
 

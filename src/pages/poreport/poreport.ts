@@ -21,7 +21,8 @@ item: Item = {
  qtyO: '',
  dateOrdered: '',
  orderedBy: '',
- upc: ''
+ upc: '',
+ desc: ''
 }; 
 
 

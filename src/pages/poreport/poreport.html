@@ -14,7 +14,7 @@
 <br>
 <div style="width: 800px;  repeat">
 <div class="row">
-<div class="col" align="center"><b><u>UPC</u></b></div>
+<div class="col" align="center"><b><u>Desc</u></b></div>
 <div class="col" align="center"><b><u>Date Ordered</u></b></div>
 <div class="col" align="center"><b><u>Qty Ordered</u></b></div>
 </div>
@@ -24,7 +24,7 @@
 
 <ion-item *ngFor="let item of shoppingList$ | async" detail-push navPush="EditShoppingItemPage" [navParams]="{item: item}">
 <div class="row">
-<div class="col" align="center">{{item.upc}}</div>
+<div class="col" align="center">{{item.desc}}</div>
 <div class="col" align="center">{{item.dateOrdered}}</div>
 <div class="col" align="center">{{item.qtyO}}</div>
 </div>

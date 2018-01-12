@@ -334,10 +334,10 @@ else {
 
 //alert(data.substring(data.lastIndexOf(':')+1,data.lastIndexOf(' ')));  //qC qty
 
-newQty = data.substring(data.lastIndexOf(':')+1,data.lastIndexOf(' ')) - data.substring(data.indexOf(' ')+1,data.lastIndexOf(':'));
+newQty = data.substring(data.lastIndexOf(':')+1,data.lastIndexOf('-L')) - data.substring(data.indexOf(' ')+1,data.lastIndexOf(':'));
 
 
-this.shoppingList2 = firebase.database().ref("shopping-list/"+data.substr(data.lastIndexOf(' ')).trim());
+this.shoppingList2 = firebase.database().ref("shopping-list/"+data.substring(data.lastIndexOf('-L'),data.lastIndexOf('^')).trim());
 this.shoppingList2.update ({
  "quantity": newQty
 });
@@ -345,17 +345,18 @@ this.shoppingList2.update ({
 this.po.push({
  "upc": data.substring(0,data.indexOf(' ')).trim(),
  "qtyO": data.substring(data.indexOf(' ')+1,data.lastIndexOf(':')).trim(),
- "qtyC": data.substring(data.lastIndexOf(':')+1,data.lastIndexOf(' ')).trim(),
- "prodId": data.substr(data.lastIndexOf(' ')).trim(),
+ "qtyC": data.substring(data.lastIndexOf(':')+1,data.lastIndexOf('-L')).trim(),
+ "prodId": data.substring(data.lastIndexOf('-L'),data.lastIndexOf('^')).trim(),
  "dateOrdered": today,
- "orderedBy": this.userId
+ "orderedBy": this.userId,
+ "desc": data.substring(data.indexOf('^')+1).trim()
 
 }); 
 
 if (this.sendProduct)
- this.sendProduct = this.sendProduct+'\n'+'UPC:  '+data.substring(0,data.indexOf(' '))+' Qty Ordered =  '+data.substring(data.indexOf(' ')+1,data.lastIndexOf(':')).trim();
+ this.sendProduct = this.sendProduct+'\n'+'UPC:  '+data.substring(0,data.indexOf(' '))+', '+data.substring(data.indexOf('^')+1).trim()+' ,Qty Ordered =  '+data.substring(data.indexOf(' ')+1,data.lastIndexOf(':')).trim();
 else
- this.sendProduct = 'UPC:  '+data.substring(0,data.indexOf(' '))+' Qty Ordered = '+data.substring(data.indexOf(' ')+1,data.lastIndexOf(':')).trim();
+ this.sendProduct = 'UPC:  '+data.substring(0,data.indexOf(' '))+', '+data.substring(data.indexOf('^')+1).trim()+' ,Qty Ordered =  '+data.substring(data.indexOf(' ')+1,data.lastIndexOf(':')).trim();
 
  } //end for
 

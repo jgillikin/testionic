@@ -302,7 +302,7 @@ var HomeaddPage = (function () {
     HomeaddPage.prototype.ionViewDidLoad = function () {
         this.userId = __WEBPACK_IMPORTED_MODULE_8_firebase_app__["auth"]().currentUser.uid;
     };
-    HomeaddPage.prototype.onClickSend = function (qO, qC, upc, keyU) {
+    HomeaddPage.prototype.onClickSend = function (qO, qC, upc, keyU, desc1) {
         //alert("qC is "+qC+" and qO is "+qO+" and upc is "+upc);
         if (!qO) {
             //alert("Please enter a Quantity to order");
@@ -317,13 +317,13 @@ var HomeaddPage = (function () {
         else {
             if (this.prevAveragesList === undefined) {
                 // this.averagesList.push(upc+' '+qO+' '+keyU);
-                this.averagesList.push(upc + ' ' + qO + ':' + qC + ' ' + keyU);
+                this.averagesList.push(upc + ' ' + qO + ':' + qC + ' ' + keyU + '^' + desc1);
                 this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_11__home_home__["a" /* HomePage */], {
                     ordersPassed: this.averagesList
                 });
             }
             else {
-                this.prevAveragesList.push(upc + ' ' + qO + ':' + qC + ' ' + keyU);
+                this.prevAveragesList.push(upc + ' ' + qO + ':' + qC + ' ' + keyU + '^' + desc1);
                 this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_11__home_home__["a" /* HomePage */], {
                     ordersPassed: this.prevAveragesList
                 });
@@ -362,12 +362,12 @@ var HomeaddPage = (function () {
                 for (var _i = 0, _a = this.averagesList; _i < _a.length; _i++) {
                     var data = _a[_i];
                     // alert(data.substr(data.lastIndexOf(' '))); //key
-                    alert("key is " + data.substr(data.lastIndexOf('-L'))); //key
-                    alert(data);
+                    //alert("key is "+data.substr(data.lastIndexOf('-L'))); //key
+                    //alert(data);
                     //alert(data.substring(data.indexOf(' ')+1,data.lastIndexOf(':'))); //q0 qty
                     //alert(data.substring(data.lastIndexOf(':')+1,data.lastIndexOf(' ')));  //qC qty
                     newQty = data.substring(data.lastIndexOf(':') + 1, data.lastIndexOf(' ')) - data.substring(data.indexOf(' ') + 1, data.lastIndexOf(':'));
-                    this.shoppingList2 = __WEBPACK_IMPORTED_MODULE_8_firebase_app__["database"]().ref("shopping-list/" + data.substr(data.lastIndexOf(' ')).trim());
+                    this.shoppingList2 = __WEBPACK_IMPORTED_MODULE_8_firebase_app__["database"]().ref("shopping-list/" + data.substring(data.lastIndexOf(' ')).trim());
                     this.shoppingList2.update({
                         "quantity": newQty
                     });
@@ -400,31 +400,34 @@ var HomeaddPage = (function () {
                 });
             }
             else {
+                //alert("in prevAveragesList");
                 //insert from this.prevAveragesList
-                this.prevAveragesList.push(upc + ' ' + qO + ':' + qC + ' ' + this.key1);
+                //special characters not allowed in spreadsheet are colons and carrots and negative Ls
+                this.prevAveragesList.push(upc + ' ' + qO + ':' + qC + ' ' + this.key1 + '^' + desc1);
                 for (var _b = 0, _c = this.prevAveragesList; _b < _c.length; _b++) {
                     var data = _c[_b];
                     //  alert(data.substr(data.lastIndexOf(' '))); //key
                     //alert(data);
                     //alert(data.substring(data.indexOf(' ')+1,data.lastIndexOf(':'))); //q0 qty
-                    //alert(data.substring(data.lastIndexOf(':')+1,data.lastIndexOf(' ')));  //qC qty
-                    newQty = data.substring(data.lastIndexOf(':') + 1, data.lastIndexOf(' ')) - data.substring(data.indexOf(' ') + 1, data.lastIndexOf(':'));
-                    this.shoppingList2 = __WEBPACK_IMPORTED_MODULE_8_firebase_app__["database"]().ref("shopping-list/" + data.substr(data.lastIndexOf(' ')).trim());
+                    //alert(data.substring(data.lastIndexOf(':')+1,data.lastIndexOf('-L')));  //qC qty
+                    newQty = data.substring(data.lastIndexOf(':') + 1, data.lastIndexOf('-L')) - data.substring(data.indexOf(' ') + 1, data.lastIndexOf(':'));
+                    this.shoppingList2 = __WEBPACK_IMPORTED_MODULE_8_firebase_app__["database"]().ref("shopping-list/" + data.substring(data.lastIndexOf('-L'), data.lastIndexOf('^')).trim());
                     this.shoppingList2.update({
                         "quantity": newQty
                     });
                     this.po.push({
                         "upc": data.substring(0, data.indexOf(' ')).trim(),
                         "qtyO": data.substring(data.indexOf(' ') + 1, data.lastIndexOf(':')).trim(),
-                        "qtyC": data.substring(data.lastIndexOf(':') + 1, data.lastIndexOf(' ')).trim(),
-                        "prodId": data.substr(data.lastIndexOf(' ')).trim(),
+                        "qtyC": data.substring(data.lastIndexOf(':') + 1, data.lastIndexOf('-L')).trim(),
+                        "prodId": data.substring(data.lastIndexOf('-L'), data.lastIndexOf('^')).trim(),
                         "dateOrdered": today,
-                        "orderedBy": this.userId
+                        "orderedBy": this.userId,
+                        "desc": data.substring(data.indexOf('^') + 1).trim()
                     });
                     if (this.sendProduct)
-                        this.sendProduct = this.sendProduct + '\n' + 'UPC:  ' + data.substring(0, data.indexOf(' ')) + ' Qty Ordered =  ' + data.substring(data.indexOf(' ') + 1, data.lastIndexOf(':')).trim();
+                        this.sendProduct = this.sendProduct + '\n' + 'UPC:  ' + data.substring(0, data.indexOf(' ')) + ', ' + data.substring(data.indexOf('^') + 1).trim() + ' ,Qty Ordered =  ' + data.substring(data.indexOf(' ') + 1, data.lastIndexOf(':')).trim();
                     else
-                        this.sendProduct = 'UPC:  ' + data.substring(0, data.indexOf(' ')) + ' Qty Ordered = ' + data.substring(data.indexOf(' ') + 1, data.lastIndexOf(':')).trim();
+                        this.sendProduct = 'UPC:  ' + data.substring(0, data.indexOf(' ')) + ', ' + data.substring(data.indexOf('^') + 1).trim() + ' ,Qty Ordered =  ' + data.substring(data.indexOf(' ') + 1, data.lastIndexOf(':')).trim();
                 } //end for
                 this.prevAveragesList = [];
                 this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_11__home_home__["a" /* HomePage */], {
@@ -537,7 +540,7 @@ var HomeaddPage = (function () {
     }; //end scan
     HomeaddPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_2__angular_core__["m" /* Component */])({
-            selector: 'page-homeadd',template:/*ion-inline-start:"C:\ionicFirebase\IonicShoppingList\src\pages\homeadd\homeadd.html"*/'<ion-header>\n\n  <ion-navbar color="primary">\n\n    <ion-title>\n\n      Purchase Orders\n\n    </ion-title>\n\n  </ion-navbar>\n\n\n\n<ion-toolbar>\n\n    <ion-segment [(ngModel)]="section" color="primary">\n\n\n\n      <ion-segment-button value="one">Orders\n\n              </ion-segment-button>\n\n\n\n\n\n    </ion-segment>\n\n\n\n  </ion-toolbar>\n\n\n\n\n\n</ion-header>\n\n\n\n<ion-content padding>\n\n\n\n <div [ngSwitch]="section">\n\n \n\n      <ion-list *ngSwitchCase="\'one\'">\n\n      <ion-item>\n\n      <ion-list>\n\n\n\n<div text-center>\n\n\n\n<b>UPC: {{ upc }}</b><br>\n\n  {{ desc }}<br>\n\n<u>Quantity available: {{ qty }} </u><br><br>\n\n<ion-item>\n\n<ion-input type="number" placeholder="Enter a Qty to order" [(ngModel)]="qtyOrder" max=" {{ qty }}" required></ion-input>\n\n\n\n</ion-item>\n\n\n\n<br>\n\n<button ion-button color="blue" (click)="onClickSend(qtyOrder,qty,upc,key1)">Keep Adding</button>\n\n<button ion-button color="blue" (click)="sendOrder(qtyOrder,qty,upc,key1,desc)">Send</button>\n\n<br>\n\n<br>\n\n      <div *ngIf="prevAveragesList !== undefined"> # P.O. items: {{ prevAveragesList.length }} \n\n    </div>\n\n\n\n</div>\n\n\n\n\n\n\n\n</ion-list>\n\n</ion-item>\n\n</ion-list>\n\n\n\n</div>\n\n\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\ionicFirebase\IonicShoppingList\src\pages\homeadd\homeadd.html"*/
+            selector: 'page-homeadd',template:/*ion-inline-start:"C:\ionicFirebase\IonicShoppingList\src\pages\homeadd\homeadd.html"*/'<ion-header>\n\n  <ion-navbar color="primary">\n\n    <ion-title>\n\n      Purchase Orders\n\n    </ion-title>\n\n  </ion-navbar>\n\n\n\n<ion-toolbar>\n\n    <ion-segment [(ngModel)]="section" color="primary">\n\n\n\n      <ion-segment-button value="one">Orders\n\n              </ion-segment-button>\n\n\n\n\n\n    </ion-segment>\n\n\n\n  </ion-toolbar>\n\n\n\n\n\n</ion-header>\n\n\n\n<ion-content padding>\n\n\n\n <div [ngSwitch]="section">\n\n \n\n      <ion-list *ngSwitchCase="\'one\'">\n\n      <ion-item>\n\n      <ion-list>\n\n\n\n<div text-center>\n\n\n\n<b>UPC: {{ upc }}</b><br>\n\n  {{ desc }}<br>\n\n<u>Quantity available: {{ qty }} </u><br><br>\n\n<ion-item>\n\n<ion-input type="number" placeholder="Enter a Qty to order" [(ngModel)]="qtyOrder" max=" {{ qty }}" required></ion-input>\n\n\n\n</ion-item>\n\n\n\n<br>\n\n<button ion-button color="blue" (click)="onClickSend(qtyOrder,qty,upc,key1,desc)">Keep Adding</button>\n\n<button ion-button color="blue" (click)="sendOrder(qtyOrder,qty,upc,key1,desc)">Send</button>\n\n<br>\n\n<br>\n\n      <div *ngIf="prevAveragesList !== undefined"> # P.O. items: {{ prevAveragesList.length }} \n\n    </div>\n\n\n\n</div>\n\n\n\n\n\n\n\n</ion-list>\n\n</ion-item>\n\n</ion-list>\n\n\n\n</div>\n\n\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\ionicFirebase\IonicShoppingList\src\pages\homeadd\homeadd.html"*/
         }),
         __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["l" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["l" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_0__services_shopping_list_shopping_list_service__["a" /* ShoppingListService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__services_shopping_list_shopping_list_service__["a" /* ShoppingListService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_5__ionic_native_barcode_scanner__["a" /* BarcodeScanner */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__ionic_native_barcode_scanner__["a" /* BarcodeScanner */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1__services_toast_toast_service__["a" /* ToastService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__services_toast_toast_service__["a" /* ToastService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_6__providers_data_service_data_service__["a" /* DataServiceProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__providers_data_service_data_service__["a" /* DataServiceProvider */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["o" /* Platform */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["o" /* Platform */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_7_angularfire2_database__["a" /* AngularFireDatabase */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_7_angularfire2_database__["a" /* AngularFireDatabase */]) === "function" && _g || Object, typeof (_h = typeof __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["n" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["n" /* NavParams */]) === "function" && _h || Object, typeof (_j = typeof __WEBPACK_IMPORTED_MODULE_3__angular_http__["a" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__angular_http__["a" /* Http */]) === "function" && _j || Object])
     ], HomeaddPage);
@@ -840,7 +843,7 @@ var CurrInvReportPage = (function () {
     } //end constructor
     CurrInvReportPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["m" /* Component */])({
-            selector: 'page-currinvreport',template:/*ion-inline-start:"C:\ionicFirebase\IonicShoppingList\src\pages\currinvreport\currinvreport.html"*/'<ion-header>\n\n  <ion-navbar color="primary">\n\n    <ion-title>\n\n      Current Inv Report\n\n    </ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content>\n\n\n\n <p *ngIf="!isApp">\n\n\n\n   <ion-list>\n\n\n\n<!--        <ion-item *ngFor="let grocery of groceries">{{grocery}}</ion-item> -->\n\n\n\n<br>\n\n\n\n<div style="width: 800px; repeat">\n\n<div class="row">\n\n<div class="col" align="center"><b><u>UPC</u></b></div>\n\n<div class="col" align="center"><b><u>Desc</u></b></div>\n\n<div class="col" align="center"><b><u>Quantity</u></b></div>\n\n</div>\n\n\n\n<br>\n\n\n\n<ion-item *ngFor="let item of shoppingList$ | async" detail-push navPush="EditShoppingItemPage" [navParams]="{item: item}" >\n\n<div class="row">\n\n<div class="col" align="center">{{item.upc}}</div>\n\n<div class="col" align="center">{{item.desc}}</div>\n\n<div class="col" align="center">{{item.quantity}}</div>\n\n</div>\n\n</ion-item>\n\n\n\n</div>\n\n</ion-list>\n\n</p>\n\n\n\n <p *ngIf="isApp">\n\n     <ion-list>\n\n\n\n<!--        <ion-item *ngFor="let grocery of groceries">{{grocery}}</ion-item> -->\n\n<br>\n\n\n\n\n\n<div style="width: 800px;  repeat">\n\n<div class="row">\n\n<div class="col2" align="left"><b><u>UPC</u></b></div>\n\n<div class="col2" align="left"><b><u>Quantity</u></b></div>\n\n</div>\n\n\n\n<br>\n\n\n\n<ion-item *ngFor="let item of shoppingList$ | async" detail-push navPush="EditShoppingItemPage" [navParams]="{item: item}">\n\n<div class="row">\n\n<div class="col2" align="left">{{item.upc}}</div>\n\n<div class="col2" align="left">{{item.quantity}}</div>\n\n</div>\n\n</ion-item>\n\n\n\n</div>\n\n</ion-list>\n\n\n\n </p>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\ionicFirebase\IonicShoppingList\src\pages\currinvreport\currinvreport.html"*/
+            selector: 'page-currinvreport',template:/*ion-inline-start:"C:\ionicFirebase\IonicShoppingList\src\pages\currinvreport\currinvreport.html"*/'<ion-header>\n\n  <ion-navbar color="primary">\n\n    <ion-title>\n\n      Current Inv Report\n\n    </ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content>\n\n\n\n <p *ngIf="!isApp">\n\n\n\n   <ion-list>\n\n\n\n<!--        <ion-item *ngFor="let grocery of groceries">{{grocery}}</ion-item> -->\n\n\n\n<br>\n\n\n\n<div style="width: 800px; repeat">\n\n<div class="row">\n\n<div class="col" align="center"><b><u>Desc</u></b></div>\n\n<div class="col" align="center"><b><u>Quantity</u></b></div>\n\n</div>\n\n\n\n<br>\n\n\n\n<ion-item *ngFor="let item of shoppingList$ | async" detail-push navPush="EditShoppingItemPage" [navParams]="{item: item}" >\n\n<div class="row">\n\n<div class="col" align="center">{{item.desc}}</div>\n\n<div class="col" align="center">{{item.quantity}}</div>\n\n</div>\n\n</ion-item>\n\n\n\n</div>\n\n</ion-list>\n\n</p>\n\n\n\n <p *ngIf="isApp">\n\n     <ion-list>\n\n\n\n<!--        <ion-item *ngFor="let grocery of groceries">{{grocery}}</ion-item> -->\n\n<br>\n\n\n\n\n\n<div style="width: 800px;  repeat">\n\n<div class="row">\n\n<div class="col2" align="left"><b><u>Desc</u></b></div>\n\n<div class="col2" align="left"><b><u>Quantity</u></b></div>\n\n</div>\n\n\n\n<br>\n\n\n\n<ion-item *ngFor="let item of shoppingList$ | async" detail-push navPush="EditShoppingItemPage" [navParams]="{item: item}">\n\n<div class="row">\n\n<div class="col2" align="left">{{item.Desc}}</div>\n\n<div class="col2" align="left">{{item.quantity}}</div>\n\n</div>\n\n</ion-item>\n\n\n\n</div>\n\n</ion-list>\n\n\n\n </p>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\ionicFirebase\IonicShoppingList\src\pages\currinvreport\currinvreport.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["l" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_0__services_shopping_list_shopping_list_service__["a" /* ShoppingListService */],
@@ -898,7 +901,8 @@ var POReportPage = (function () {
             qtyO: '',
             dateOrdered: '',
             orderedBy: '',
-            upc: ''
+            upc: '',
+            desc: ''
         };
         this.groceries = [
             'Units Sell Through',
@@ -916,13 +920,12 @@ var POReportPage = (function () {
     } //end constructor
     POReportPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["m" /* Component */])({
-            selector: 'page-poreport',template:/*ion-inline-start:"C:\ionicFirebase\IonicShoppingList\src\pages\poreport\poreport.html"*/'<ion-header>\n\n  <ion-navbar color="primary">\n\n    <ion-title>\n\n      P.O. Report\n\n    </ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content>\n\n\n\n   <ion-list>\n\n\n\n<!--        <ion-item *ngFor="let grocery of groceries">{{grocery}}</ion-item> -->\n\n<br>\n\n<div style="width: 800px;  repeat">\n\n<div class="row">\n\n<div class="col" align="center"><b><u>UPC</u></b></div>\n\n<div class="col" align="center"><b><u>Date Ordered</u></b></div>\n\n<div class="col" align="center"><b><u>Qty Ordered</u></b></div>\n\n</div>\n\n\n\n\n\n<br>\n\n\n\n<ion-item *ngFor="let item of shoppingList$ | async" detail-push navPush="EditShoppingItemPage" [navParams]="{item: item}">\n\n<div class="row">\n\n<div class="col" align="center">{{item.upc}}</div>\n\n<div class="col" align="center">{{item.dateOrdered}}</div>\n\n<div class="col" align="center">{{item.qtyO}}</div>\n\n</div>\n\n</ion-item>\n\n\n\n</div>\n\n</ion-list>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\ionicFirebase\IonicShoppingList\src\pages\poreport\poreport.html"*/
+            selector: 'page-poreport',template:/*ion-inline-start:"C:\ionicFirebase\IonicShoppingList\src\pages\poreport\poreport.html"*/'<ion-header>\n\n  <ion-navbar color="primary">\n\n    <ion-title>\n\n      P.O. Report\n\n    </ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content>\n\n\n\n   <ion-list>\n\n\n\n<!--        <ion-item *ngFor="let grocery of groceries">{{grocery}}</ion-item> -->\n\n<br>\n\n<div style="width: 800px;  repeat">\n\n<div class="row">\n\n<div class="col" align="center"><b><u>Desc</u></b></div>\n\n<div class="col" align="center"><b><u>Date Ordered</u></b></div>\n\n<div class="col" align="center"><b><u>Qty Ordered</u></b></div>\n\n</div>\n\n\n\n\n\n<br>\n\n\n\n<ion-item *ngFor="let item of shoppingList$ | async" detail-push navPush="EditShoppingItemPage" [navParams]="{item: item}">\n\n<div class="row">\n\n<div class="col" align="center">{{item.desc}}</div>\n\n<div class="col" align="center">{{item.dateOrdered}}</div>\n\n<div class="col" align="center">{{item.qtyO}}</div>\n\n</div>\n\n</ion-item>\n\n\n\n</div>\n\n</ion-list>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\ionicFirebase\IonicShoppingList\src\pages\poreport\poreport.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["l" /* NavController */],
-            __WEBPACK_IMPORTED_MODULE_0__services_shopping_list_shopping_list_service__["a" /* ShoppingListService */],
-            __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["o" /* Platform */], __WEBPACK_IMPORTED_MODULE_4__services_toast_toast_service__["a" /* ToastService */], __WEBPACK_IMPORTED_MODULE_3_angularfire2_database__["a" /* AngularFireDatabase */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["l" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["l" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_0__services_shopping_list_shopping_list_service__["a" /* ShoppingListService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__services_shopping_list_shopping_list_service__["a" /* ShoppingListService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["o" /* Platform */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["o" /* Platform */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4__services_toast_toast_service__["a" /* ToastService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__services_toast_toast_service__["a" /* ToastService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_3_angularfire2_database__["a" /* AngularFireDatabase */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3_angularfire2_database__["a" /* AngularFireDatabase */]) === "function" && _e || Object])
     ], POReportPage);
     return POReportPage;
+    var _a, _b, _c, _d, _e;
 }());
 
 //# sourceMappingURL=poreport.js.map
@@ -1888,23 +1891,24 @@ var HomePage = (function () {
                 //alert(data);
                 //alert(data.substring(data.indexOf(' ')+1,data.lastIndexOf(':'))); //q0 qty
                 //alert(data.substring(data.lastIndexOf(':')+1,data.lastIndexOf(' ')));  //qC qty
-                newQty = data.substring(data.lastIndexOf(':') + 1, data.lastIndexOf(' ')) - data.substring(data.indexOf(' ') + 1, data.lastIndexOf(':'));
-                this.shoppingList2 = __WEBPACK_IMPORTED_MODULE_8_firebase_app__["database"]().ref("shopping-list/" + data.substr(data.lastIndexOf(' ')).trim());
+                newQty = data.substring(data.lastIndexOf(':') + 1, data.lastIndexOf('-L')) - data.substring(data.indexOf(' ') + 1, data.lastIndexOf(':'));
+                this.shoppingList2 = __WEBPACK_IMPORTED_MODULE_8_firebase_app__["database"]().ref("shopping-list/" + data.substring(data.lastIndexOf('-L'), data.lastIndexOf('^')).trim());
                 this.shoppingList2.update({
                     "quantity": newQty
                 });
                 this.po.push({
                     "upc": data.substring(0, data.indexOf(' ')).trim(),
                     "qtyO": data.substring(data.indexOf(' ') + 1, data.lastIndexOf(':')).trim(),
-                    "qtyC": data.substring(data.lastIndexOf(':') + 1, data.lastIndexOf(' ')).trim(),
-                    "prodId": data.substr(data.lastIndexOf(' ')).trim(),
+                    "qtyC": data.substring(data.lastIndexOf(':') + 1, data.lastIndexOf('-L')).trim(),
+                    "prodId": data.substring(data.lastIndexOf('-L'), data.lastIndexOf('^')).trim(),
                     "dateOrdered": today,
-                    "orderedBy": this.userId
+                    "orderedBy": this.userId,
+                    "desc": data.substring(data.indexOf('^') + 1).trim()
                 });
                 if (this.sendProduct)
-                    this.sendProduct = this.sendProduct + '\n' + 'UPC:  ' + data.substring(0, data.indexOf(' ')) + ' Qty Ordered =  ' + data.substring(data.indexOf(' ') + 1, data.lastIndexOf(':')).trim();
+                    this.sendProduct = this.sendProduct + '\n' + 'UPC:  ' + data.substring(0, data.indexOf(' ')) + ', ' + data.substring(data.indexOf('^') + 1).trim() + ' ,Qty Ordered =  ' + data.substring(data.indexOf(' ') + 1, data.lastIndexOf(':')).trim();
                 else
-                    this.sendProduct = 'UPC:  ' + data.substring(0, data.indexOf(' ')) + ' Qty Ordered = ' + data.substring(data.indexOf(' ') + 1, data.lastIndexOf(':')).trim();
+                    this.sendProduct = 'UPC:  ' + data.substring(0, data.indexOf(' ')) + ', ' + data.substring(data.indexOf('^') + 1).trim() + ' ,Qty Ordered =  ' + data.substring(data.indexOf(' ') + 1, data.lastIndexOf(':')).trim();
             } //end for
             this.prevAveragesList = [];
             this.navCtrl.push(HomePage_1, {
@@ -1969,18 +1973,10 @@ var HomePage = (function () {
         Object(__WEBPACK_IMPORTED_MODULE_2__angular_core__["m" /* Component */])({
             selector: 'page-home',template:/*ion-inline-start:"C:\ionicFirebase\IonicShoppingList\src\pages\home\home.html"*/'<ion-header>\n\n  <ion-navbar color="primary">\n\n    <ion-title>\n\n      Purchase Orders\n\n    </ion-title>\n\n  </ion-navbar>\n\n\n\n<ion-toolbar>\n\n    <ion-segment [(ngModel)]="section" color="primary">\n\n\n\n      <ion-segment-button value="one">Orders\n\n              </ion-segment-button>\n\n\n\n      <ion-segment-button value="two">Re-orders\n\n</ion-segment-button>\n\n\n\n    </ion-segment>\n\n\n\n  </ion-toolbar>\n\n\n\n\n\n</ion-header>\n\n\n\n<ion-content padding>\n\n\n\n <div [ngSwitch]="section">\n\n \n\n      <ion-list *ngSwitchCase="\'one\'">\n\n      <ion-item>\n\n      <ion-list>\n\n\n\n<div text-center>\n\n <button ion-button color="blue" (click)="scan()">Scan by UPC</button>\n\n<br>\n\n<br>\n\nor<br>\n\n<br>\n\n\n\n<ion-item>\n\n\n\n<ion-input placeholder="Enter a Description" [(ngModel)]="prodMan" required></ion-input>\n\n\n\n</ion-item>\n\n\n\n<br>\n\n\n\n<div *ngIf="prevAveragesList !== undefined && prevAveragesList.length > 0 else emptyList">\n\n<button ion-button color="blue" (click)="getItems(prodMan)">Search</button><button ion-button color="blue" (click)="sendOrder()">Send</button>\n\n</div>\n\n\n\n<ng-template #emptyList>\n\n<button ion-button color="blue" (click)="getItems(prodMan)">Search</button>\n\n</ng-template>\n\n\n\n </div>\n\n<br>\n\n      <div *ngIf="prevAveragesList !== undefined" text-center> # P.O. items: {{ prevAveragesList.length }} \n\n    </div>\n\n\n\n\n\n<br>\n\n\n\n<ion-card *ngIf="productFound">\n\n  <ion-card-header>\n\n \n\n  </ion-card-header>\n\n  <ion-card-content>\n\n    <ul>\n\n      <li>{{selectedProduct.desc}}</li>\n\n    </ul>\n\n  </ion-card-content>\n\n</ion-card>\n\n\n\n<div *ngIf="hideMe">\n\n\n\n      <div *ngFor="let desc of descList">\n\n        \n\n<ion-row class="ionrow">\n\n<ion-col width-125>\n\n<button ion-button full color="blue" (click)="onClick(desc.record.upc,desc.record.desc,desc.record.quantity,desc.id)">{{ desc.record.desc }} </button>\n\n</ion-col>\n\n</ion-row>\n\n\n\n\n\n        \n\n      </div>\n\n\n\n      \n\n      <div *ngIf="descList.length === 0">No results, try clearing filters\n\n    </div>\n\n\n\n \n\n\n\n\n\n</div>\n\n\n\n\n\n\n\n</ion-list>\n\n</ion-item>\n\n</ion-list>\n\n\n\n     <ion-list *ngSwitchCase="\'two\'">\n\n     <ion-item>\n\n     <ion-list>\n\n\n\n         Re-orders\n\n\n\n</ion-list>        \n\n</ion-item>\n\n</ion-list>\n\n</div>\n\n\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\ionicFirebase\IonicShoppingList\src\pages\home\home.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3_ionic_angular__["l" /* NavController */],
-            __WEBPACK_IMPORTED_MODULE_0__services_shopping_list_shopping_list_service__["a" /* ShoppingListService */],
-            __WEBPACK_IMPORTED_MODULE_5__ionic_native_barcode_scanner__["a" /* BarcodeScanner */],
-            __WEBPACK_IMPORTED_MODULE_1__services_toast_toast_service__["a" /* ToastService */],
-            __WEBPACK_IMPORTED_MODULE_6__providers_data_service_data_service__["a" /* DataServiceProvider */],
-            __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["o" /* Platform */],
-            __WEBPACK_IMPORTED_MODULE_7_angularfire2_database__["a" /* AngularFireDatabase */],
-            __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["n" /* NavParams */],
-            __WEBPACK_IMPORTED_MODULE_4__angular_http__["a" /* Http */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["l" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["l" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_0__services_shopping_list_shopping_list_service__["a" /* ShoppingListService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__services_shopping_list_shopping_list_service__["a" /* ShoppingListService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_5__ionic_native_barcode_scanner__["a" /* BarcodeScanner */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__ionic_native_barcode_scanner__["a" /* BarcodeScanner */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1__services_toast_toast_service__["a" /* ToastService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__services_toast_toast_service__["a" /* ToastService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_6__providers_data_service_data_service__["a" /* DataServiceProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__providers_data_service_data_service__["a" /* DataServiceProvider */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["o" /* Platform */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["o" /* Platform */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_7_angularfire2_database__["a" /* AngularFireDatabase */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_7_angularfire2_database__["a" /* AngularFireDatabase */]) === "function" && _g || Object, typeof (_h = typeof __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["n" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["n" /* NavParams */]) === "function" && _h || Object, typeof (_j = typeof __WEBPACK_IMPORTED_MODULE_4__angular_http__["a" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__angular_http__["a" /* Http */]) === "function" && _j || Object])
     ], HomePage);
     return HomePage;
-    var HomePage_1;
+    var HomePage_1, _a, _b, _c, _d, _e, _f, _g, _h, _j;
 }()); //end export class
 
 //# sourceMappingURL=home.js.map

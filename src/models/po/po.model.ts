@@ -6,4 +6,5 @@ export interface Item {
  dateOrdered: string;
  orderedBy: string;
  upc: string;
+ desc: string;
 }
