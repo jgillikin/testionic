@@ -25798,3 +25798,37 @@ page-homeadd ::-moz-placeholder {
 page-homeadd :-ms-input-placeholder {
   text-align: center;
 }
+
+page-reviewcart input {
+  background: white;
+  padding: 15px;
+  border-radius: 5px;
+  border: 1px solid #c8c7cc;
+  margin: 0;
+}
+
+page-reviewcart .text-input {
+  background: white;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #c8c7cc;
+  margin: 0;
+}
+
+page-reviewcart ::-webkit-input-placeholder {
+  text-align: center;
+}
+
+page-reviewcart :-moz-placeholder {
+  /* Firefox 18- */
+  text-align: center;
+}
+
+page-reviewcart ::-moz-placeholder {
+  /* Firefox 19+ */
+  text-align: center;
+}
+
+page-reviewcart :-ms-input-placeholder {
+  text-align: center;
+}

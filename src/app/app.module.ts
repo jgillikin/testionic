@@ -16,6 +16,8 @@ import { HomePage } from '../pages/home/home';
 import { CurrInvReportPage } from '../pages/currinvreport/currinvreport';
 import { POReportPage } from '../pages/poreport/poreport';
 import { HomeaddPage } from '../pages/homeadd/homeadd';
+import { ReviewcartPage } from '../pages/reviewcart/reviewcart';
+import { EditcartPage } from '../pages/editcart/editcart';
 import { ResetpwdPage } from '../pages/resetpwd/resetpwd';
 //import { LoginPage } from '../pages/login/login';
 import { IrreportsPage } from '../pages/irreports/irreports';
@@ -43,7 +45,9 @@ import { DataServiceProvider } from '../providers/data-service/data-service';
     AddLocationPage,
     CurrInvReportPage,
     POReportPage,
-    ResetpwdPage
+    ResetpwdPage,
+    ReviewcartPage,
+    EditcartPage
 //   LoginPage
   ],
   imports: [
@@ -68,7 +72,9 @@ SuperTabsModule.forRoot(),
     AddLocationPage,
     CurrInvReportPage,
     POReportPage,
-    ResetpwdPage
+    ResetpwdPage,
+    ReviewcartPage,
+    EditcartPage
 //LoginPage
   ],
   providers: [

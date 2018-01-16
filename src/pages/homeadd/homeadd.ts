@@ -15,6 +15,8 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Subscription } from 'rxjs/Subscription';
 import 'rxjs/add/operator/switchMap';
 import { HomePage } from '../home/home';
+import { ReviewcartPage } from '../reviewcart/reviewcart';
+
 
 @IonicPage()
 @Component({
@@ -215,155 +217,17 @@ return false;
 }
 else {
 
-var link='https://jasongillikin.000webhostapp.com/sendmail.php';
-var myData;
-var message;
-
-let newQty:any;
-
-let today:any = new Date();
-let dd:any = today.getDate();
-let mm:any = today.getMonth()+1; //January is 0!
-
-let yyyy:any = today.getFullYear();
-if(dd<10){
-    dd='0'+dd;
-} 
-if(mm<10){
-    mm='0'+mm;
-} 
-today = mm+'/'+dd+'/'+yyyy;
-
-if (this.prevAveragesList === undefined) {
-
-alert("prevAveragesList is undefined");
-
-//insert from this.averagesList array
-this.averagesList.push(upc+' '+qO+':'+qC+' '+this.key1+'^'+desc1);
-
- for(let data of this.averagesList) {
- // alert(data.substr(data.lastIndexOf(' '))); //key
-
-//alert("key is "+data.substr(data.lastIndexOf('-L'))); //key
-
-//alert(data);
-
-//alert(data.substring(data.indexOf(' ')+1,data.lastIndexOf(':'))); //q0 qty
-
-//alert(data.substring(data.lastIndexOf(':')+1,data.lastIndexOf(' ')));  //qC qty
-
-newQty = data.substring(data.lastIndexOf(':')+1,data.lastIndexOf(' ')) - data.substring(data.indexOf(' ')+1,data.lastIndexOf(':'));
-
-this.shoppingList2 = firebase.database().ref("shopping-list/"+data.substring(data.lastIndexOf(' ')).trim());
-
-this.shoppingList2.update ({
- "quantity": newQty
-});
-
-this.po.push({
- "upc": data.substring(0,data.indexOf(' ')).trim(),
- "qtyO": data.substring(data.indexOf(' ')+1,data.lastIndexOf(':')).trim(),
- "qtyC": data.substring(data.lastIndexOf(':')+1,data.lastIndexOf(' ')).trim(),
- "prodId": data.substring(data.lastIndexOf(' ')).trim(),
- "dateOrdered": today,
- "orderedBy": this.userId,
- "desc": data.substring(data.lastIndexOf('^')).trim()
-
-}); 
-
-if (this.sendProduct)
- this.sendProduct = this.sendProduct+'\n'+'UPC:  '+data.substring(0,data.indexOf(' '))+',  '+data.substring(data.lastIndexOf('^')).trim() +', Qty Ordered =  '+data.substring(data.indexOf(' ')+1,data.lastIndexOf(':')).trim();
-else
- this.sendProduct = 'UPC: '+data.substring(0,data.indexOf(' '))+' , '+data.substring(data.lastIndexOf('^')).trim() +' , Qty Ordered= '+data.substring(data.indexOf(' ')+1,data.lastIndexOf(':')).trim();
-
-
- } //end for
-
-this.averagesList = [];
-this.navCtrl.push(HomePage, {
-    ordersPassed: this.averagesList
-   })
-
-//send email
-//myData = JSON.stringify({username: "sendBodyMessage"});
-myData = JSON.stringify({username: this.sendProduct});
-
-this.http.post(link,myData)
-.subscribe(data => { 
-this.data.response = "OK";
-}, error => {
-console.log("oops");
-});
-
-
-}
-else {
-
-//alert("in prevAveragesList");
-//insert from this.prevAveragesList
-
-//special characters not allowed in spreadsheet are colons and carrots and negative Ls
+//this.toast.show(`go to ReviewcartPage`);
 
   this.prevAveragesList.push(upc+' '+qO+':'+qC+' '+this.key1+'^'+desc1);
 
-
- for(let data of this.prevAveragesList) {
-//  alert(data.substr(data.lastIndexOf(' '))); //key
-//alert(data);
-
-//alert(data.substring(data.indexOf(' ')+1,data.lastIndexOf(':'))); //q0 qty
-
-//alert(data.substring(data.lastIndexOf(':')+1,data.lastIndexOf('-L')));  //qC qty
-
-newQty = data.substring(data.lastIndexOf(':')+1,data.lastIndexOf('-L')) - data.substring(data.indexOf(' ')+1,data.lastIndexOf(':'));
-
-
-this.shoppingList2 = firebase.database().ref("shopping-list/"+data.substring(data.lastIndexOf('-L'),data.lastIndexOf('^')).trim());
-this.shoppingList2.update ({
- "quantity": newQty
-});
-
-this.po.push({
- "upc": data.substring(0,data.indexOf(' ')).trim(),
- "qtyO": data.substring(data.indexOf(' ')+1,data.lastIndexOf(':')).trim(),
- "qtyC": data.substring(data.lastIndexOf(':')+1,data.lastIndexOf('-L')).trim(),
- "prodId": data.substring(data.lastIndexOf('-L'),data.lastIndexOf('^')).trim(),
- "dateOrdered": today,
- "orderedBy": this.userId,
- "desc": data.substring(data.indexOf('^')+1).trim()
-
-}); 
-
-if (this.sendProduct)
- this.sendProduct = this.sendProduct+'\n'+'UPC:  '+data.substring(0,data.indexOf(' '))+', '+data.substring(data.indexOf('^')+1).trim()+' ,Qty Ordered =  '+data.substring(data.indexOf(' ')+1,data.lastIndexOf(':')).trim();
-else
- this.sendProduct = 'UPC:  '+data.substring(0,data.indexOf(' '))+', '+data.substring(data.indexOf('^')+1).trim()+' ,Qty Ordered =  '+data.substring(data.indexOf(' ')+1,data.lastIndexOf(':')).trim();
-
- } //end for
-
-
-this.prevAveragesList = [];
-this.navCtrl.push(HomePage, {
-    ordersPassed: this.prevAveragesList
+this.navCtrl.push(ReviewcartPage, {
+    fourthPassed: this.prevAveragesList
    })
-}
-
-
-//send email
-myData = JSON.stringify({username: this.sendProduct});
-
-this.http.post(link,myData)
-.subscribe(data => { 
-this.data.response = "OK";
-}, error => {
-console.log("oops");
-});
-
 
 } //end else
 
 }
-
   
 onBlur(qO: any, qC: any) {
 //alert("in onBlur and order qty is "+qO+ "and onhand qty is "+qC);

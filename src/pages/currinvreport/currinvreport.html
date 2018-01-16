@@ -12,26 +12,14 @@
 
    <ion-list>
 
-<!--        <ion-item *ngFor="let grocery of groceries">{{grocery}}</ion-item> -->
 
 <br>
 
-<div style="width: 800px; repeat">
-<div class="row">
-<div class="col" align="center"><b><u>Desc</u></b></div>
-<div class="col" align="center"><b><u>Quantity</u></b></div>
-</div>
-
-<br>
 
 <ion-item *ngFor="let item of shoppingList$ | async" detail-push navPush="EditShoppingItemPage" [navParams]="{item: item}" >
-<div class="row">
-<div class="col" align="center">{{item.desc}}</div>
-<div class="col" align="center">{{item.quantity}}</div>
-</div>
+<div class="item">{{item.desc}}<br> Qty:   {{item.quantity}}</div>
 </ion-item>
 
-</div>
 </ion-list>
 </p>
 
@@ -42,22 +30,14 @@
 <br>
 
 
-<div style="width: 800px;  repeat">
-<div class="row">
-<div class="col2" align="left"><b><u>Desc</u></b></div>
-<div class="col2" align="left"><b><u>Quantity</u></b></div>
-</div>
-
-<br>
-
 <ion-item *ngFor="let item of shoppingList$ | async" detail-push navPush="EditShoppingItemPage" [navParams]="{item: item}">
-<div class="row">
-<div class="col2" align="left">{{item.Desc}}</div>
-<div class="col2" align="left">{{item.quantity}}</div>
-</div>
+
+
+<div class="item">{{item.desc}}<br> Qty:   {{item.quantity}}</div>
+
 </ion-item>
 
-</div>
+
 </ion-list>
 
  </p>
