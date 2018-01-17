@@ -354,7 +354,7 @@ else
 
 
 this.prevAveragesList = [];
-this.navCtrl.push(HomePage, {
+this.navCtrl.setRoot(HomePage, {
     ordersPassed: this.prevAveragesList
    })
 }
