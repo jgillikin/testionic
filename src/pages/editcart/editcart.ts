@@ -501,21 +501,36 @@ this.toast.show(`Found`);
 
 } //end scan
 
+
 updateOrder (qtyR) {
-//alert("modify upc for "+upc);
+//alert("qtyR is "+qtyR);
     
     let descs = [];
     let temp = [];
 
-for (let data of this.prevAveragesList) {
+for (var i=0; i < this.prevAveragesList.length; i++) {
+ 
+//alert("before replace" +this.prevAveragesList[i]);
+ //alert(this.prevAveragesList[i].substring(this.prevAveragesList[i].indexOf(' ')+1,this.prevAveragesList[i].lastIndexOf(':'))+':');
 
-q = this.upc;
+descs[i] = this.prevAveragesList[i].replace(this.prevAveragesList[i].substring(this.prevAveragesList[i].indexOf(' ')+1,this.prevAveragesList[i].lastIndexOf(':')+1), qtyR+':');
+
+//alert("after replace " +descs[i]);
+
+}
+
+this.prevAveragesList = descs;
+
+/*for (let data of this.prevAveragesList) {
+
+var q = this.upc;
 
 this.descList = this.descList.filter((v) => {
     if(v.upc && q) {
       if (v.upc.toLowerCase().indexOf(q.toLowerCase()) > -1) {
         temp = data; 
        // temp.substring(data.indexOf(' ')+1,data.lastIndexOf(':')).trim() = qtyR;
+        alert(data.findIndex(findRecord(data.substring(0,data.indexOf(' ')).trim())));
         descs.push(temp);           
         return true;
       }
@@ -526,9 +541,7 @@ this.descList = this.descList.filter((v) => {
     }
   });
 
-} //end for
-
-this.prevAveragesList = descs;
+} */
 
 this.navCtrl.push(ReviewcartPage, {
     fourthPassed: this.prevAveragesList
@@ -537,5 +550,8 @@ this.navCtrl.push(ReviewcartPage, {
 
 } //end updateOrder
 
+findRecord(element) {
+ return element === this.upc;
+}
 
 } //end export class
