@@ -15,7 +15,7 @@
 
 <br>
 
-<ion-item *ngFor="let item of shoppingList$ | async" detail-push navPush="EditShoppingItemPage" [navParams]="{item: item}">
+<ion-item *ngFor="let item of shoppingList$ | async">
 
 <div class="item">{{item.desc}}<br>
 {{item.dateOrdered}}<br>
