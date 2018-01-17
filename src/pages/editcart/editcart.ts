@@ -123,7 +123,9 @@ this.descRef.on('value', descList => {
 
 for (let data of this.prevAveragesList) {
 
-var q = data.substring(0,data.indexOf(' ')).trim();
+//var q = data.substring(0,data.indexOf(' ')).trim();
+//alert("upc passed in is "+this.upc);
+var q = this.upc;
 
   this.descList = this.descList.filter((v) => {
     if(v.upc && q) {
@@ -136,6 +138,8 @@ var q = data.substring(0,data.indexOf(' ')).trim();
 
 
 } //end for
+
+//set prevAveragesList to filtered by UPC version of descList
 
       let platforms = this.platform.platforms();
 
@@ -507,13 +511,17 @@ updateOrder (qtyR) {
     
     let descs = [];
     let temp = [];
+    descs = this.prevAveragesList;
 
 for (var i=0; i < this.prevAveragesList.length; i++) {
  
 //alert("before replace" +this.prevAveragesList[i]);
  //alert(this.prevAveragesList[i].substring(this.prevAveragesList[i].indexOf(' ')+1,this.prevAveragesList[i].lastIndexOf(':'))+':');
 
+if (this.prevAveragesList[i].substring(0,this.prevAveragesList[i].indexOf(' ')).trim() === this.upc) {
+
 descs[i] = this.prevAveragesList[i].replace(this.prevAveragesList[i].substring(this.prevAveragesList[i].indexOf(' ')+1,this.prevAveragesList[i].lastIndexOf(':')+1), qtyR+':');
+}
 
 //alert("after replace " +descs[i]);
 

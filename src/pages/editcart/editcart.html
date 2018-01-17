@@ -18,6 +18,7 @@
 
 <ion-item *ngFor="let item of prevAveragesList" >
 
+<div *ngIf="item.substring(0,item.indexOf(' ')).trim() === upc">
 
 <div class="item">{{item.substring(item.lastIndexOf('^')+1).trim()}}<br>
 Qty to Order:  <br>
@@ -25,6 +26,8 @@ Qty to Order:  <br>
 <ion-input type="number" [(ngModel)]="qtyOrder" placeholder="{{item.substring(item.indexOf(' ')+1,item.lastIndexOf(':')).trim()}}" required>
 </ion-input>
 </ion-item>
+
+</div>
 
 </div>
 
@@ -42,6 +45,8 @@ Qty to Order:  <br>
 
 <ion-item *ngFor="let item of prevAveragesList" >
 
+<div *ngIf="item.substring(0,item.indexOf(' ')).trim() === upc">
+
 
 <div class="item">{{item.substring(item.lastIndexOf('^')+1).trim()}}<br>
 Qty to Order:  <br>
@@ -49,6 +54,8 @@ Qty to Order:  <br>
 <ion-input type="number" [(ngModel)]="qtyOrder" placeholder="{{item.substring(item.indexOf(' ')+1,item.lastIndexOf(':')).trim()}}" required>
 </ion-input>
 </ion-item>
+
+</div>
 
 </div>
 
