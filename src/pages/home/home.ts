@@ -14,6 +14,7 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Subscription } from 'rxjs/Subscription';
 import 'rxjs/add/operator/switchMap';
 import { HomeaddPage } from '../homeadd/homeadd';
+import { ReviewcartPage } from '../reviewcart/reviewcart';
 
 
 @IonicPage()
@@ -237,6 +238,24 @@ if (!searchbar)
 //  alert(this.descList.length);
 
 }
+
+sendOrder2() {
+
+//alert("qC is "+qC+" and qO is "+qO+" and upc is "+upc);
+
+//alert("in sendOrder desc is "+desc1);
+
+
+//this.toast.show(`go to ReviewcartPage`);
+
+
+this.navCtrl.push(ReviewcartPage, {
+    fourthPassed: this.prevAveragesList
+   })
+
+
+}
+
 
 sendOrder() {
 
