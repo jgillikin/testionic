@@ -36,7 +36,7 @@ Qty to Order:  {{item.substring(item.indexOf(' ')+1,item.lastIndexOf(':')).trim(
 <br>
 
 
-<ion-item *ngFor="let item of descList | async" detail-push navPush="EditShoppingItemPage" [navParams]="{item: item}">
+<ion-item *ngFor="let item of prevAveragesList" >
 
 
 <div class="item">{{item.substring(item.lastIndexOf('^')+1).trim()}}<br>
