@@ -249,9 +249,9 @@ sendOrder2() {
 //this.toast.show(`go to ReviewcartPage`);
 
 
-this.navCtrl.setRoot(ReviewcartPage, {
+this.navCtrl.push(ReviewcartPage, {
     fourthPassed: this.prevAveragesList
-   })
+   });
 
 
 }

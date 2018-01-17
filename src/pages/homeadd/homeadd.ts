@@ -221,9 +221,9 @@ else {
 
   this.prevAveragesList.push(upc+' '+qO+':'+qC+' '+this.key1+'^'+desc1);
 
-this.navCtrl.setRoot(ReviewcartPage, {
+this.navCtrl.push(ReviewcartPage, {
     fourthPassed: this.prevAveragesList
-   })
+   });
 
 } //end else
 
