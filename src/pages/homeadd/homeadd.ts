@@ -221,7 +221,7 @@ else {
 
   this.prevAveragesList.push(upc+' '+qO+':'+qC+' '+this.key1+'^'+desc1);
 
-this.navCtrl.push(ReviewcartPage, {
+this.navCtrl.setRoot(ReviewcartPage, {
     fourthPassed: this.prevAveragesList
    })
 

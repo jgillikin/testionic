@@ -249,7 +249,7 @@ sendOrder2() {
 //this.toast.show(`go to ReviewcartPage`);
 
 
-this.navCtrl.push(ReviewcartPage, {
+this.navCtrl.setRoot(ReviewcartPage, {
     fourthPassed: this.prevAveragesList
    })
 
