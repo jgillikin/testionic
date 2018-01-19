@@ -33,7 +33,7 @@ data: any = {};
   
   platformList: string = '';
   isApp: boolean = true;
-
+  emailS: any;
   section
 
   products: any[] = [];
@@ -70,7 +70,7 @@ po: AngularFireList<any> = this.db.list('/purchase-order');
 http: Http) {
 
 this.http = http;
-
+this.emailS = this.params.get('emailS');
 
 if (this.params.get('ordersPassed') === undefined) {
 //alert("undefined");
@@ -162,7 +162,8 @@ this.navCtrl.push(HomeaddPage, {
     secondPassed: desc,
     thirdPassed: qty,
     fourthPassed: this.prevAveragesList,
-    fifthPassed: key1
+    fifthPassed: key1,
+    emailS: this.emailS
    })
 }
 
@@ -250,7 +251,8 @@ sendOrder2() {
 
 
 this.navCtrl.push(ReviewcartPage, {
-    fourthPassed: this.prevAveragesList
+    fourthPassed: this.prevAveragesList,
+    emailS: this.emailS
    });
 
 
@@ -382,7 +384,8 @@ else
 
 this.prevAveragesList = [];
 this.navCtrl.push(HomePage, {
-    ordersPassed: this.prevAveragesList
+    ordersPassed: this.prevAveragesList,
+    emailS: this.emailS
    })
 }
 
@@ -433,11 +436,11 @@ this.selectedProduct = this.descList;
 
 
       if(this.selectedProduct !== undefined || this.selectedProduct.length > 0) {
-this.toast.show(`Found`);
+//this.toast.show(`Found`);
         this.productFound = false;
         console.log(this.selectedProduct);
       } else {
-       this.toast.show(`Not found`);
+    //   this.toast.show(`Not found`);
         this.selectedProduct = {};
         this.productFound = false;
       /*  this.toast.show('Product not found', '5000', 'center').subscribe(
@@ -448,7 +451,7 @@ this.toast.show(`Found`);
       }
     }, (err) => {
 
-      this.toast.show(`Some error, probably in database item name`);
+  //    this.toast.show(`Some error, probably in database item name`);
      /* this.toast.show(err, '5000', 'center').subscribe(
         toast => {
           console.log(toast);

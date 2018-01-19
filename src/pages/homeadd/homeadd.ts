@@ -38,6 +38,7 @@ export class HomeaddPage {
 
   section
 
+  emailS: any;
   products: any[] = [];
   products2: any[] = [];
   sendProduct: any;
@@ -84,6 +85,9 @@ this.upc = this.params.get('firstPassed');
 this.desc = this.params.get('secondPassed');
 this.qty = this.params.get('thirdPassed');
 this.key1 = this.params.get('fifthPassed');
+this.emailS = this.params.get('emailS');
+
+
 
 //alert("passed in key1 is "+this.key1);
 
@@ -194,7 +198,8 @@ if (this.prevAveragesList === undefined) {
 else {
   this.prevAveragesList.push(upc+' '+qO+':'+qC+' '+keyU+'^'+desc1);
 this.navCtrl.push(HomePage, {
-    ordersPassed: this.prevAveragesList
+    ordersPassed: this.prevAveragesList,
+    emailS: this.emailS
    })
 
 }
@@ -222,7 +227,8 @@ else {
   this.prevAveragesList.push(upc+' '+qO+':'+qC+' '+this.key1+'^'+desc1);
 
 this.navCtrl.push(ReviewcartPage, {
-    fourthPassed: this.prevAveragesList
+    fourthPassed: this.prevAveragesList,
+    emailS: this.emailS
    });
 
 } //end else

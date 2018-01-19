@@ -29,20 +29,26 @@
       <ion-item>
       <ion-list>
 
-<div text-center>
+
+<div *ngIf="isApp" text-center>
  <button ion-button color="blue" (click)="scan()">Scan by UPC</button>
 <br>
 <br>
 or<br>
 <br>
+</div>
 
+<ion-card text-center>
 <ion-item>
 
 <ion-input placeholder="Enter a Description" [(ngModel)]="prodMan" required></ion-input>
 
 </ion-item>
+</ion-card>
 
 <br>
+
+<div text-center>
 
 <div *ngIf="prevAveragesList !== undefined && prevAveragesList.length > 0 else emptyList">
 <button ion-button color="blue" (click)="getItems(prodMan)">Search</button><button ion-button color="blue" (click)="sendOrder2()">Send</button>
@@ -52,7 +58,8 @@ or<br>
 <button ion-button color="blue" (click)="getItems(prodMan)">Search</button>
 </ng-template>
 
- </div>
+</div>
+ 
 <br>
       <div *ngIf="prevAveragesList !== undefined" text-center> # P.O. items: {{ prevAveragesList.length }} 
     </div>
@@ -73,11 +80,11 @@ or<br>
 
 <div *ngIf="hideMe">
 
-      <div *ngFor="let desc of descList">
+      <div *ngFor="let desc of descList" text-center>
         
 <ion-row class="ionrow">
 <ion-col width-125>
-<button ion-button full color="blue" (click)="onClick(desc.record.upc,desc.record.desc,desc.record.quantity,desc.id)">{{ desc.record.desc }} </button>
+<button ion-button color="blue" (click)="onClick(desc.record.upc,desc.record.desc,desc.record.quantity,desc.id)" style="width:29%">{{ desc.record.desc }} </button>
 </ion-col>
 </ion-row>
 

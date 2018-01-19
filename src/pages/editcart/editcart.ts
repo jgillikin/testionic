@@ -41,7 +41,7 @@ export class EditcartPage {
   products: any[] = [];
   products2: any[] = [];
   sendProduct: any;
-
+  emailS: any;
   selectedProduct: any;
   productFound:boolean = false;
 
@@ -84,6 +84,7 @@ this.upc = this.params.get('upc');
 this.desc = this.params.get('secondPassed');
 this.qty = this.params.get('thirdPassed');
 this.key1 = this.params.get('fifthPassed');
+this.emailS = this.params.get('emailS');
 
 //alert("passed in key1 is "+this.key1);
 
@@ -213,7 +214,8 @@ if (this.prevAveragesList === undefined) {
 else {
   this.prevAveragesList.push(upc+' '+qO+':'+qC+' '+keyU+'^'+desc1);
 this.navCtrl.push(HomePage, {
-    ordersPassed: this.prevAveragesList
+    ordersPassed: this.prevAveragesList,
+    emailS: this.emailS
    })
 
 }
@@ -359,7 +361,8 @@ else
 
 this.prevAveragesList = [];
 this.navCtrl.push(HomePage, {
-    ordersPassed: this.prevAveragesList
+    ordersPassed: this.prevAveragesList,
+    emailS: this.emailS
    })
 }
 
@@ -513,6 +516,8 @@ updateOrder (qtyR) {
     let temp = [];
     descs = this.prevAveragesList;
 
+
+
 for (var i=0; i < this.prevAveragesList.length; i++) {
  
 //alert("before replace" +this.prevAveragesList[i]);
@@ -520,7 +525,14 @@ for (var i=0; i < this.prevAveragesList.length; i++) {
 
 if (this.prevAveragesList[i].substring(0,this.prevAveragesList[i].indexOf(' ')).trim() === this.upc) {
 
+if (Number(qtyR) > Number(this.prevAveragesList[i].substring(this.prevAveragesList[i].lastIndexOf(':')+1,this.prevAveragesList[i].lastIndexOf('-L')).trim()) ) {
+this.toast.show(`Not enough quantity onhand`);
+return false;
+}
+else {
 descs[i] = this.prevAveragesList[i].replace(this.prevAveragesList[i].substring(this.prevAveragesList[i].indexOf(' ')+1,this.prevAveragesList[i].lastIndexOf(':')+1), qtyR+':');
+} //end else
+
 }
 
 //alert("after replace " +descs[i]);
@@ -551,8 +563,9 @@ this.descList = this.descList.filter((v) => {
 
 } */
 
-this.navCtrl.push(ReviewcartPage, {
-    fourthPassed: this.prevAveragesList
+this.navCtrl.setRoot(ReviewcartPage, {
+    fourthPassed: this.prevAveragesList,
+    emailS: this.emailS
    }) 
 
 

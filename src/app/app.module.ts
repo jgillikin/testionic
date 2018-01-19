@@ -13,6 +13,7 @@ import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
 import { TabsPage } from '../pages/tabs/tabs';
 import { HomePage } from '../pages/home/home';
+import { CustselectPage } from '../pages/custselect/custselect';
 import { CurrInvReportPage } from '../pages/currinvreport/currinvreport';
 import { POReportPage } from '../pages/poreport/poreport';
 import { HomeaddPage } from '../pages/homeadd/homeadd';
@@ -47,7 +48,8 @@ import { DataServiceProvider } from '../providers/data-service/data-service';
     POReportPage,
     ResetpwdPage,
     ReviewcartPage,
-    EditcartPage
+    EditcartPage,
+    CustselectPage,
 //   LoginPage
   ],
   imports: [
@@ -74,7 +76,8 @@ SuperTabsModule.forRoot(),
     POReportPage,
     ResetpwdPage,
     ReviewcartPage,
-    EditcartPage
+    EditcartPage,
+    CustselectPage
 //LoginPage
   ],
   providers: [

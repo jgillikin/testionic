@@ -16,7 +16,7 @@ import { Subscription } from 'rxjs/Subscription';
 import 'rxjs/add/operator/switchMap';
 import { HomePage } from '../home/home';
 import { EditcartPage } from '../editcart/editcart';
-
+import { CustselectPage } from '../custselect/custselect';
 
 @IonicPage()
 @Component({
@@ -41,6 +41,7 @@ export class ReviewcartPage {
   products: any[] = [];
   products2: any[] = [];
   sendProduct: any;
+  emailS: any;
 
   selectedProduct: any;
   productFound:boolean = false;
@@ -84,6 +85,8 @@ this.upc = this.params.get('firstPassed');
 this.desc = this.params.get('secondPassed');
 this.qty = this.params.get('thirdPassed');
 this.key1 = this.params.get('fifthPassed');
+this.emailS = this.params.get('emailS');
+
 
 //alert("passed in key1 is "+this.key1);
 
@@ -209,7 +212,8 @@ if (this.prevAveragesList === undefined) {
 else {
   this.prevAveragesList.push(upc+' '+qO+':'+qC+' '+keyU+'^'+desc1);
 this.navCtrl.push(HomePage, {
-    ordersPassed: this.prevAveragesList
+    ordersPassed: this.prevAveragesList,
+    emailS: this.emailS
    })
 
 }
@@ -355,13 +359,15 @@ else
 
 this.prevAveragesList = [];
 this.navCtrl.setRoot(HomePage, {
-    ordersPassed: this.prevAveragesList
+    ordersPassed: this.prevAveragesList,
+    emailS: this.emailS
    })
 }
 
+//alert("about to send email and emailS is "+this.emailS);
 
 //send email
-myData = JSON.stringify({username: this.sendProduct});
+myData = JSON.stringify({username: this.sendProduct,emailS: this.emailS});
 
 this.http.post(link,myData)
 .subscribe(data => { 
@@ -505,7 +511,51 @@ changeOrder (upc) {
 //alert("modify upc for "+upc);
 this.navCtrl.push(EditcartPage, {
     fourthPassed: this.prevAveragesList,
-    upc: upc
+    upc: upc,
+    emailS: this.emailS
+   })
+
+}
+
+removeOrder (upc) {
+
+if (this.prevAveragesList.length === 1) {
+
+ this.prevAveragesList.splice(0,1);
+
+ this.navCtrl.setRoot(HomePage, {
+    fourthPassed: this.prevAveragesList,
+    emailS: this.emailS
+   })
+
+}
+
+if (this.prevAveragesList.length > 1 ) {
+
+
+var i = this.prevAveragesList.indexOf(upc);
+for (var i = this.prevAveragesList.length-1; i--;) {
+ if (this.prevAveragesList[i].substring(0,this.prevAveragesList[i].indexOf(' ')).trim() === upc)
+  this.prevAveragesList.splice(i,1);
+}
+
+this.navCtrl.setRoot(ReviewcartPage, {
+    fourthPassed: this.prevAveragesList,
+    emailS: this.emailS
+   })
+
+}
+
+
+
+}
+
+cancelOrder () {
+
+this.prevAveragesList = [];
+
+ this.navCtrl.setRoot(CustselectPage, {
+    fourthPassed: this.prevAveragesList
    })
 
 }

@@ -8,6 +8,8 @@
 
 <ion-content>
 
+<div text-center>
+
  <p *ngIf="!isApp">
 
    <ion-list>
@@ -21,9 +23,10 @@
 <div *ngIf="item.substring(0,item.indexOf(' ')).trim() === upc">
 
 <div class="item">{{item.substring(item.lastIndexOf('^')+1).trim()}}<br>
-Qty to Order:  <br>
+Qty On-hand:  {{item.substring(item.lastIndexOf(':')+1,item.lastIndexOf('-L')).trim() }}<br>
+Qty to Order:<br>
 <ion-item>
-<ion-input type="number" [(ngModel)]="qtyOrder" placeholder="{{item.substring(item.indexOf(' ')+1,item.lastIndexOf(':')).trim()}}" required>
+<ion-input style="border-bottom: 1px solid #000;max-width: 25%;"  type="text" [(ngModel)]="qtyOrder" value="{{item.substring(item.indexOf(' ')+1,item.lastIndexOf(':')).trim()}}" required >
 </ion-input>
 </ion-item>
 
@@ -69,6 +72,8 @@ Qty to Order:  <br>
 <div text-center>
 
 <button ion-button color="blue" (click)="updateOrder(qtyOrder)">Update</button>
+</div>
+
 </div>
 </ion-content>
 

@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>
+      P.O. Customer
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+<br>
+<br>
+
+<ion-item>
+  <ion-label>Customer to Send P.O. to</ion-label>
+  <ion-select [(ngModel)]="Customer" class="myCustomSelect" (ionChange)="onChange()">
+    <ion-option value="briancanfield6@gmail.com">VA Diner</ion-option>
+    <ion-option value="jason.gillikin@gmail.com">U.S.I.T. Corp</ion-option>
+  </ion-select>
+</ion-item>
+
+</ion-content>

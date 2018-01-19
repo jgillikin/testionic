@@ -25731,20 +25731,32 @@ page-currinvreport .col2 {
   font-size: .9em;
 }
 
+page-custselect ion-select {
+  max-width: 40% !important;
+}
+
+page-custselect .item-select .input-label {
+  width: 40%;
+}
+
+page-custselect .myCustomSelect {
+  max-width: 40% !important;
+}
+
 page-home input {
-  background: white;
+  margin-left: auto;
+  margin-right: auto;
   padding: 15px;
-  border-radius: 5px;
+  display: block !important;
   border: 1px solid #c8c7cc;
-  margin: 0;
 }
 
 page-home .text-input {
-  background: white;
-  padding: 10px;
-  border-radius: 5px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 15px;
+  display: block !important;
   border: 1px solid #c8c7cc;
-  margin: 0;
 }
 
 page-home ::-webkit-input-placeholder {
