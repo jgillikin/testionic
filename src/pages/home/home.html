@@ -38,13 +38,26 @@ or<br>
 <br>
 </div>
 
-<ion-card text-center>
+<div *ngIf="!isApp" text-center>
+<table width="50%" align="center">
 <ion-item>
 
 <ion-input placeholder="Enter a Description" [(ngModel)]="prodMan" required></ion-input>
 
 </ion-item>
-</ion-card>
+</table>
+</div>
+
+<div *ngIf="isApp" text-center>
+
+<ion-item>
+
+<ion-input placeholder="Enter a Description" [(ngModel)]="prodMan" required></ion-input>
+
+</ion-item>
+</div>
+
+
 
 <br>
 
