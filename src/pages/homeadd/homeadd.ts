@@ -104,12 +104,12 @@ else {
 this.size$ = new BehaviorSubject(null);
     
 
-this.items$ = this.size$.switchMap(size =>
+/*this.items$ = this.size$.switchMap(size =>
       db.list('/shopping-list', ref =>
         size ? ref.orderByChild('upc').equalTo(size) : ref
       ).snapshotChanges()
     );
-
+*/
 
 this.descRef = firebase.database().ref('/shopping-list');
 
@@ -136,16 +136,17 @@ this.descRef.on('value', descList => {
 
 this.section = "one";
 
+/*
 this.dataService.getProducts()
         .subscribe((response)=> {
             this.products = response
             console.log(this.products);
 });
-
+*/
 
  
 
-
+/*
  this.shoppingList$ = this.shopping
 				.getShoppingList() //DB List
 				.snapshotChanges() //key and value
@@ -156,7 +157,7 @@ this.dataService.getProducts()
       			    }))
  				 }
 			      )
-
+*/
 
 
                      } //end constructor
@@ -234,7 +235,7 @@ else {
 
   this.prevAveragesList.push(upc+' '+qO+':'+qC+' '+this.key1+'^'+desc1);
 
-this.navCtrl.push(ReviewcartPage, {
+this.navCtrl.setRoot(ReviewcartPage, {
     fourthPassed: this.prevAveragesList,
     emailS: this.emailS
    });

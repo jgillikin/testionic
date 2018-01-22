@@ -101,12 +101,12 @@ else {
 
 this.size$ = new BehaviorSubject(null);
     
-
+/*
 this.items$ = this.size$.switchMap(size =>
       db.list('/shopping-list', ref =>
         size ? ref.orderByChild('upc').equalTo(size) : ref
       ).snapshotChanges()
-    );
+    );*/
 
 
 this.descRef = firebase.database().ref('/shopping-list');
@@ -152,16 +152,15 @@ var q = this.upc;
 
 this.section = "one";
 
+/*
 this.dataService.getProducts()
         .subscribe((response)=> {
             this.products = response
             console.log(this.products);
 });
+*/
 
-
- 
-
-
+/*
  this.shoppingList$ = this.shopping
 				.getShoppingList() //DB List
 				.snapshotChanges() //key and value
@@ -172,7 +171,7 @@ this.dataService.getProducts()
       			    }))
  				 }
 			      )
-
+*/
 
 
                      } //end constructor

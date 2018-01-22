@@ -103,12 +103,12 @@ else {
 
 this.size$ = new BehaviorSubject(null);
     
-
+/*
 this.items$ = this.size$.switchMap(size =>
       db.list('/shopping-list', ref =>
         size ? ref.orderByChild('upc').equalTo(size) : ref
       ).snapshotChanges()
-    );
+    );*/
 
 
 this.descRef = firebase.database().ref('/shopping-list');
@@ -150,16 +150,16 @@ var q = data.substring(0,data.indexOf(' ')).trim();
 
 this.section = "one";
 
+/*
 this.dataService.getProducts()
         .subscribe((response)=> {
             this.products = response
             console.log(this.products);
 });
 
-
+*/
  
-
-
+/*
  this.shoppingList$ = this.shopping
 				.getShoppingList() //DB List
 				.snapshotChanges() //key and value
@@ -169,7 +169,7 @@ this.dataService.getProducts()
 					...c.payload.val()
       			    }))
  				 }
-			      )
+			      ) */
 
 
 
@@ -519,6 +519,7 @@ this.navCtrl.push(EditcartPage, {
 
 removeOrder (upc) {
 
+
 if (this.prevAveragesList.length === 1) {
 
  this.prevAveragesList.splice(0,1);
@@ -533,8 +534,10 @@ if (this.prevAveragesList.length === 1) {
 if (this.prevAveragesList.length > 1 ) {
 
 
-var i = this.prevAveragesList.indexOf(upc);
-for (var i = this.prevAveragesList.length-1; i--;) {
+//var i = this.prevAveragesList.indexOf(upc);
+
+//for (var i = this.prevAveragesList.length-1; i--;) {
+for (var i=0; i<this.prevAveragesList.length; i++) {
  if (this.prevAveragesList[i].substring(0,this.prevAveragesList[i].indexOf(' ')).trim() === upc)
   this.prevAveragesList.splice(i,1);
 }
