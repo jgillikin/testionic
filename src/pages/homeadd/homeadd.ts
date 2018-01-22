@@ -215,6 +215,14 @@ sendOrder(qO: any, qC: any, upc: any, keyU2: any, desc1: any) {
 
 //alert("in sendOrder desc is "+desc1);
 
+if (!qO) {
+//alert("Please enter a Quantity to order");
+this.toast.show(`Pleae enter a Qty order`);
+
+return false;
+}
+
+
 if (Number(qO) > Number(qC)) {
 this.toast.show(`Not enough quantity onhand`);
 //alert("Your order quantity is more than the onhand quantity");

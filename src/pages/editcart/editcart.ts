@@ -511,6 +511,14 @@ this.toast.show(`Found`);
 
 updateOrder (qtyR) {
 //alert("qtyR is "+qtyR);
+
+if (isNaN(qtyR)) {
+//alert("Please enter a Quantity to order");
+this.toast.show(`Pleae enter a Qty order`);
+
+return false;
+}
+
     
     let descs = [];
     let temp = [];
