@@ -1,14 +1,14 @@
 page-custselect {
-ion-select{
- max-width: 40% !important;// your choice :)
-}
 
-.item-select .input-label{
-    width:40%;
-}
-
-.myCustomSelect{
-max-width: 40% !important;
+ion-item.myCustomSelect {
+ ion-label {
+  min-width: 25%;
+ }
+ ion-select {
+  min-width: 75%;
+  width: 35%;
+  max-width: 50% !important;
+ }
 }
 
 }

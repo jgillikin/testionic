@@ -40,7 +40,7 @@ Qty to Order:  {{item.substring(item.indexOf(' ')+1,item.lastIndexOf(':')).trim(
 
 <div class="item">{{item.substring(item.lastIndexOf('^')+1).trim()}}<br>
 Qty to Order:  {{item.substring(item.indexOf(' ')+1,item.lastIndexOf(':')).trim() }}<br>
-<button ion-button color="blue" (click)="changeOrder(item.substring(0,item.indexOf(' ')).trim() )">Change Qty</button>
+<button ion-button color="blue" (click)="changeOrder(item.substring(0,item.indexOf(' ')).trim() )">Change Qty</button>&nbsp;<button ion-button color="danger" (click)="removeOrder(item.substring(0,item.indexOf(' ')).trim() )">Remove</button>
 
 </div>
 

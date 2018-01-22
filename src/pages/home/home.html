@@ -84,7 +84,16 @@ or<br>
         
 <ion-row class="ionrow">
 <ion-col width-125>
+
+<div *ngIf="isApp">
+<button ion-button color="blue" (click)="onClick(desc.record.upc,desc.record.desc,desc.record.quantity,desc.id)" style="width:69%">{{ desc.record.desc }} </button>
+
+</div>
+
+<div *ngIf="!isApp">
 <button ion-button color="blue" (click)="onClick(desc.record.upc,desc.record.desc,desc.record.quantity,desc.id)" style="width:29%">{{ desc.record.desc }} </button>
+</div>
+
 </ion-col>
 </ion-row>
 

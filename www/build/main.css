@@ -25731,16 +25731,14 @@ page-currinvreport .col2 {
   font-size: .9em;
 }
 
-page-custselect ion-select {
-  max-width: 40% !important;
+page-custselect ion-item.myCustomSelect ion-label {
+  min-width: 25%;
 }
 
-page-custselect .item-select .input-label {
-  width: 40%;
-}
-
-page-custselect .myCustomSelect {
-  max-width: 40% !important;
+page-custselect ion-item.myCustomSelect ion-select {
+  min-width: 75%;
+  width: 35%;
+  max-width: 50% !important;
 }
 
 page-home input {
