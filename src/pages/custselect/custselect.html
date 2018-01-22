@@ -11,9 +11,10 @@
 <br>
 <br>
 
-<ion-grid>
- <ion-row align-items-center>
-  <ion-col width-50>
+
+
+<div *ngIf="!isApp" text-center>
+<table width="50%">
 
 <ion-item>
   <ion-label>Customer to Send P.O. to</ion-label>
@@ -23,8 +24,21 @@
   </ion-select>
 </ion-item>
 
-  </ion-col>
- </ion-row>
-</ion-grid>
+</table>
+</div>
+
+<div *ngIf="isApp">
+
+<ion-item>
+  <ion-label>Customer to Send P.O. to</ion-label>
+  <ion-select [(ngModel)]="Customer" (ionChange)="onChange()">
+    <ion-option value="briancanfield6@gmail.com">VA Diner</ion-option>
+    <ion-option value="jason.gillikin@gmail.com">U.S.I.T. Corp</ion-option>
+  </ion-select>
+</ion-item>
+
+
+</div>
+
 
 </ion-content>
