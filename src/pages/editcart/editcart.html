@@ -57,7 +57,7 @@ Qty to Order:<br>
 <div class="item">{{item.substring(item.lastIndexOf('^')+1).trim()}}<br>
 Qty to Order:  <br>
 <ion-item>
-<ion-input type="text" [(ngModel)]="qtyOrder" placeholder="{{item.substring(item.indexOf(' ')+1,item.lastIndexOf(':')).trim()}}" required>
+<ion-input type="text" [(ngModel)]="qtyOrder" value="{{item.substring(item.indexOf(' ')+1,item.lastIndexOf(':')).trim()}}" required>
 </ion-input>
 </ion-item>
 
