@@ -54,9 +54,7 @@ data: any = {};
   public shoppingList2: firebase.database.Reference;
   public purchaseOrder: firebase.database.Reference;
   public userId;
-po: AngularFireList<any> = this.db.list('/purchase-order');
-
-
+  po: AngularFireList<any> = this.db.list('/purchase-order');
 
   constructor(
  public navCtrl: NavController, 
