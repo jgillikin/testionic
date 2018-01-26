@@ -553,6 +553,14 @@ this.navCtrl.setRoot(ReviewcartPage, {
 
 }
 
+keepAdding() {
+
+this.navCtrl.setRoot(HomePage, {
+    ordersPassed: this.prevAveragesList
+   })
+
+}
+
 cancelOrder () {
 
 this.prevAveragesList = [];
