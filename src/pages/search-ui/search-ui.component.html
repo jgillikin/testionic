@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>
+      Search-ui
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+<br>
+<br>
+<ion-item>
+<ion-input type="text" placeholder="Search by Description" [(ngModel)]="state.query" (ionChange)="handleChange(state.query)" required></ion-input>
+
+</ion-item>
+
+<hits></hits>
+
+<div>
+    <ul>
+      <li *ngFor="let hit of state.hits">
+        {{ hit.desc }} &nbsp; {{ hit.quantity }}
+      </li>
+    </ul>
+  </div>
+
+</ion-content>

@@ -1,0 +1,52 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>
+      Inv Report Menu
+    </ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+
+<div *ngIf="!isApp" text-center>
+<table width="50%" align="center">
+<ion-item>
+
+<ion-input placeholder="Search Text" [(ngModel)]="prodMan" required></ion-input>
+
+</ion-item>
+<br>
+<button ion-button color="blue" (click)="searchAll(prodMan)" >Search</button>
+<br>
+<br>
+Or click button below to show entire Inventory
+<br>
+<br>
+
+<div text-center>
+<button ion-button color="blue" (click)="goAll()" >All Inventory</button>
+</div>
+
+</table>
+</div>
+
+<div *ngIf="isApp" text-center>
+
+<ion-item>
+<ion-input placeholder="Search text" [(ngModel)]="prodMan"  required></ion-input>
+</ion-item>
+<br>
+<button ion-button color="blue" (click)="searchAll(prodMan)" >Search</button>
+<br>
+<br>
+Or click button below to show entire Inventory
+<br>
+<br>
+<div text-center>
+<button ion-button color="blue" (click)="goAll()">All Inventory</button>
+</div>
+
+</div>
+
+</ion-content>

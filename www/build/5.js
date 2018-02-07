@@ -1,13 +1,13 @@
 webpackJsonp([5],{
 
-/***/ 483:
+/***/ 1511:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HomeModule", function() { return HomeModule; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__home__ = __webpack_require__(49);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular_module__ = __webpack_require__(314);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HomeaddModule", function() { return HomeaddModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__homeadd__ = __webpack_require__(311);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular_module__ = __webpack_require__(994);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__(0);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -18,19 +18,19 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var HomeModule = (function () {
-    function HomeModule() {
+var HomeaddModule = (function () {
+    function HomeaddModule() {
     }
-    HomeModule = __decorate([
+    HomeaddModule = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_2__angular_core__["I" /* NgModule */])({
-            declarations: [__WEBPACK_IMPORTED_MODULE_0__home__["a" /* HomePage */]],
-            imports: [__WEBPACK_IMPORTED_MODULE_1_ionic_angular_module__["b" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_0__home__["a" /* HomePage */])]
+            declarations: [__WEBPACK_IMPORTED_MODULE_0__homeadd__["a" /* HomeaddPage */]],
+            imports: [__WEBPACK_IMPORTED_MODULE_1_ionic_angular_module__["b" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_0__homeadd__["a" /* HomeaddPage */])]
         })
-    ], HomeModule);
-    return HomeModule;
+    ], HomeaddModule);
+    return HomeaddModule;
 }());
 
-//# sourceMappingURL=home.module.js.map
+//# sourceMappingURL=homeadd.module.js.map
 
 /***/ })
 

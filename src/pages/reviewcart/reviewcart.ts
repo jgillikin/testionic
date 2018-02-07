@@ -556,7 +556,8 @@ this.navCtrl.setRoot(ReviewcartPage, {
 keepAdding() {
 
 this.navCtrl.setRoot(HomePage, {
-    ordersPassed: this.prevAveragesList
+    ordersPassed: this.prevAveragesList,
+    emailS: this.emailS
    })
 
 }

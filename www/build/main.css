@@ -25809,6 +25809,40 @@ page-homeadd :-ms-input-placeholder {
   text-align: center;
 }
 
+page-invreportmenu input {
+  margin-left: auto;
+  margin-right: auto;
+  padding: 15px;
+  display: block !important;
+  border: 1px solid #c8c7cc;
+}
+
+page-invreportmenu .text-input {
+  margin-left: auto;
+  margin-right: auto;
+  padding: 15px;
+  display: block !important;
+  border: 1px solid #c8c7cc;
+}
+
+page-invreportmenu ::-webkit-input-placeholder {
+  text-align: center;
+}
+
+page-invreportmenu :-moz-placeholder {
+  /* Firefox 18- */
+  text-align: center;
+}
+
+page-invreportmenu ::-moz-placeholder {
+  /* Firefox 19+ */
+  text-align: center;
+}
+
+page-invreportmenu :-ms-input-placeholder {
+  text-align: center;
+}
+
 page-reviewcart input {
   background: white;
   padding: 15px;

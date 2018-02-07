@@ -12,7 +12,7 @@ import { HomePage } from '../home/home';
 import { LoginPage } from '../login/login';
 import { AddLocationPage } from '../addlocation/addlocation';
 import { ToastService } from './../../services/toast/toast.service';
-
+import { InvreportmenuPage } from '../invreportmenu/invreportmenu';
 
 @Component({
   selector: 'page-about',
@@ -89,7 +89,7 @@ logout(){
 goReport(rep) {
 //alert(rep);
 if (rep === 'Current Inventory Report')
- this.navCtrl.push(CurrInvReportPage);
+ this.navCtrl.push(InvreportmenuPage);
 else
  this.navCtrl.push(POReportPage);
 

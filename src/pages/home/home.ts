@@ -205,6 +205,7 @@ getItems(searchbar) {
     }
   });
 
+
 //filter prevAveragesList records
 if (this.prevAveragesList !== undefined) {
 var q;
