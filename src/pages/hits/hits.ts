@@ -17,6 +17,7 @@ export class HitsComponent implements OnInit {
   ngOnInit() {
     // Create a widget which will call `this.updateState` whenever
     // something changes on the search state itself
+this.instantSearchService.search.client.clearCache();
     const widget = connectHits(this.updateState);
 
     // Register the Hits widget into the instantSearchService search instance.

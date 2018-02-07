@@ -1,13 +1,13 @@
 webpackJsonp([6],{
 
-/***/ 1508:
+/***/ 1511:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HomeModule", function() { return HomeModule; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__home__ = __webpack_require__(126);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular_module__ = __webpack_require__(994);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "EditcartModule", function() { return EditcartModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__editcart__ = __webpack_require__(683);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular_module__ = __webpack_require__(993);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__(0);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -18,19 +18,19 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var HomeModule = (function () {
-    function HomeModule() {
+var EditcartModule = (function () {
+    function EditcartModule() {
     }
-    HomeModule = __decorate([
+    EditcartModule = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_2__angular_core__["I" /* NgModule */])({
-            declarations: [__WEBPACK_IMPORTED_MODULE_0__home__["a" /* HomePage */]],
-            imports: [__WEBPACK_IMPORTED_MODULE_1_ionic_angular_module__["b" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_0__home__["a" /* HomePage */])]
+            declarations: [__WEBPACK_IMPORTED_MODULE_0__editcart__["a" /* EditcartPage */]],
+            imports: [__WEBPACK_IMPORTED_MODULE_1_ionic_angular_module__["b" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_0__editcart__["a" /* EditcartPage */])]
         })
-    ], HomeModule);
-    return HomeModule;
+    ], EditcartModule);
+    return EditcartModule;
 }());
 
-//# sourceMappingURL=home.module.js.map
+//# sourceMappingURL=editcart.module.js.map
 
 /***/ })
 

@@ -22,6 +22,7 @@ import { POReportPage } from '../pages/poreport/poreport';
 import { HomeaddPage } from '../pages/homeadd/homeadd';
 import { ReviewcartPage } from '../pages/reviewcart/reviewcart';
 import { HitsComponent } from '../pages/hits/hits';
+import { Hits2Component } from '../pages/hits2/hits2';
 import { EditcartPage } from '../pages/editcart/editcart';
 import { ResetpwdPage } from '../pages/resetpwd/resetpwd';
 //import { LoginPage } from '../pages/login/login';
@@ -57,7 +58,8 @@ import { DataServiceProvider } from '../providers/data-service/data-service';
     CustselectPage,
     InvreportmenuPage,
     SearchUiComponent,
-    HitsComponent
+    HitsComponent,
+    Hits2Component
 //   LoginPage
   ],
   imports: [
@@ -89,7 +91,8 @@ import { DataServiceProvider } from '../providers/data-service/data-service';
     CustselectPage,
     InvreportmenuPage,
     SearchUiComponent,
-    HitsComponent
+    HitsComponent,
+    Hits2Component
 //LoginPage
   ],
   providers: [

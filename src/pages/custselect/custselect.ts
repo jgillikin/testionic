@@ -74,7 +74,7 @@ public platform: Platform, private toast: ToastService) {
     onChange () {
      let emailS = this.Customer;
      //alert(emailS);
-     this.navCtrl.push(HomePage, {
+     this.navCtrl.setRoot(HomePage, {
       emailS: emailS
        });
     }

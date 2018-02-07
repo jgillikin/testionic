@@ -1,0 +1,16 @@
+
+<ion-content>
+
+<br>
+<br>
+
+
+<ion-content>
+
+
+<div *ngFor="let hit of state.hits" text-center>
+<button ion-button color="blue" (click)="onClick(hit.upc,hit.desc,hit.quantity,hit.objectID)" style="width:29%">{{ hit.desc }} &nbsp; {{ hit.quantity }}</button>
+ </div>
+
+
+</ion-content>

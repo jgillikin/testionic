@@ -117,7 +117,7 @@ this.descRef.on('value', descList => {
 
       this.platformList = platforms.join(', ');
 
-      if (this.platform.is('core') || this.platform.is('mobileweb')) {
+      if (this.platform.is('core') || this.platform.is('mobileweb')  || this.platform.is('tablet') || this.platform.is('ipad') ) {
         this.isApp = false;
 }
 
@@ -184,6 +184,9 @@ initializeItems() {
 
 getItems(searchbar) {
 //alert(searchbar);
+
+//perform search for value entered in searchbar
+
   // Reset items back to all of the items
   this.initializeItems();
 
@@ -207,6 +210,7 @@ getItems(searchbar) {
 
 
 //filter prevAveragesList records
+
 if (this.prevAveragesList !== undefined) {
 var q;
 
@@ -214,6 +218,7 @@ var q;
 
  q = data.substr(0,data.indexOf(' '));
 
+//alert("data is "+data);
 //alert("q is "+q);
 
  this.descList = this.descList.filter((v) => {

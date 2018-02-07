@@ -1,13 +1,13 @@
 webpackJsonp([4],{
 
-/***/ 1513:
+/***/ 1510:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "InvreportmenuModule", function() { return InvreportmenuModule; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__invreportmenu__ = __webpack_require__(686);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular_module__ = __webpack_require__(994);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HomeaddModule", function() { return HomeaddModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__homeadd__ = __webpack_require__(312);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular_module__ = __webpack_require__(993);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__(0);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -18,19 +18,19 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var InvreportmenuModule = (function () {
-    function InvreportmenuModule() {
+var HomeaddModule = (function () {
+    function HomeaddModule() {
     }
-    InvreportmenuModule = __decorate([
+    HomeaddModule = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_2__angular_core__["I" /* NgModule */])({
-            declarations: [__WEBPACK_IMPORTED_MODULE_0__invreportmenu__["a" /* InvreportmenuPage */]],
-            imports: [__WEBPACK_IMPORTED_MODULE_1_ionic_angular_module__["b" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_0__invreportmenu__["a" /* InvreportmenuPage */])]
+            declarations: [__WEBPACK_IMPORTED_MODULE_0__homeadd__["a" /* HomeaddPage */]],
+            imports: [__WEBPACK_IMPORTED_MODULE_1_ionic_angular_module__["b" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_0__homeadd__["a" /* HomeaddPage */])]
         })
-    ], InvreportmenuModule);
-    return InvreportmenuModule;
+    ], HomeaddModule);
+    return HomeaddModule;
 }());
 
-//# sourceMappingURL=invreportmenu.module.js.map
+//# sourceMappingURL=homeadd.module.js.map
 
 /***/ })
 
