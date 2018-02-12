@@ -87,7 +87,7 @@ logout(){
 }
 
 goReport(rep) {
-//alert(rep);
+
 if (rep === 'Current Inventory Report')
  this.navCtrl.push(InvreportmenuPage);
 else
