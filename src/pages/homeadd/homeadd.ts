@@ -144,8 +144,6 @@ this.dataService.getProducts()
 });
 */
 
- 
-
 /*
  this.shoppingList$ = this.shopping
 				.getShoppingList() //DB List

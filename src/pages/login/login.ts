@@ -4,9 +4,9 @@ import { User } from './../../models/user/user';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabase, AngularFireAction,AngularFireList } from 'angularfire2/database';
 import { ResetpwdPage } from '../resetpwd/resetpwd';
-
+import {App} from 'ionic-angular';
+import * as firebase from 'firebase/app';
 import { TabsPage } from '../tabs/tabs';
-
 
 @IonicPage()
 @Component({
@@ -21,6 +21,17 @@ export class LoginPage {
 
   constructor(private afAuth: AngularFireAuth,
     public navCtrl: NavController, public db: AngularFireDatabase, public navParams: NavParams) {
+
+   try {
+    if (firebase.auth().currentUser.uid != null) {
+     alert(firebase.auth().currentUser.uid);
+     this.navCtrl.setRoot(TabsPage);    
+    }
+   }
+   catch(e) {
+     console.log('not logged in');
+   }
+
   }
  
   async login(user: User) {
@@ -49,7 +60,7 @@ export class LoginPage {
  "uid": user.uid
 }); 
 this.navCtrl.setRoot(TabsPage);
-
+//this.navCtrl.parent.parent.setRoot(TabsPage);
       })
 .catch((error) => this.handleError(error) );
 
