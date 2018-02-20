@@ -12,6 +12,7 @@ export class ShoppingListService {
   private shoppingListRef = this.db.list<Item>('shopping-list');
   private locationsRef = this.db.list<Item>('locations');
   private poRef = this.db.list<Item>('purchase-order');
+  private reRef = this.db.list<Item>('re-orders');
 
 
   labs: FirebaseListObservable<any>;
@@ -29,6 +30,10 @@ getShoppingList() {
 
 getPOList() {
  return this.poRef;
+}
+
+getReordersList() {
+ return this.reRef;
 }
 
 getLocationsList() {

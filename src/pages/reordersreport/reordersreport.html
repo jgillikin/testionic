@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>
+      Re-orders Report
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+   <ion-list>
+
+<!--        <ion-item *ngFor="let grocery of groceries">{{grocery}}</ion-item> -->
+
+
+<br>
+
+<ion-item *ngFor="let item of shoppingList$ | async">
+
+<div class="item">{{item.desc}}<br>
+{{item.dateOrdered}}<br>
+Qty re-ordered:  {{item.qtyO}}</div>
+
+
+</ion-item>
+
+</ion-list>
+
+</ion-content>

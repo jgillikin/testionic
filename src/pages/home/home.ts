@@ -14,7 +14,9 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Subscription } from 'rxjs/Subscription';
 import 'rxjs/add/operator/switchMap';
 import { HomeaddPage } from '../homeadd/homeadd';
+import { Homeadd2Page } from '../homeadd2/homeadd2';
 import { ReviewcartPage } from '../reviewcart/reviewcart';
+import { ReviewreordersPage } from '../reviewreorders/reviewreorders';
 
 
 @IonicPage()
@@ -45,12 +47,16 @@ data: any = {};
 
   shoppingList$: Observable<Item[]>;
   hideMe=false;
+  hideMe2=false;
 
   public descList:Array<any>;
+  public descList2:Array<any>;
+
   public descRef: firebase.database.Reference;
   public loadedDescList: Array<any>;
   public averagesList: Array<any>;
   public prevAveragesList: Array<any>;  
+  public prevAveragesList2: Array<any>;  
   public shoppingList2: firebase.database.Reference;
   public purchaseOrder: firebase.database.Reference;
   public userId;
@@ -77,6 +83,15 @@ if (this.params.get('ordersPassed') === undefined) {
 else {
 //alert("not undefined");
  this.prevAveragesList = this.params.get('ordersPassed');
+}
+
+if (this.params.get('ordersPassed2') === undefined) {
+//alert("undefined");
+ console.log('undefined');
+}
+else {
+//alert("not undefined");
+ this.prevAveragesList2 = this.params.get('ordersPassed2');
 }
 
 
@@ -108,6 +123,7 @@ this.descRef.on('value', descList => {
 //alert(descs[0].id);
 
   this.descList = descs;
+  this.descList2 = descs;
   this.loadedDescList = descs;
 });
 
@@ -165,6 +181,18 @@ this.navCtrl.push(HomeaddPage, {
    })
 }
 
+onClick2(val: string|null, desc: string|null, qty: number, key1: string) {
+//alert("in onClick, key is "+key1);
+this.navCtrl.push(Homeadd2Page, {
+    firstPassed: val,
+    secondPassed: desc,
+    thirdPassed: qty,
+    fourthPassed: this.prevAveragesList2,
+    fifthPassed: key1,
+    emailS: this.emailS
+   })
+}
+
 
  filterBy(size: string|null) {
 
@@ -177,8 +205,13 @@ else
 
   }
 
+
 initializeItems() {
   this.descList = this.loadedDescList;
+}
+
+initializeItems2() {
+  this.descList2 = this.loadedDescList;
 }
 
 
@@ -244,6 +277,70 @@ if (!searchbar)
 
 }
 
+getItems2(searchbar) {
+//alert(searchbar);
+
+//perform search for value entered in searchbar
+
+  // Reset items back to all of the items
+  this.initializeItems2();
+
+  // set q to the value of the searchbar
+  var q = searchbar;
+
+  // if the value is an empty string don't filter the items
+  if (!q) {
+    this.hideMe2 = false;
+    return;
+  }
+
+  this.descList2 = this.descList2.filter((v) => {
+    if(v.record.desc && q) {
+      if (v.record.desc.toLowerCase().indexOf(q.toLowerCase()) > -1) {
+        return true;
+      }
+      return false;
+    }
+  });
+
+
+//filter prevAveragesList2 records
+
+if (this.prevAveragesList2 !== undefined) {
+var q;
+
+ for(let data of this.prevAveragesList2) {
+
+ q = data.substr(0,data.indexOf(' '));
+
+//alert("data is "+data);
+//alert("q is "+q);
+
+ this.descList2 = this.descList2.filter((v) => {
+    if(v.record.upc && q) {
+      if (v.record.upc.toLowerCase().indexOf(q.toLowerCase()) > -1) {
+        return false;
+      }
+      return true;
+    }
+  });
+
+} //end for
+
+}
+
+if (this.descList2.length > 0)
+ this.hideMe2 = true;
+
+if (!searchbar)
+ this.hideMe2 = false;
+
+//  alert(this.descList.length);
+
+}
+
+
+
 sendOrder2() {
 
 //alert("qC is "+qC+" and qO is "+qO+" and upc is "+upc);
@@ -261,6 +358,25 @@ this.navCtrl.push(ReviewcartPage, {
 
 
 }
+
+sendOrder2b() {
+
+//alert("qC is "+qC+" and qO is "+qO+" and upc is "+upc);
+
+//alert("in sendOrder desc is "+desc1);
+
+
+//this.toast.show(`go to ReviewreordersPage`);
+
+
+this.navCtrl.push(ReviewreordersPage, {
+    fourthPassed: this.prevAveragesList2,
+    emailS: this.emailS
+   });
+
+
+}
+
 
 
 sendOrder() {

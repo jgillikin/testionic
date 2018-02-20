@@ -134,6 +134,102 @@ or<br>
      <ion-list>
 
 
+
+<div *ngIf="isApp" text-center>
+
+ <button ion-button color="blue" (click)="scan()">Scan by UPC</button>
+<br>
+<br>
+or<br>
+<br>
+</div>
+
+<div *ngIf="!isApp" text-center>
+<table width="50%" align="center">
+<ion-item>
+<ion-input placeholder="Re-orders Description" [(ngModel)]="prodMan2" required></ion-input>
+
+</ion-item>
+</table>
+</div>
+
+<div *ngIf="isApp" text-center>
+
+<ion-item>
+
+<ion-input placeholder="Re-orders Description" [(ngModel)]="prodMan2" required></ion-input>
+
+</ion-item>
+</div>
+
+
+
+<br>
+
+<div text-center>
+
+<div *ngIf="prevAveragesList2 !== undefined && prevAveragesList2.length > 0 else emptyList">
+<button ion-button color="blue" (click)="getItems2(prodMan2)">Search</button><button ion-button color="blue" (click)="sendOrder2b()">Send</button>
+</div>
+
+<ng-template #emptyList>
+<button ion-button color="blue" (click)="getItems2(prodMan2)">Search</button>
+</ng-template>
+
+</div>
+ 
+<br>
+      <div *ngIf="prevAveragesList2 !== undefined" text-center> # Re-order items: {{ prevAveragesList2.length }} 
+    </div>
+
+
+<br>
+
+<ion-card *ngIf="productFound">
+  <ion-card-header>
+ 
+  </ion-card-header>
+  <ion-card-content>
+    <ul>
+      <li>{{selectedProduct.desc}}</li>
+    </ul>
+  </ion-card-content>
+</ion-card>
+
+<div *ngIf="hideMe2">
+
+      <div *ngFor="let desc of descList2" text-center>
+        
+<ion-row class="ionrow">
+<ion-col width-125>
+
+<div *ngIf="isApp">
+<button ion-button color="blue" (click)="onClick2(desc.record.upc,desc.record.desc,desc.record.quantity,desc.id)" style="width:89%">{{ desc.record.desc }} </button>
+
+</div>
+
+<div *ngIf="!isApp">
+<button ion-button color="blue" (click)="onClick2(desc.record.upc,desc.record.desc,desc.record.quantity,desc.id)" style="width:29%">{{ desc.record.desc }} </button>
+</div>
+
+</ion-col>
+</ion-row>
+
+
+        
+      </div>
+
+      
+      <div *ngIf="descList2.length === 0">No results, try clearing filters
+    </div>
+
+ 
+
+
+</div>
+
+
+
 </ion-list>        
 </ion-item>
 </ion-list>

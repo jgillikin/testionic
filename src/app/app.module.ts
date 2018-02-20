@@ -19,11 +19,15 @@ import { HomePage } from '../pages/home/home';
 import { CustselectPage } from '../pages/custselect/custselect';
 import { CurrInvReportPage } from '../pages/currinvreport/currinvreport';
 import { POReportPage } from '../pages/poreport/poreport';
+import { ReordersReportPage } from '../pages/reordersreport/reordersreport';
 import { HomeaddPage } from '../pages/homeadd/homeadd';
+import { Homeadd2Page } from '../pages/homeadd2/homeadd2';
 import { ReviewcartPage } from '../pages/reviewcart/reviewcart';
+import { ReviewreordersPage } from '../pages/reviewreorders/reviewreorders';
 import { HitsComponent } from '../pages/hits/hits';
 import { Hits2Component } from '../pages/hits2/hits2';
 import { EditcartPage } from '../pages/editcart/editcart';
+import { Editcart2Page } from '../pages/editcart2/editcart2';
 import { ResetpwdPage } from '../pages/resetpwd/resetpwd';
 //import { LoginPage } from '../pages/login/login';
 import { IrreportsPage } from '../pages/irreports/irreports';
@@ -52,14 +56,18 @@ import { DataServiceProvider } from '../providers/data-service/data-service';
     AddLocationPage,
     CurrInvReportPage,
     POReportPage,
+    ReordersReportPage,
     ResetpwdPage,
     ReviewcartPage,
+    ReviewreordersPage,
     EditcartPage,
+    Editcart2Page,
     CustselectPage,
     InvreportmenuPage,
     SearchUiComponent,
     HitsComponent,
-    Hits2Component
+    Hits2Component,
+    Homeadd2Page
 //   LoginPage
   ],
   imports: [
@@ -85,14 +93,18 @@ import { DataServiceProvider } from '../providers/data-service/data-service';
     AddLocationPage,
     CurrInvReportPage,
     POReportPage,
+    ReordersReportPage,
     ResetpwdPage,
     ReviewcartPage,
+    ReviewreordersPage,
     EditcartPage,
+    Editcart2Page,
     CustselectPage,
     InvreportmenuPage,
     SearchUiComponent,
     HitsComponent,
-    Hits2Component
+    Hits2Component,
+    Homeadd2Page
 //LoginPage
   ],
   providers: [

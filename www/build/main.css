@@ -25809,6 +25809,40 @@ page-homeadd :-ms-input-placeholder {
   text-align: center;
 }
 
+page-homeadd2 input {
+  background: white;
+  padding: 15px;
+  border-radius: 5px;
+  border: 1px solid #c8c7cc;
+  margin: 0;
+}
+
+page-homeadd2 .text-input {
+  background: white;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #c8c7cc;
+  margin: 0;
+}
+
+page-homeadd2 ::-webkit-input-placeholder {
+  text-align: center;
+}
+
+page-homeadd2 :-moz-placeholder {
+  /* Firefox 18- */
+  text-align: center;
+}
+
+page-homeadd2 ::-moz-placeholder {
+  /* Firefox 19+ */
+  text-align: center;
+}
+
+page-homeadd2 :-ms-input-placeholder {
+  text-align: center;
+}
+
 page-invreportmenu input {
   margin-left: auto;
   margin-right: auto;
@@ -25874,5 +25908,39 @@ page-reviewcart ::-moz-placeholder {
 }
 
 page-reviewcart :-ms-input-placeholder {
+  text-align: center;
+}
+
+page-reviewreorders input {
+  background: white;
+  padding: 15px;
+  border-radius: 5px;
+  border: 1px solid #c8c7cc;
+  margin: 0;
+}
+
+page-reviewreorders .text-input {
+  background: white;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #c8c7cc;
+  margin: 0;
+}
+
+page-reviewreorders ::-webkit-input-placeholder {
+  text-align: center;
+}
+
+page-reviewreorders :-moz-placeholder {
+  /* Firefox 18- */
+  text-align: center;
+}
+
+page-reviewreorders ::-moz-placeholder {
+  /* Firefox 19+ */
+  text-align: center;
+}
+
+page-reviewreorders :-ms-input-placeholder {
   text-align: center;
 }

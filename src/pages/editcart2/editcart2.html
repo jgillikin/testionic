@@ -1,0 +1,82 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>
+      Review Cart
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+<div text-center>
+
+ <p *ngIf="!isApp">
+
+   <ion-list>
+
+
+<br>
+
+
+<ion-item *ngFor="let item of prevAveragesList" >
+
+<div *ngIf="item.substring(0,item.indexOf(' ')).trim() === upc">
+
+<div class="item">{{item.substring(item.lastIndexOf('^')+1).trim()}}<br>
+Qty On-hand:  {{item.substring(item.lastIndexOf(':')+1,item.lastIndexOf('-L')).trim() }}<br>
+Qty to Re-order:<br>
+<ion-item>
+
+<ion-input style="border-bottom: 1px solid #000;max-width: 25%;"  type="text" [(ngModel)]="qtyOrder" value="{{item.substring(item.indexOf(' ')+1,item.lastIndexOf(':')).trim()}}" required >
+</ion-input>
+
+
+</ion-item>
+
+</div>
+
+</div>
+
+</ion-item>
+
+</ion-list>
+</p>
+
+ <p *ngIf="isApp">
+     <ion-list>
+
+<!--        <ion-item *ngFor="let grocery of groceries">{{grocery}}</ion-item> -->
+<br>
+
+
+<ion-item *ngFor="let item of prevAveragesList" >
+
+<div *ngIf="item.substring(0,item.indexOf(' ')).trim() === upc">
+
+
+<div class="item">{{item.substring(item.lastIndexOf('^')+1).trim()}}<br>
+Qty to Re-order:  <br>
+<ion-item>
+<ion-input type="text" [(ngModel)]="qtyOrder" value="{{item.substring(item.indexOf(' ')+1,item.lastIndexOf(':')).trim()}}" required>
+</ion-input>
+</ion-item>
+
+</div>
+
+</div>
+
+</ion-item>
+
+
+</ion-list>
+
+ </p>
+<br>
+<div text-center>
+
+<button ion-button color="blue" (click)="updateOrder(qtyOrder)">Update</button>
+</div>
+
+</div>
+</ion-content>
+

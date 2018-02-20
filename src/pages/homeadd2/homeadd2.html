@@ -1,0 +1,74 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>
+      Re-orders
+    </ion-title>
+  </ion-navbar>
+
+<ion-toolbar>
+    <ion-segment [(ngModel)]="section" color="primary">
+
+      <ion-segment-button value="one">Re-orders
+              </ion-segment-button>
+
+
+    </ion-segment>
+
+  </ion-toolbar>
+
+
+</ion-header>
+
+<ion-content padding>
+
+ <div [ngSwitch]="section">
+ 
+      <ion-list *ngSwitchCase="'one'">
+      <ion-item>
+      <ion-list>
+
+<div text-center>
+
+<b>UPC: {{ upc }}</b><br>
+  {{ desc }}<br>
+<u>Quantity onhand: {{ qty }} </u><br><br>
+
+<div *ngIf="!isApp" text-center>
+<table width="50%" align="center">
+
+<ion-item>
+<ion-input type="number" placeholder="Enter a Qty to re-order" [(ngModel)]="qtyOrder" max=" {{ qty }}" required></ion-input>
+
+</ion-item>
+
+</table>
+</div>
+
+<div *ngIf="isApp">
+<ion-item>
+<ion-input type="number" placeholder="Enter a Qty to re-order" [(ngModel)]="qtyOrder" max=" {{ qty }}" required></ion-input>
+
+</ion-item>
+
+</div>
+
+<br>
+<button ion-button color="blue" (click)="onClickSend(qtyOrder,qty,upc,key1,desc)">Keep Adding</button>
+<button ion-button color="blue" (click)="sendOrder(qtyOrder,qty,upc,key1,desc)">Send</button>
+<br>
+<br>
+      <div *ngIf="prevAveragesList !== undefined"> # P.O. items: {{ prevAveragesList.length }} 
+    </div>
+
+</div>
+
+
+
+</ion-list>
+</ion-item>
+</ion-list>
+
+</div>
+
+
+</ion-content>

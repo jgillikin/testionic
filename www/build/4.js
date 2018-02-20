@@ -1,13 +1,13 @@
 webpackJsonp([4],{
 
-/***/ 1511:
+/***/ 1518:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HomeaddModule", function() { return HomeaddModule; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__homeadd__ = __webpack_require__(312);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular_module__ = __webpack_require__(993);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LoginModule", function() { return LoginModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__login__ = __webpack_require__(683);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular_module__ = __webpack_require__(997);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__(0);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -18,19 +18,19 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var HomeaddModule = (function () {
-    function HomeaddModule() {
+var LoginModule = (function () {
+    function LoginModule() {
     }
-    HomeaddModule = __decorate([
+    LoginModule = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_2__angular_core__["I" /* NgModule */])({
-            declarations: [__WEBPACK_IMPORTED_MODULE_0__homeadd__["a" /* HomeaddPage */]],
-            imports: [__WEBPACK_IMPORTED_MODULE_1_ionic_angular_module__["b" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_0__homeadd__["a" /* HomeaddPage */])]
+            declarations: [__WEBPACK_IMPORTED_MODULE_0__login__["a" /* LoginPage */]],
+            imports: [__WEBPACK_IMPORTED_MODULE_1_ionic_angular_module__["b" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_0__login__["a" /* LoginPage */])]
         })
-    ], HomeaddModule);
-    return HomeaddModule;
+    ], LoginModule);
+    return LoginModule;
 }());
 
-//# sourceMappingURL=homeadd.module.js.map
+//# sourceMappingURL=login.module.js.map
 
 /***/ })
 

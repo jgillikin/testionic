@@ -1,0 +1,43 @@
+page-homeadd2 {
+
+input{
+background: white;
+padding: 15px;
+border-radius: 5px;
+border: 1px solid #c8c7cc ;
+margin: 0;
+}
+
+.text-input{
+background: white;
+padding: 10px;
+border-radius: 5px;
+border: 1px solid #c8c7cc ;
+margin: 0;
+}
+
+::-webkit-input-placeholder {
+
+   text-align: center;
+
+}
+
+:-moz-placeholder { /* Firefox 18- */
+
+   text-align: center;
+
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+
+   text-align: center;
+
+}
+
+:-ms-input-placeholder {  
+
+   text-align: center;
+
+}
+
+}

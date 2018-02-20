@@ -1,13 +1,13 @@
 webpackJsonp([2],{
 
-/***/ 1513:
+/***/ 1520:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ReviewcartModule", function() { return ReviewcartModule; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__reviewcart__ = __webpack_require__(207);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular_module__ = __webpack_require__(993);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ReviewreordersModule", function() { return ReviewreordersModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__reviewreorders__ = __webpack_require__(209);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular_module__ = __webpack_require__(997);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__(0);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -18,19 +18,19 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var ReviewcartModule = (function () {
-    function ReviewcartModule() {
+var ReviewreordersModule = (function () {
+    function ReviewreordersModule() {
     }
-    ReviewcartModule = __decorate([
+    ReviewreordersModule = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_2__angular_core__["I" /* NgModule */])({
-            declarations: [__WEBPACK_IMPORTED_MODULE_0__reviewcart__["a" /* ReviewcartPage */]],
-            imports: [__WEBPACK_IMPORTED_MODULE_1_ionic_angular_module__["b" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_0__reviewcart__["a" /* ReviewcartPage */])]
+            declarations: [__WEBPACK_IMPORTED_MODULE_0__reviewreorders__["a" /* ReviewreordersPage */]],
+            imports: [__WEBPACK_IMPORTED_MODULE_1_ionic_angular_module__["b" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_0__reviewreorders__["a" /* ReviewreordersPage */])]
         })
-    ], ReviewcartModule);
-    return ReviewcartModule;
+    ], ReviewreordersModule);
+    return ReviewreordersModule;
 }());
 
-//# sourceMappingURL=reviewcart.module.js.map
+//# sourceMappingURL=reviewreorders.module.js.map
 
 /***/ })
 

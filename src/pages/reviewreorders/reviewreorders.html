@@ -1,0 +1,60 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>
+      Review Re-orders
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+ <p *ngIf="!isApp">
+
+   <ion-list>
+
+
+<br>
+
+
+<ion-item *ngFor="let item of prevAveragesList" >
+
+
+<div class="item">{{item.substring(item.lastIndexOf('^')+1).trim()}}<br>
+Qty to Order:  {{item.substring(item.indexOf(' ')+1,item.lastIndexOf(':')).trim() }}<br>
+<button ion-button color="blue" (click)="changeOrder(item.substring(0,item.indexOf(' ')).trim() )">Change Qty</button>&nbsp;<button ion-button color="danger" (click)="removeOrder(item.substring(0,item.indexOf(' ')).trim() )">Remove</button>
+</div>
+
+</ion-item>
+
+</ion-list>
+</p>
+
+ <p *ngIf="isApp">
+     <ion-list>
+
+<br>
+
+
+<ion-item *ngFor="let item of prevAveragesList" >
+
+
+<div class="item">{{item.substring(item.lastIndexOf('^')+1).trim()}}<br>
+Qty to Re-order:  {{item.substring(item.indexOf(' ')+1,item.lastIndexOf(':')).trim() }}<br>
+<button ion-button color="blue" (click)="changeOrder(item.substring(0,item.indexOf(' ')).trim() )">Change Qty</button>&nbsp;<button ion-button color="danger" (click)="removeOrder(item.substring(0,item.indexOf(' ')).trim() )">Remove</button>
+
+</div>
+
+</ion-item>
+
+
+</ion-list>
+
+ </p>
+<br>
+<div text-center>
+
+<button ion-button color="blue" (click)="sendOrder()">Send Re-order</button><button ion-button color="danger" (click)="cancelOrder()">Cancel Entire Re-order</button><button ion-button color="blue" (click)="keepAdding()">Keep Adding</button>
+
+</div>
+</ion-content>
+
