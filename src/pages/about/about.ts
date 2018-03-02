@@ -84,7 +84,7 @@ this.shoppingList$ = this.shopping
 logout(){
 //alert("in logout");
     this.afA.auth.signOut().then(() => {
-       this.navCtrl.push(LoginPage);
+       this.navCtrl.setRoot(LoginPage);
     })
 }
 

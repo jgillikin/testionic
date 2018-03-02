@@ -132,15 +132,15 @@ var AppModule = (function () {
                     links: [
                         { loadChildren: '../pages/addlocation/addlocation.module#AddLocationPageModule', name: 'AddLocationPage', segment: 'addlocation', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/add-shopping-item/add-shopping-item.module#AddShoppingItemPageModule', name: 'AddShoppingItemPage', segment: 'add-shopping-item', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/editcart/editcart.module#EditcartModule', name: 'EditcartPage', segment: 'editcart', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/edit-shopping-item/edit-shopping-item.module#EditShoppingItemPageModule', name: 'EditShoppingItemPage', segment: 'edit-shopping-item', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/editcart2/editcart2.module#Editcart2Module', name: 'Editcart2Page', segment: 'editcart2', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/editcart/editcart.module#EditcartModule', name: 'EditcartPage', segment: 'editcart', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/home/home.module#HomeModule', name: 'HomePage', segment: 'home', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/homeadd/homeadd.module#HomeaddModule', name: 'HomeaddPage', segment: 'homeadd', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/login/login.module#LoginModule', name: 'LoginPage', segment: 'login', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/reviewreorders/reviewreorders.module#ReviewreordersModule', name: 'ReviewreordersPage', segment: 'reviewreorders', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/reviewcart/reviewcart.module#ReviewcartModule', name: 'ReviewcartPage', segment: 'reviewcart', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/homeadd2/homeadd2.module#Homeadd2Module', name: 'Homeadd2Page', segment: 'homeadd2', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/edit-shopping-item/edit-shopping-item.module#EditShoppingItemPageModule', name: 'EditShoppingItemPage', segment: 'edit-shopping-item', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/reviewcart/reviewcart.module#ReviewcartModule', name: 'ReviewcartPage', segment: 'reviewcart', priority: 'low', defaultHistory: [] }
+                        { loadChildren: '../pages/login/login.module#LoginModule', name: 'LoginPage', segment: 'login', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/reviewreorders/reviewreorders.module#ReviewreordersModule', name: 'ReviewreordersPage', segment: 'reviewreorders', priority: 'low', defaultHistory: [] }
                     ]
                 }),
                 __WEBPACK_IMPORTED_MODULE_6_angularfire2__["a" /* AngularFireModule */].initializeApp(__WEBPACK_IMPORTED_MODULE_33__firebase_credentials__["a" /* FIREBASE_CONFIG */]),
@@ -1648,7 +1648,7 @@ var AboutPage = (function () {
         var _this = this;
         //alert("in logout");
         this.afA.auth.signOut().then(function () {
-            _this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_8__login_login__["a" /* LoginPage */]);
+            _this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_8__login_login__["a" /* LoginPage */]);
         });
     };
     AboutPage.prototype.goReport = function (rep) {
@@ -1704,12 +1704,10 @@ var AboutPage = (function () {
         Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["m" /* Component */])({
             selector: 'page-about',template:/*ion-inline-start:"C:\ionicFirebase\IonicShoppingList\src\pages\about\about.html"*/'<ion-header>\n\n  <ion-navbar color="primary">\n\n    <ion-title>\n\n      Inventory\n\n    </ion-title>\n\n    <ion-buttons end>\n\n        <button ion-button color="clear" (click)="logout()">Log Out</button>\n\n    </ion-buttons>\n\n  </ion-navbar>\n\n\n\n<ion-toolbar>\n\n    <ion-segment [(ngModel)]="section" color="primary">\n\n\n\n      <ion-segment-button value="one">Inventory\n\n              </ion-segment-button>\n\n\n\n      <ion-segment-button value="two">Reports\n\n</ion-segment-button>\n\n\n\n    </ion-segment>\n\n\n\n  </ion-toolbar>\n\n  \n\n</ion-header>\n\n\n\n<ion-content>\n\n\n\n\n\n\n\n <div [ngSwitch]="section">\n\n \n\n      <ion-list *ngSwitchCase="\'one\'">\n\n        <ion-item>\n\n\n\n <ion-list>\n\n\n\n  <ion-list-header>\n\n\n\n<div text-center>\n\n<button ion-button [navPush]="pushPage">\n\n  Add a New Location\n\n</button>    \n\n</div>\n\n\n\n  </ion-list-header>\n\n\n\n\n\n\n\n<u>Existing Locations:</u> \n\n\n\n  <ion-item *ngFor="let item of shoppingList$ | async" detail-push navPush="EditShoppingItemPage" [navParams]="{item: item}">\n\n   {{item.name}}\n\n  </ion-item>\n\n\n\n </ion-list>\n\n\n\n <p *ngIf="!isApp">\n\n (Select an Inventory CSV file to upload) <br>\n\n <br>\n\n\n\n<input type="file" class="upload" (change)="changeListener($event.target.files)">\n\n\n\n{{csv}}\n\n\n\n </p>\n\n\n\n         \n\n        </ion-item>\n\n      </ion-list>\n\n \n\n      <ion-list *ngSwitchCase="\'two\'">\n\n        <ion-item>\n\n\n\n<ion-list>\n\n <ion-item *ngFor="let grocery of groceries">   \n\n   <button ion-button color="blue" (click)="goReport(grocery)">{{ grocery}}</button>\n\n </ion-item>\n\n</ion-list>\n\n\n\n<div *ngIf="!isApp" text-center>\n\n<a target="_blank" href="https://drive.google.com/open?id=1k6ypFvCuGtM_JFY0ok3fZ51UutKVwM43VBMJjVrgRwY">Download Current Inventory Report</a>\n\n</div>\n\n\n\n        </ion-item>\n\n      </ion-list>\n\n\n\n</div>\n\n\n\n\n\n\n\n\n\n</ion-content>'/*ion-inline-end:"C:\ionicFirebase\IonicShoppingList\src\pages\about\about.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3_ionic_angular__["l" /* NavController */],
-            __WEBPACK_IMPORTED_MODULE_0__services_shopping_list_shopping_list_service__["a" /* ShoppingListService */],
-            __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["o" /* Platform */], __WEBPACK_IMPORTED_MODULE_10__services_toast_toast_service__["a" /* ToastService */],
-            __WEBPACK_IMPORTED_MODULE_2_angularfire2_auth__["a" /* AngularFireAuth */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["l" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["l" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_0__services_shopping_list_shopping_list_service__["a" /* ShoppingListService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__services_shopping_list_shopping_list_service__["a" /* ShoppingListService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["o" /* Platform */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["o" /* Platform */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_10__services_toast_toast_service__["a" /* ToastService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_10__services_toast_toast_service__["a" /* ToastService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_2_angularfire2_auth__["a" /* AngularFireAuth */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_angularfire2_auth__["a" /* AngularFireAuth */]) === "function" && _e || Object])
     ], AboutPage);
     return AboutPage;
+    var _a, _b, _c, _d, _e;
 }());
 
 //# sourceMappingURL=about.js.map
@@ -3602,11 +3600,11 @@ var map = {
 		10
 	],
 	"../pages/edit-shopping-item/edit-shopping-item.module": [
-		1519,
+		1512,
 		0
 	],
 	"../pages/editcart/editcart.module": [
-		1512,
+		1514,
 		8
 	],
 	"../pages/editcart2/editcart2.module": [
@@ -3614,11 +3612,11 @@ var map = {
 		9
 	],
 	"../pages/home/home.module": [
-		1514,
+		1515,
 		7
 	],
 	"../pages/homeadd/homeadd.module": [
-		1515,
+		1516,
 		5
 	],
 	"../pages/homeadd2/homeadd2.module": [
@@ -3626,15 +3624,15 @@ var map = {
 		6
 	],
 	"../pages/login/login.module": [
-		1516,
+		1519,
 		4
 	],
 	"../pages/reviewcart/reviewcart.module": [
-		1520,
+		1517,
 		3
 	],
 	"../pages/reviewreorders/reviewreorders.module": [
-		1517,
+		1520,
 		2
 	]
 };
@@ -4568,7 +4566,7 @@ var HomePage = (function () {
     }; //end scan
     HomePage = HomePage_1 = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_2__angular_core__["m" /* Component */])({
-            selector: 'page-home',template:/*ion-inline-start:"C:\ionicFirebase\IonicShoppingList\src\pages\home\home.html"*/'<ion-header>\n\n  <ion-navbar color="primary">\n\n    <ion-title>\n\n      Purchase Orders\n\n    </ion-title>\n\n  </ion-navbar>\n\n\n\n<ion-toolbar>\n\n    <ion-segment [(ngModel)]="section" color="primary">\n\n\n\n      <ion-segment-button value="one">Orders\n\n              </ion-segment-button>\n\n\n\n      <ion-segment-button value="two">Re-orders\n\n</ion-segment-button>\n\n\n\n    </ion-segment>\n\n\n\n  </ion-toolbar>\n\n\n\n\n\n</ion-header>\n\n\n\n<ion-content padding>\n\n\n\n <div [ngSwitch]="section">\n\n \n\n      <ion-list *ngSwitchCase="\'one\'">\n\n      <ion-item>\n\n      <ion-list>\n\n\n\n\n\n<!--<div *ngIf="isApp" text-center>-->\n\n <button ion-button color="blue" (click)="scan()">Scan by UPC</button>\n\n<br>\n\n<br>\n\nor<br>\n\n<br>\n\n<!--</div>-->\n\n\n\n<div *ngIf="!isApp" text-center>\n\n<table width="50%" align="center">\n\n<ion-item>\n\n\n\n<ion-input placeholder="Enter a Description" [(ngModel)]="prodMan" required></ion-input>\n\n\n\n</ion-item>\n\n</table>\n\n</div>\n\n\n\n<div *ngIf="isApp" text-center>\n\n\n\n<ion-item>\n\n\n\n<ion-input placeholder="Enter a Description" [(ngModel)]="prodMan" required></ion-input>\n\n\n\n</ion-item>\n\n</div>\n\n\n\n\n\n\n\n<br>\n\n\n\n<div text-center>\n\n\n\n<div *ngIf="prevAveragesList !== undefined && prevAveragesList.length > 0 else emptyList">\n\n<button ion-button color="blue" (click)="getItems(prodMan)">Search</button><button ion-button color="blue" (click)="sendOrder2()">Send</button>\n\n</div>\n\n\n\n<ng-template #emptyList>\n\n<button ion-button color="blue" (click)="getItems(prodMan)">Search</button>\n\n</ng-template>\n\n\n\n</div>\n\n \n\n<br>\n\n      <div *ngIf="prevAveragesList !== undefined" text-center> # P.O. items: {{ prevAveragesList.length }} \n\n    </div>\n\n\n\n\n\n<br>\n\n\n\n<ion-card *ngIf="productFound">\n\n  <ion-card-header>\n\n \n\n  </ion-card-header>\n\n  <ion-card-content>\n\n    <ul>\n\n      <li>{{selectedProduct.desc}}</li>\n\n    </ul>\n\n  </ion-card-content>\n\n</ion-card>\n\n\n\n<div *ngIf="hideMe">\n\n\n\n      <div *ngFor="let desc of descList" text-center>\n\n        \n\n<ion-row class="ionrow">\n\n<ion-col width-125>\n\n\n\n<div *ngIf="isApp">\n\n<button ion-button color="blue" (click)="onClick(desc.record.upc,desc.record.desc,desc.record.quantity,desc.id)" style="width:89%">{{ desc.record.desc }} </button>\n\n\n\n</div>\n\n\n\n<div *ngIf="!isApp">\n\n<button ion-button color="blue" (click)="onClick(desc.record.upc,desc.record.desc,desc.record.quantity,desc.id)" style="width:29%">{{ desc.record.desc }} </button>\n\n</div>\n\n\n\n</ion-col>\n\n</ion-row>\n\n\n\n\n\n        \n\n      </div>\n\n\n\n      \n\n      <div *ngIf="descList.length === 0">No results, try clearing filters\n\n    </div>\n\n\n\n \n\n\n\n\n\n</div>\n\n\n\n\n\n\n\n</ion-list>\n\n</ion-item>\n\n</ion-list>\n\n\n\n     <ion-list *ngSwitchCase="\'two\'">\n\n     <ion-item>\n\n     <ion-list>\n\n\n\n\n\n\n\n<div *ngIf="isApp" text-center>\n\n\n\n <button ion-button color="blue" (click)="scan()">Scan by UPC</button>\n\n<br>\n\n<br>\n\nor<br>\n\n<br>\n\n</div>\n\n\n\n<div *ngIf="!isApp" text-center>\n\n<table width="50%" align="center">\n\n<ion-item>\n\n<ion-input placeholder="Re-orders Description" [(ngModel)]="prodMan2" required></ion-input>\n\n\n\n</ion-item>\n\n</table>\n\n</div>\n\n\n\n<div *ngIf="isApp" text-center>\n\n\n\n<ion-item>\n\n\n\n<ion-input placeholder="Re-orders Description" [(ngModel)]="prodMan2" required></ion-input>\n\n\n\n</ion-item>\n\n</div>\n\n\n\n\n\n\n\n<br>\n\n\n\n<div text-center>\n\n\n\n<div *ngIf="prevAveragesList2 !== undefined && prevAveragesList2.length > 0 else emptyList">\n\n<button ion-button color="blue" (click)="getItems2(prodMan2)">Search</button><button ion-button color="blue" (click)="sendOrder2b()">Send</button>\n\n</div>\n\n\n\n<ng-template #emptyList>\n\n<button ion-button color="blue" (click)="getItems2(prodMan2)">Search</button>\n\n</ng-template>\n\n\n\n</div>\n\n \n\n<br>\n\n      <div *ngIf="prevAveragesList2 !== undefined" text-center> # Re-order items: {{ prevAveragesList2.length }} \n\n    </div>\n\n\n\n\n\n<br>\n\n\n\n<ion-card *ngIf="productFound">\n\n  <ion-card-header>\n\n \n\n  </ion-card-header>\n\n  <ion-card-content>\n\n    <ul>\n\n      <li>{{selectedProduct.desc}}</li>\n\n    </ul>\n\n  </ion-card-content>\n\n</ion-card>\n\n\n\n<div *ngIf="hideMe2">\n\n\n\n      <div *ngFor="let desc of descList2" text-center>\n\n        \n\n<ion-row class="ionrow">\n\n<ion-col width-125>\n\n\n\n<div *ngIf="isApp">\n\n<button ion-button color="blue" (click)="onClick2(desc.record.upc,desc.record.desc,desc.record.quantity,desc.id)" style="width:89%">{{ desc.record.desc }} </button>\n\n\n\n</div>\n\n\n\n<div *ngIf="!isApp">\n\n<button ion-button color="blue" (click)="onClick2(desc.record.upc,desc.record.desc,desc.record.quantity,desc.id)" style="width:29%">{{ desc.record.desc }} </button>\n\n</div>\n\n\n\n</ion-col>\n\n</ion-row>\n\n\n\n\n\n        \n\n      </div>\n\n\n\n      \n\n      <div *ngIf="descList2.length === 0">No results, try clearing filters\n\n    </div>\n\n\n\n \n\n\n\n\n\n</div>\n\n\n\n\n\n\n\n</ion-list>        \n\n</ion-item>\n\n</ion-list>\n\n</div>\n\n\n\n\n\n</ion-content>'/*ion-inline-end:"C:\ionicFirebase\IonicShoppingList\src\pages\home\home.html"*/
+            selector: 'page-home',template:/*ion-inline-start:"C:\ionicFirebase\IonicShoppingList\src\pages\home\home.html"*/'<ion-header>\n\n  <ion-navbar color="primary">\n\n    <ion-title>\n\n      Purchase Orders\n\n    </ion-title>\n\n  </ion-navbar>\n\n\n\n<ion-toolbar>\n\n    <ion-segment [(ngModel)]="section" color="primary">\n\n\n\n      <ion-segment-button value="one">Orders\n\n              </ion-segment-button>\n\n\n\n      <ion-segment-button value="two">Re-orders\n\n</ion-segment-button>\n\n\n\n    </ion-segment>\n\n\n\n  </ion-toolbar>\n\n\n\n\n\n</ion-header>\n\n\n\n<ion-content padding>\n\n\n\n <div [ngSwitch]="section">\n\n \n\n      <ion-list *ngSwitchCase="\'one\'">\n\n      <ion-item>\n\n      <ion-list>\n\n\n\n\n\n<div *ngIf="isApp" text-center>\n\n <button ion-button color="blue" (click)="scan()">Scan by UPC</button>\n\n<br>\n\n<br>\n\nor<br>\n\n<br>\n\n</div>\n\n\n\n<div *ngIf="!isApp" text-center>\n\n<table width="50%" align="center">\n\n<ion-item>\n\n\n\n<ion-input placeholder="Enter a Description" [(ngModel)]="prodMan" required></ion-input>\n\n\n\n</ion-item>\n\n</table>\n\n</div>\n\n\n\n<div *ngIf="isApp" text-center>\n\n\n\n<ion-item>\n\n\n\n<ion-input placeholder="Enter a Description" [(ngModel)]="prodMan" required></ion-input>\n\n\n\n</ion-item>\n\n</div>\n\n\n\n\n\n\n\n<br>\n\n\n\n<div text-center>\n\n\n\n<div *ngIf="prevAveragesList !== undefined && prevAveragesList.length > 0 else emptyList">\n\n<button ion-button color="blue" (click)="getItems(prodMan)">Search</button><button ion-button color="blue" (click)="sendOrder2()">Send</button>\n\n</div>\n\n\n\n<ng-template #emptyList>\n\n<button ion-button color="blue" (click)="getItems(prodMan)">Search</button>\n\n</ng-template>\n\n\n\n</div>\n\n \n\n<br>\n\n      <div *ngIf="prevAveragesList !== undefined" text-center> # P.O. items: {{ prevAveragesList.length }} \n\n    </div>\n\n\n\n\n\n<br>\n\n\n\n<ion-card *ngIf="productFound">\n\n  <ion-card-header>\n\n \n\n  </ion-card-header>\n\n  <ion-card-content>\n\n    <ul>\n\n      <li>{{selectedProduct.desc}}</li>\n\n    </ul>\n\n  </ion-card-content>\n\n</ion-card>\n\n\n\n<div *ngIf="hideMe">\n\n\n\n      <div *ngFor="let desc of descList" text-center>\n\n        \n\n<ion-row class="ionrow">\n\n<ion-col width-125>\n\n\n\n<div *ngIf="isApp">\n\n<button ion-button color="blue" (click)="onClick(desc.record.upc,desc.record.desc,desc.record.quantity,desc.id)" style="width:89%">{{ desc.record.desc }} </button>\n\n\n\n</div>\n\n\n\n<div *ngIf="!isApp">\n\n<button ion-button color="blue" (click)="onClick(desc.record.upc,desc.record.desc,desc.record.quantity,desc.id)" style="width:29%">{{ desc.record.desc }} </button>\n\n</div>\n\n\n\n</ion-col>\n\n</ion-row>\n\n\n\n\n\n        \n\n      </div>\n\n\n\n      \n\n      <div *ngIf="descList.length === 0">No results, try clearing filters\n\n    </div>\n\n\n\n \n\n\n\n\n\n</div>\n\n\n\n\n\n\n\n</ion-list>\n\n</ion-item>\n\n</ion-list>\n\n\n\n     <ion-list *ngSwitchCase="\'two\'">\n\n     <ion-item>\n\n     <ion-list>\n\n\n\n\n\n\n\n<div *ngIf="isApp" text-center>\n\n\n\n <button ion-button color="blue" (click)="scan()">Scan by UPC</button>\n\n<br>\n\n<br>\n\nor<br>\n\n<br>\n\n</div>\n\n\n\n<div *ngIf="!isApp" text-center>\n\n<table width="50%" align="center">\n\n<ion-item>\n\n<ion-input placeholder="Re-orders Description" [(ngModel)]="prodMan2" required></ion-input>\n\n\n\n</ion-item>\n\n</table>\n\n</div>\n\n\n\n<div *ngIf="isApp" text-center>\n\n\n\n<ion-item>\n\n\n\n<ion-input placeholder="Re-orders Description" [(ngModel)]="prodMan2" required></ion-input>\n\n\n\n</ion-item>\n\n</div>\n\n\n\n\n\n\n\n<br>\n\n\n\n<div text-center>\n\n\n\n<div *ngIf="prevAveragesList2 !== undefined && prevAveragesList2.length > 0 else emptyList">\n\n<button ion-button color="blue" (click)="getItems2(prodMan2)">Search</button><button ion-button color="blue" (click)="sendOrder2b()">Send</button>\n\n</div>\n\n\n\n<ng-template #emptyList>\n\n<button ion-button color="blue" (click)="getItems2(prodMan2)">Search</button>\n\n</ng-template>\n\n\n\n</div>\n\n \n\n<br>\n\n      <div *ngIf="prevAveragesList2 !== undefined" text-center> # Re-order items: {{ prevAveragesList2.length }} \n\n    </div>\n\n\n\n\n\n<br>\n\n\n\n<ion-card *ngIf="productFound">\n\n  <ion-card-header>\n\n \n\n  </ion-card-header>\n\n  <ion-card-content>\n\n    <ul>\n\n      <li>{{selectedProduct.desc}}</li>\n\n    </ul>\n\n  </ion-card-content>\n\n</ion-card>\n\n\n\n<div *ngIf="hideMe2">\n\n\n\n      <div *ngFor="let desc of descList2" text-center>\n\n        \n\n<ion-row class="ionrow">\n\n<ion-col width-125>\n\n\n\n<div *ngIf="isApp">\n\n<button ion-button color="blue" (click)="onClick2(desc.record.upc,desc.record.desc,desc.record.quantity,desc.id)" style="width:89%">{{ desc.record.desc }} </button>\n\n\n\n</div>\n\n\n\n<div *ngIf="!isApp">\n\n<button ion-button color="blue" (click)="onClick2(desc.record.upc,desc.record.desc,desc.record.quantity,desc.id)" style="width:29%">{{ desc.record.desc }} </button>\n\n</div>\n\n\n\n</ion-col>\n\n</ion-row>\n\n\n\n\n\n        \n\n      </div>\n\n\n\n      \n\n      <div *ngIf="descList2.length === 0">No results, try clearing filters\n\n    </div>\n\n\n\n \n\n\n\n\n\n</div>\n\n\n\n\n\n\n\n</ion-list>        \n\n</ion-item>\n\n</ion-list>\n\n</div>\n\n\n\n\n\n</ion-content>'/*ion-inline-end:"C:\ionicFirebase\IonicShoppingList\src\pages\home\home.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3_ionic_angular__["l" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_0__services_shopping_list_shopping_list_service__["a" /* ShoppingListService */],
