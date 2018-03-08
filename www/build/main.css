@@ -25877,11 +25877,11 @@ page-invreportmenu :-ms-input-placeholder {
   text-align: center;
 }
 
-page-poreport .scroll-content {
+.ios page-pograph .scroll-content, .md page-pograph .scroll-content {
   background-color: #f4f4f4;
 }
 
-page-poreport ion-card-header {
+.ios page-pograph ion-card-header, .md page-pograph ion-card-header {
   font-weight: bold;
 }
 
