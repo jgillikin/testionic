@@ -7,6 +7,7 @@ import { Item } from './../../models/item/item.model';
 import { IrreportsPage } from '../irreports/irreports';
 import { CurrInvReportPage } from '../currinvreport/currinvreport';
 import { POReportPage } from '../poreport/poreport';
+import { PographPage } from '../pograph/pograph';
 import { ReordersReportPage } from '../reordersreport/reordersreport';
 import { InventoryPage } from '../inventory/inventory';
 import { HomePage } from '../home/home';
@@ -63,7 +64,8 @@ let platforms = this.platform.platforms();
   this.groceries = [
             'Current Inventory Report',
             'Purchase Order Report',
-            'Re-orders Report'
+            'Re-orders Report',
+            'P.O. Graph'
         ];
 
 
@@ -94,6 +96,8 @@ if (rep === 'Current Inventory Report')
  this.navCtrl.push(InvreportmenuPage);
 else if (rep === 'Purchase Order Report')
  this.navCtrl.push(POReportPage);
+else if (rep === 'P.O. Graph')
+ this.navCtrl.push(PographPage);
 else
  this.navCtrl.push(ReordersReportPage);
 

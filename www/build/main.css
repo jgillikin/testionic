@@ -25877,6 +25877,14 @@ page-invreportmenu :-ms-input-placeholder {
   text-align: center;
 }
 
+page-poreport .scroll-content {
+  background-color: #f4f4f4;
+}
+
+page-poreport ion-card-header {
+  font-weight: bold;
+}
+
 page-reviewcart input {
   background: white;
   padding: 15px;

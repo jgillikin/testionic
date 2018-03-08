@@ -19,6 +19,7 @@ import { HomePage } from '../pages/home/home';
 import { CustselectPage } from '../pages/custselect/custselect';
 import { CurrInvReportPage } from '../pages/currinvreport/currinvreport';
 import { POReportPage } from '../pages/poreport/poreport';
+import { PographPage } from '../pages/pograph/pograph';
 import { ReordersReportPage } from '../pages/reordersreport/reordersreport';
 import { HomeaddPage } from '../pages/homeadd/homeadd';
 import { Homeadd2Page } from '../pages/homeadd2/homeadd2';
@@ -67,7 +68,8 @@ import { DataServiceProvider } from '../providers/data-service/data-service';
     SearchUiComponent,
     HitsComponent,
     Hits2Component,
-    Homeadd2Page
+    Homeadd2Page,
+    PographPage
 //   LoginPage
   ],
   imports: [
@@ -104,7 +106,8 @@ import { DataServiceProvider } from '../providers/data-service/data-service';
     SearchUiComponent,
     HitsComponent,
     Hits2Component,
-    Homeadd2Page
+    Homeadd2Page,
+    PographPage
 //LoginPage
   ],
   providers: [
