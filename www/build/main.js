@@ -149,15 +149,15 @@ var AppModule = (function () {
                     links: [
                         { loadChildren: '../pages/add-shopping-item/add-shopping-item.module#AddShoppingItemPageModule', name: 'AddShoppingItemPage', segment: 'add-shopping-item', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/addlocation/addlocation.module#AddLocationPageModule', name: 'AddLocationPage', segment: 'addlocation', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/edit-shopping-item/edit-shopping-item.module#EditShoppingItemPageModule', name: 'EditShoppingItemPage', segment: 'edit-shopping-item', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/editcart2/editcart2.module#Editcart2Module', name: 'Editcart2Page', segment: 'editcart2', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/editcart/editcart.module#EditcartModule', name: 'EditcartPage', segment: 'editcart', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/editcart2/editcart2.module#Editcart2Module', name: 'Editcart2Page', segment: 'editcart2', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/edit-shopping-item/edit-shopping-item.module#EditShoppingItemPageModule', name: 'EditShoppingItemPage', segment: 'edit-shopping-item', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/home/home.module#HomeModule', name: 'HomePage', segment: 'home', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/homeadd/homeadd.module#HomeaddModule', name: 'HomeaddPage', segment: 'homeadd', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/homeadd2/homeadd2.module#Homeadd2Module', name: 'Homeadd2Page', segment: 'homeadd2', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/login/login.module#LoginModule', name: 'LoginPage', segment: 'login', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/reviewcart/reviewcart.module#ReviewcartModule', name: 'ReviewcartPage', segment: 'reviewcart', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/reviewreorders/reviewreorders.module#ReviewreordersModule', name: 'ReviewreordersPage', segment: 'reviewreorders', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/home/home.module#HomeModule', name: 'HomePage', segment: 'home', priority: 'low', defaultHistory: [] }
+                        { loadChildren: '../pages/reviewreorders/reviewreorders.module#ReviewreordersModule', name: 'ReviewreordersPage', segment: 'reviewreorders', priority: 'low', defaultHistory: [] }
                     ]
                 }),
                 __WEBPACK_IMPORTED_MODULE_6_angularfire2__["a" /* AngularFireModule */].initializeApp(__WEBPACK_IMPORTED_MODULE_34__firebase_credentials__["a" /* FIREBASE_CONFIG */]),
@@ -3856,11 +3856,11 @@ var map = {
 		10
 	],
 	"../pages/edit-shopping-item/edit-shopping-item.module": [
-		1677,
+		1679,
 		0
 	],
 	"../pages/editcart/editcart.module": [
-		1679,
+		1677,
 		8
 	],
 	"../pages/editcart2/editcart2.module": [
@@ -3868,27 +3868,27 @@ var map = {
 		9
 	],
 	"../pages/home/home.module": [
-		1685,
+		1680,
 		7
 	],
 	"../pages/homeadd/homeadd.module": [
-		1680,
+		1681,
 		5
 	],
 	"../pages/homeadd2/homeadd2.module": [
-		1681,
+		1682,
 		6
 	],
 	"../pages/login/login.module": [
-		1682,
+		1683,
 		4
 	],
 	"../pages/reviewcart/reviewcart.module": [
-		1683,
+		1684,
 		3
 	],
 	"../pages/reviewreorders/reviewreorders.module": [
-		1684,
+		1685,
 		2
 	]
 };
