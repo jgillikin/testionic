@@ -17,7 +17,6 @@ import 'rxjs/add/operator/switchMap';
 import { HomePage } from '../home/home';
 import { ReviewreordersPage } from '../reviewreorders/reviewreorders';
 
-
 @IonicPage()
 @Component({
   selector: 'page-editcart2',
