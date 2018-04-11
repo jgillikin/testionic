@@ -37,16 +37,18 @@ item: Item = {
 
 
 pushPage: any;
-
 section
 groceries
-
+userId: any;
 shoppingList$: Observable<Item[]>;
 
 constructor(public navCtrl: NavController, 
 private shopping: ShoppingListService,
 public platform: Platform, private toast: ToastService,
 public afA: AngularFireAuth) {
+
+   this.userId = firebase.auth().currentUser.uid;
+
 
 this.pushPage = AddLocationPage;
 
@@ -85,9 +87,13 @@ this.shoppingList$ = this.shopping
 
 logout(){
 //alert("in logout");
-    this.afA.auth.signOut().then(() => {
+/*    this.afA.auth.signOut().then(() => {
        this.navCtrl.setRoot(LoginPage);
-    })
+    })*/
+
+ var user = this.afA.auth.signOut();
+    this.app.getRootNav().setRoot(LoginPage); // Better way to fix this line?
+
 }
 
 goReport(rep) {
