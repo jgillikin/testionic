@@ -1,6 +1,7 @@
 import { ShoppingListService } from '../../services/shopping-list/shopping-list.service';
 import { Component } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
+import * as firebase from 'firebase/app';
 import { NavController, Platform } from 'ionic-angular';
 import { Observable } from 'rxjs/Observable';
 import { Item } from './../../models/item/item.model';
