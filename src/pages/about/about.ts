@@ -48,7 +48,7 @@ private shopping: ShoppingListService,
 public platform: Platform, private toast: ToastService,
 public afA: AngularFireAuth,public app: App) {
 
- //  this.userId = firebase.auth().currentUser.uid;
+   this.userId = firebase.auth().currentUser.uid;
 
 
 this.pushPage = AddLocationPage;
