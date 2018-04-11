@@ -51,7 +51,6 @@ data: any = {};
 
   public descList:Array<any>;
   public descList2:Array<any>;
-
   public descRef: firebase.database.Reference;
   public loadedDescList: Array<any>;
   public averagesList: Array<any>;
