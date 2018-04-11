@@ -15,6 +15,7 @@ import { LoginPage } from '../login/login';
 import { AddLocationPage } from '../addlocation/addlocation';
 import { ToastService } from './../../services/toast/toast.service';
 import { InvreportmenuPage } from '../invreportmenu/invreportmenu';
+import {App} from 'ionic-angular';
 
 @Component({
   selector: 'page-about',
@@ -45,7 +46,7 @@ shoppingList$: Observable<Item[]>;
 constructor(public navCtrl: NavController, 
 private shopping: ShoppingListService,
 public platform: Platform, private toast: ToastService,
-public afA: AngularFireAuth) {
+public afA: AngularFireAuth,public app: App) {
 
    this.userId = firebase.auth().currentUser.uid;
 
